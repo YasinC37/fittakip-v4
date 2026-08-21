@@ -3,19 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#000000">
-<title>896 FIT</title>
+<meta name="theme-color" content="#000">
+<title>896 FIT V7</title>
 
 <style>
 :root{
   --bg:#000;
   --card:#111;
-  --card2:#1a1a1a;
+  --card2:#1b1b1b;
   --text:#fff;
-  --muted:#8d8d8d;
-  --line:#292929;
-  --white:#fff;
-  --black:#000;
+  --muted:#929292;
+  --line:#2b2b2b;
   --danger:#5b1b1b;
 }
 
@@ -40,24 +38,23 @@ button{
 }
 
 .app{
-  max-width:720px;
+  max-width:760px;
   margin:auto;
-  padding:24px 16px 100px;
+  padding:20px 15px 100px;
 }
 
 header{
-  margin-bottom:26px;
+  margin-bottom:22px;
 }
 
 .logo{
-  font-size:42px;
+  font-size:40px;
   font-weight:900;
   letter-spacing:-2px;
 }
 
 .date{
   color:var(--muted);
-  font-size:18px;
   margin-top:4px;
 }
 
@@ -69,306 +66,339 @@ header{
   display:block;
 }
 
-.section-title{
-  font-size:30px;
+.title{
+  font-size:29px;
   font-weight:900;
-  margin:20px 0;
+  margin:18px 0;
 }
 
 .card{
   background:var(--card);
   border:1px solid var(--line);
-  border-radius:28px;
-  padding:24px;
-  margin-bottom:18px;
+  border-radius:24px;
+  padding:20px;
+  margin-bottom:15px;
 }
 
-.card-title{
-  font-size:24px;
+.cardtitle{
+  font-size:21px;
   font-weight:900;
-  margin-bottom:8px;
+  margin-bottom:9px;
 }
 
 .muted{
   color:var(--muted);
 }
 
-.dashboard{
-  display:grid;
-  grid-template-columns:1.4fr 1fr 1fr 1fr;
-  gap:10px;
-  align-items:center;
-}
-
-.calorie-ring{
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  border:18px solid #333;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:auto;
-  font-size:32px;
-  font-weight:900;
-  position:relative;
-}
-
-.calorie-ring small{
-  position:absolute;
-  bottom:42px;
-  font-size:11px;
-  color:var(--muted);
-}
-
-.stat{
-  background:#181818;
-  border-radius:20px;
-  padding:18px 8px;
-  text-align:center;
-}
-
-.stat strong{
-  display:block;
-  font-size:24px;
-}
-
-.stat span{
-  color:var(--muted);
+.small{
   font-size:13px;
-}
-
-.btn{
-  border:0;
-  border-radius:18px;
-  padding:16px 20px;
-  font-weight:900;
-  background:#fff;
-  color:#000;
-}
-
-.btn.dark{
-  background:#1c1c1c;
-  color:#fff;
-  border:1px solid #303030;
-}
-
-.btn.danger{
-  background:var(--danger);
-  color:#ff9d9d;
-}
-
-.btn.full{
-  width:100%;
 }
 
 .row{
   display:flex;
-  gap:12px;
+  gap:10px;
   align-items:center;
   justify-content:space-between;
-}
-
-input,select{
-  width:100%;
-  background:#1b1b1b;
-  color:#fff;
-  border:1px solid #303030;
-  border-radius:18px;
-  padding:17px;
-  outline:none;
-}
-
-input:focus,select:focus{
-  border-color:#777;
-}
-
-.field{
-  margin-bottom:16px;
-}
-
-.field label{
-  display:block;
-  margin-bottom:8px;
-  color:#aaa;
 }
 
 .grid2{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:10px;
 }
 
-.food{
-  border-bottom:1px solid var(--line);
-  padding:16px 0;
+input,
+select{
+  width:100%;
+  background:var(--card2);
+  color:#fff;
+  border:1px solid #333;
+  border-radius:14px;
+  padding:14px;
+  outline:none;
 }
 
-.food:last-child{
-  border-bottom:0;
-}
-
-.food-name{
-  font-size:19px;
-  font-weight:800;
-}
-
-.food-info{
-  color:var(--muted);
-  margin-top:5px;
-  font-size:14px;
-}
-
-.food button{
-  float:right;
-  margin-top:-35px;
-}
-
-.water-bar{
-  height:18px;
-  background:#292929;
-  border-radius:20px;
-  overflow:hidden;
-  margin-top:16px;
-}
-
-.water-fill{
-  height:100%;
-  width:0%;
-  background:#fff;
-  transition:.3s;
-}
-
-.meal-item{
-  background:#191919;
-  border-radius:18px;
-  padding:15px;
-  margin-bottom:10px;
-}
-
-.meal-item strong{
+label{
   display:block;
+  color:#aaa;
+  margin:0 0 7px;
 }
 
-.meal-item small{
+.field{
+  margin-bottom:14px;
+}
+
+.btn{
+  border:0;
+  border-radius:15px;
+  padding:13px 16px;
+  background:#fff;
+  color:#000;
+  font-weight:900;
+}
+
+.dark{
+  background:#1c1c1c;
+  color:#fff;
+  border:1px solid #333;
+}
+
+.danger{
+  background:var(--danger);
+  color:#ffaaaa;
+}
+
+.full{
+  width:100%;
+}
+
+.statgrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.stat{
+  background:var(--card2);
+  border-radius:17px;
+  padding:14px 7px;
+  text-align:center;
+}
+
+.stat b{
+  display:block;
+  font-size:20px;
+}
+
+.stat span{
+  font-size:11px;
   color:#999;
 }
 
-.empty{
+.net{
+  font-size:35px;
+  font-weight:900;
   text-align:center;
+  margin:10px 0;
+}
+
+.net small{
+  display:block;
+  font-size:11px;
+  color:#888;
+}
+
+.progress{
+  height:12px;
+  background:#2c2c2c;
+  border-radius:20px;
+  overflow:hidden;
+  margin:12px 0;
+}
+
+.progress div{
+  height:100%;
+  background:#fff;
+  width:0;
+  transition:.3s;
+}
+
+.item{
+  background:#191919;
+  border:1px solid #292929;
+  border-radius:17px;
+  padding:14px;
+  margin:8px 0;
+}
+
+.item b{
+  display:block;
+}
+
+.item small{
+  color:#999;
+}
+
+.foodline{
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.foodline:last-child{
+  border-bottom:0;
+}
+
+.badge{
+  display:inline-block;
+  background:#222;
+  border-radius:20px;
+  padding:6px 10px;
+  color:#aaa;
+  font-size:12px;
+}
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:76px;
+  background:#080808;
+  border-top:1px solid #292929;
+  z-index:50;
+}
+
+.nav{
+  max-width:760px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  height:100%;
+}
+
+.nav button{
+  background:none;
+  border:0;
   color:#777;
-  padding:30px 10px;
+  font-size:10px;
+  font-weight:800;
+}
+
+.nav button.active{
+  color:#fff;
+}
+
+.nav span{
+  display:block;
+  font-size:21px;
+  margin-bottom:2px;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000b;
+  z-index:100;
+  align-items:flex-end;
+}
+
+.modal.open{
+  display:flex;
+}
+
+.sheet{
+  width:100%;
+  max-width:760px;
+  margin:auto;
+  background:#111;
+  border-radius:24px 24px 0 0;
+  padding:20px;
+  max-height:88vh;
+  overflow:auto;
+}
+
+.calendar{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:6px;
+}
+
+.day{
+  background:#191919;
+  border:1px solid #292929;
+  border-radius:10px;
+  padding:10px 3px;
+  text-align:center;
+  color:#aaa;
+  min-height:55px;
+}
+
+.day b{
+  display:block;
+  color:#fff;
+}
+
+.day.has{
+  border-color:#fff;
+}
+
+.day.selected{
+  background:#fff;
+  color:#000;
+}
+
+.day.selected b{
+  color:#000;
+}
+
+.timer{
+  font-size:44px;
+  font-weight:900;
+  text-align:center;
+  margin:15px 0;
+}
+
+.exercise-card{
+  border:1px solid #292929;
+  border-radius:20px;
+  overflow:hidden;
+  background:#151515;
+  margin:10px 0;
+}
+
+.exercise-img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  background:#222;
+}
+
+.exercise-body{
+  padding:15px;
+}
+
+.check{
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  border:1px solid #555;
+  background:#111;
+  color:#fff;
+}
+
+.check.done{
+  background:#fff;
+  color:#000;
 }
 
 canvas{
   width:100%;
   height:230px;
   background:#090909;
-  border-radius:20px;
+  border-radius:18px;
 }
 
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  height:78px;
-  background:#080808;
-  border-top:1px solid #292929;
-  display:flex;
-  justify-content:center;
-  z-index:99;
-}
-
-.nav-inner{
-  width:100%;
-  max-width:720px;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-}
-
-.nav-btn{
-  background:none;
-  color:#777;
+hr{
   border:0;
-  font-size:12px;
-  font-weight:800;
-}
-
-.nav-btn span{
-  display:block;
-  font-size:25px;
-  margin-bottom:3px;
-}
-
-.nav-btn.active{
-  color:#fff;
-}
-
-.timer{
-  font-size:48px;
-  font-weight:900;
-  letter-spacing:2px;
-  text-align:center;
-  margin:20px 0;
-}
-
-.badge{
-  display:inline-block;
-  background:#222;
-  color:#aaa;
-  padding:8px 14px;
-  border-radius:20px;
-  font-size:13px;
-}
-
-.progress-row{
-  display:flex;
-  justify-content:space-between;
-  padding:18px 0;
-  border-bottom:1px solid var(--line);
-}
-
-.progress-row:last-child{
-  border-bottom:0;
-}
-
-.kilo{
-  font-size:30px;
-  font-weight:900;
-}
-
-.history{
-  max-height:400px;
-  overflow:auto;
-}
-
-.small{
-  font-size:13px;
+  border-top:1px solid var(--line);
+  margin:18px 0;
 }
 
 @media(max-width:600px){
+
   .app{
-    padding:18px 14px 100px;
+    padding:16px 13px 95px;
   }
 
   .logo{
-    font-size:38px;
+    font-size:36px;
   }
 
-  .dashboard{
-    grid-template-columns:1fr 1fr 1fr;
+  .nav button{
+    font-size:9px;
   }
 
-  .calorie-ring{
-    grid-column:1/-1;
-    width:170px;
-    height:170px;
-  }
-
-  .grid2{
-    grid-template-columns:1fr 1fr;
-  }
 }
 </style>
 </head>
@@ -382,184 +412,426 @@ canvas{
   <div class="date" id="today"></div>
 </header>
 
+
 <!-- ANA SAYFA -->
+
 <section id="home" class="page active">
 
   <div class="card">
-    <div class="dashboard">
 
-      <div class="calorie-ring" id="calorieRing">
-        <span id="remainingCal">2000</span>
-        <small>KALAN KCAL</small>
+    <div class="cardtitle">
+      🔥 Günlük Kalori
+    </div>
+
+    <div class="net">
+      <span id="netCal">0</span>
+      <small>NET KCAL</small>
+    </div>
+
+    <div class="statgrid">
+
+      <div class="stat">
+        <b id="inCal">0</b>
+        <span>ALINAN</span>
       </div>
 
       <div class="stat">
-        <strong id="totalCal">0</strong>
-        <span>KALORİ</span>
+        <b id="exCal">0</b>
+        <span>EGZERSİZ</span>
       </div>
 
       <div class="stat">
-        <strong id="totalProtein">0g</strong>
-        <span>PROTEİN</span>
-      </div>
-
-      <div class="stat">
-        <strong id="waterHome">0</strong>
-        <span>SU</span>
+        <b id="remainCal">2000</b>
+        <span>KALAN</span>
       </div>
 
     </div>
+
+    <div class="progress">
+      <div id="calProgress"></div>
+    </div>
+
+    <div class="small muted" id="goalText">
+      Hedef: 2000 kcal
+    </div>
+
   </div>
 
+
   <div class="card">
+
     <div class="row">
-      <div class="card-title">Bugün</div>
-      <button class="btn" onclick="go('food')">+ Yemek</button>
+
+      <div class="cardtitle">
+        Bugün
+      </div>
+
+      <button class="btn" onclick="go('food')">
+        + Yemek
+      </button>
+
     </div>
 
     <div id="todayMeals"></div>
+
   </div>
 
+
   <div class="card">
-    <div class="card-title">💧 Su Takibi</div>
-    <div class="muted">Hedef: <span id="waterGoal">8</span> bardak</div>
 
-    <div class="row" style="margin-top:15px">
-      <div class="kilo"><span id="waterCount">0</span> / <span id="waterGoal2">8</span></div>
-      <button class="btn" onclick="addWater()">+1</button>
+    <div class="cardtitle">
+      💧 Su
     </div>
 
-    <div class="water-bar">
-      <div class="water-fill" id="waterFill"></div>
+    <div class="row">
+
+      <div>
+
+        <b style="font-size:28px">
+          <span id="waterNow">0</span> L
+        </b>
+
+        <div class="muted">
+          Hedef
+          <span id="waterGoalHome">2.5</span> L
+        </div>
+
+      </div>
+
+      <button class="btn" onclick="enterWater()">
+        Miktar Gir
+      </button>
+
     </div>
+
+    <div class="progress">
+      <div id="waterProgress"></div>
+    </div>
+
   </div>
 
+
   <div class="card">
-    <div class="card-title">🎯 Günlük Hedef</div>
-    <div class="muted">
-      <span id="homeGoalCal">2000</span> kcal ·
-      <span id="homeGoalProtein">150</span> g protein
+
+    <div class="cardtitle">
+      🏋️ Bugünkü Antrenman
     </div>
 
-    <button class="btn dark full" style="margin-top:15px" onclick="go('settings')">
-      Hedefleri Ayarla
+    <div id="todayWorkout"></div>
+
+    <button
+      class="btn full"
+      onclick="go('workout')">
+      Antrenmana Git
     </button>
+
   </div>
 
 </section>
 
 
 <!-- YEMEK -->
+
 <section id="food" class="page">
 
-  <div class="section-title">🍽️ Yemek Ekle</div>
+  <div class="title">
+    🍽️ Yemek
+  </div>
 
   <div class="card">
 
-    <div class="card-title">🔎 Hazır Yiyecekler</div>
-    <div class="muted">Yiyeceği ara ve dokun.</div>
+    <div class="cardtitle">
+      Yiyecek Ara
+    </div>
 
     <input
       id="foodSearch"
-      placeholder="Örn. tavuk, yumurta, pilav..."
-      oninput="searchFoods()"
-      style="margin-top:15px"
+      placeholder="Domates, pilav, kola, çorba..."
+      oninput="renderFoods()"
     >
 
     <div id="foodResults"></div>
 
   </div>
 
+
   <div class="card">
 
+    <div class="cardtitle">
+      Seçilen Yiyecek
+    </div>
+
     <div class="field">
-      <label>Öğün</label>
+
+      <label>
+        Öğün
+      </label>
+
       <select id="mealType">
+
         <option>Kahvaltı</option>
         <option>Öğle</option>
         <option>Akşam</option>
         <option>Ara Öğün</option>
+
       </select>
+
     </div>
 
+
     <div class="field">
-      <label>Yiyecek</label>
-      <input id="foodName" placeholder="Örn. tavuk göğsü">
+
+      <label>
+        Yiyecek
+      </label>
+
+      <input
+        id="foodName"
+        placeholder="Yiyecek"
+      >
+
     </div>
+
 
     <div class="grid2">
 
       <div class="field">
-        <label>Kalori</label>
-        <input id="foodCal" type="number">
+
+        <label>
+          Miktar
+        </label>
+
+        <input
+          id="foodAmount"
+          type="number"
+          step=".1"
+          value="1"
+          oninput="recalcFood()"
+        >
+
       </div>
 
-      <div class="field">
-        <label>Protein (g)</label>
-        <input id="foodProtein" type="number">
-      </div>
 
       <div class="field">
-        <label>Karbonhidrat (g)</label>
-        <input id="foodCarb" type="number">
-      </div>
 
-      <div class="field">
-        <label>Yağ (g)</label>
-        <input id="foodFat" type="number">
+        <label>
+          Birim
+        </label>
+
+        <input
+          id="foodUnit"
+          disabled
+        >
+
       </div>
 
     </div>
 
-    <button class="btn full" onclick="saveFood()">Kaydet</button>
 
-    <button class="btn dark full" onclick="clearFoodForm()" style="margin-top:10px">
-      Temizle
+    <div class="grid2">
+
+      <div class="field">
+
+        <label>
+          Kalori
+        </label>
+
+        <input
+          id="foodCal"
+          type="number"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Protein (g)
+        </label>
+
+        <input
+          id="foodProtein"
+          type="number"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Karbonhidrat (g)
+        </label>
+
+        <input
+          id="foodCarb"
+          type="number"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Yağ (g)
+        </label>
+
+        <input
+          id="foodFat"
+          type="number"
+        >
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="btn full"
+      onclick="saveFood()">
+      Yemeği Kaydet
     </button>
 
   </div>
 
+
   <div class="card">
-    <div class="card-title">📋 Yemek Geçmişi</div>
-    <div id="foodHistory" class="history"></div>
+
+    <div class="cardtitle">
+      📋 Geçmiş
+    </div>
+
+    <div id="foodHistory"></div>
+
   </div>
 
 </section>
 
 
-<!-- FOTOĞRAF -->
-<section id="photo" class="page">
+<!-- TAKVİM -->
 
-  <div class="section-title">📷 Yemek Fotoğrafı</div>
+<section id="calendar" class="page">
 
-  <div class="card">
-
-    <div class="card-title">Tabağını Fotoğraflandır</div>
-    <div class="muted">Fotoğrafı seç veya kamerayla çek.</div>
-
-    <input
-      type="file"
-      accept="image/*"
-      capture="environment"
-      id="photoInput"
-      style="margin-top:18px"
-    >
-
-    <div id="photoPreview" style="margin-top:15px"></div>
-
+  <div class="title">
+    📅 Takvim
   </div>
 
   <div class="card">
 
-    <div class="card-title">ℹ️ V6 Fotoğraf Sistemi</div>
+    <div class="row">
 
-    <p class="muted">
-      Fotoğraf cihazında işlenmek üzere hazırlanır.
-      Gerçek yapay zekâ yemek tanıma sistemi daha sonraki sürümde
-      internet/API bağlantısıyla eklenecek.
-    </p>
+      <button
+        class="btn dark"
+        onclick="changeMonth(-1)">
+        ‹
+      </button>
 
-    <div class="badge">V6 • Hazır</div>
+      <b id="monthTitle"></b>
+
+      <button
+        class="btn dark"
+        onclick="changeMonth(1)">
+        ›
+      </button>
+
+    </div>
+
+    <div
+      class="calendar"
+      style="margin-top:15px"
+      id="calendarGrid">
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div
+      class="cardtitle"
+      id="selectedDateTitle">
+      Gün Özeti
+    </div>
+
+    <div id="daySummary"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ANTRENMAN -->
+
+<section id="workout" class="page">
+
+  <div class="title">
+    🏋️ Antrenman
+  </div>
+
+
+  <div class="card">
+
+    <div class="cardtitle">
+      Ekipmanlarım
+    </div>
+
+    <div id="equipmentList"></div>
+
+    <button
+      class="btn full"
+      onclick="addEquipment()">
+      + Ekipman Ekle
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="cardtitle">
+      Programlarım
+    </div>
+
+    <div id="programList"></div>
+
+    <button
+      class="btn full"
+      onclick="newProgram()">
+      + Program Oluştur
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="cardtitle">
+      Hareket Kütüphanesi
+    </div>
+
+    <input
+      id="exerciseSearch"
+      placeholder="Squat, press, row..."
+      oninput="renderExercises()"
+    >
+
+    <div id="exerciseList"></div>
+
+  </div>
+
+
+  <div
+    class="card"
+    id="activeWorkoutCard"
+    style="display:none">
+
+    <div class="cardtitle">
+      ▶️ Antrenman Modu
+    </div>
+
+    <div id="activeWorkout"></div>
 
   </div>
 
@@ -567,48 +839,64 @@ canvas{
 
 
 <!-- İLERLEME -->
+
 <section id="progress" class="page">
 
-  <div class="section-title">📊 İlerleme</div>
+  <div class="title">
+    📊 İlerleme
+  </div>
 
   <div class="card">
 
     <div class="row">
+
       <div>
-        <div class="card-title">Kilo Takibi</div>
-        <div class="muted">Hedef: <span id="targetWeightText">85</span> kg</div>
+
+        <div class="cardtitle">
+          Kilo
+        </div>
+
+        <div class="muted">
+          Hedef
+          <span id="targetWeight">85</span> kg
+        </div>
+
       </div>
 
-      <button class="btn" onclick="addWeight()">+ Kayıt</button>
+      <button
+        class="btn"
+        onclick="addWeight()">
+        + Kayıt
+      </button>
+
     </div>
 
-    <div id="latestWeight" style="margin-top:20px"></div>
+    <div
+      id="latestWeight"
+      style="margin-top:15px">
+    </div>
 
   </div>
 
+
   <div class="card">
-    <div class="card-title">📈 Kilo Grafiği</div>
-    <canvas id="weightChart" width="650" height="260"></canvas>
+
+    <div class="cardtitle">
+      Kilo Grafiği
+    </div>
+
+    <canvas
+      id="chart"
+      width="700"
+      height="260">
+    </canvas>
+
   </div>
 
+
   <div class="card">
 
-    <div class="card-title">Son Durum</div>
-
-    <div class="progress-row">
-      <span class="muted">Başlangıç</span>
-      <strong id="startWeight">-</strong>
-    </div>
-
-    <div class="progress-row">
-      <span class="muted">Son ölçüm</span>
-      <strong id="lastWeight">-</strong>
-    </div>
-
-    <div class="progress-row">
-      <span class="muted">Değişim</span>
-      <strong id="weightChange">-</strong>
-    </div>
+    <div id="weightStats"></div>
 
   </div>
 
@@ -616,36 +904,81 @@ canvas{
 
 
 <!-- AYARLAR -->
+
 <section id="settings" class="page">
 
-  <div class="section-title">⚙️ 896 FIT</div>
+  <div class="title">
+    ⚙️ Ayarlar
+  </div>
 
   <div class="card">
 
-    <div class="card-title">🎯 Hedefler</div>
-
-    <div class="field">
-      <label>Günlük kalori</label>
-      <input id="goalCal" type="number" value="2000">
+    <div class="cardtitle">
+      Hedefler
     </div>
 
     <div class="field">
-      <label>Protein hedefi (g)</label>
-      <input id="goalProtein" type="number" value="150">
+
+      <label>
+        Günlük kalori
+      </label>
+
+      <input
+        id="goalCal"
+        type="number"
+      >
+
     </div>
+
 
     <div class="field">
-      <label>Hedef kilo (kg)</label>
-      <input id="goalWeight" type="number" value="85">
+
+      <label>
+        Protein (g)
+      </label>
+
+      <input
+        id="goalProtein"
+        type="number"
+      >
+
     </div>
+
 
     <div class="field">
-      <label>Günlük su hedefi (bardak)</label>
-      <input id="goalWater" type="number" value="8">
+
+      <label>
+        Hedef kilo
+      </label>
+
+      <input
+        id="goalWeight"
+        type="number"
+        step=".1"
+      >
+
     </div>
 
-    <button class="btn full" onclick="saveGoals()">
-      Hedefleri Kaydet
+
+    <div class="field">
+
+      <label>
+        Su hedefi (L)
+      </label>
+
+      <input
+        id="goalWater"
+        type="number"
+        step=".1"
+      >
+
+    </div>
+
+
+    <button
+      class="btn full"
+      onclick="saveGoals()">
+      Kaydet
     </button>
 
   </div>
@@ -653,16 +986,31 @@ canvas{
 
   <div class="card">
 
-    <div class="card-title">⏱️ Aralıklı Oruç</div>
+    <div class="cardtitle">
+      ⏱️ Aralıklı Oruç
+    </div>
 
-    <div class="timer" id="fastTimer">00:00:00</div>
+    <div
+      class="timer"
+      id="fastTimer">
+      00:00:00
+    </div>
 
     <div class="row">
-      <span class="badge" id="fastStatus">Başlamadı</span>
 
-      <button class="btn" id="fastButton" onclick="toggleFast()">
+      <span
+        class="badge"
+        id="fastStatus">
+        Başlamadı
+      </span>
+
+      <button
+        class="btn"
+        onclick="toggleFast()"
+        id="fastBtn">
         Başlat
       </button>
+
     </div>
 
   </div>
@@ -670,37 +1018,37 @@ canvas{
 
   <div class="card">
 
-    <div class="card-title">💾 Veriler</div>
+    <div class="cardtitle">
+      💾 Veriler
+    </div>
 
-    <p class="muted">
-      Kayıtların otomatik olarak cihazında tutulur.
-    </p>
-
-    <button class="btn dark full" onclick="backupData()">
-      Verilerimi Yedekle
+    <button
+      class="btn dark full"
+      onclick="backup()">
+      Yedekle
     </button>
 
-    <button class="btn dark full" onclick="restoreData()" style="margin-top:10px">
-      Yedekten Geri Yükle
+    <button
+      class="btn dark full"
+      style="margin-top:9px"
+      onclick="document.getElementById('restore').click()">
+      Geri Yükle
     </button>
 
-    <button class="btn danger full" onclick="deleteAllData()" style="margin-top:10px">
+    <input
+      id="restore"
+      type="file"
+      accept=".json"
+      hidden
+      onchange="restore(event)"
+    >
+
+    <button
+      class="btn danger full"
+      style="margin-top:9px"
+      onclick="wipe()">
       Tüm Verileri Sil
     </button>
-
-    <input type="file" id="restoreInput" accept=".json" hidden>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="card-title">🔐 Gizlilik</div>
-
-    <p class="muted">
-      Bu kişisel sürümde yemek, su, kilo ve hedef kayıtları
-      cihazında saklanır. Hesap veya sunucu gerekmez.
-    </p>
 
   </div>
 
@@ -709,340 +1057,999 @@ canvas{
 </div>
 
 
-<!-- NAV -->
-<nav class="bottom-nav">
-  <div class="nav-inner">
+<!-- ALT MENÜ -->
 
-    <button class="nav-btn active" onclick="go('home',this)">
-      <span>⌂</span>Ana Sayfa
+<nav class="bottom">
+
+  <div class="nav">
+
+    <button
+      class="nav-btn active"
+      onclick="go('home',this)">
+      <span>⌂</span>
+      Ana
     </button>
 
-    <button class="nav-btn" onclick="go('food',this)">
-      <span>🍽</span>Yemek
+    <button
+      class="nav-btn"
+      onclick="go('food',this)">
+      <span>🍽</span>
+      Yemek
     </button>
 
-    <button class="nav-btn" onclick="go('photo',this)">
-      <span>📷</span>Fotoğraf
+    <button
+      class="nav-btn"
+      onclick="go('calendar',this)">
+      <span>📅</span>
+      Takvim
     </button>
 
-    <button class="nav-btn" onclick="go('progress',this)">
-      <span>📊</span>İlerleme
+    <button
+      class="nav-btn"
+      onclick="go('workout',this)">
+      <span>🏋️</span>
+      Antrenman
     </button>
 
-    <button class="nav-btn" onclick="go('settings',this)">
-      <span>⚙</span>Ayarlar
+    <button
+      class="nav-btn"
+      onclick="go('progress',this)">
+      <span>📊</span>
+      İlerleme
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="go('settings',this)">
+      <span>⚙</span>
+      Ayarlar
     </button>
 
   </div>
+
 </nav>
 
 
-<script>
+<script> const KEY="896FIT_V7_DATA";
 
-/* =========================
-   VERİ SİSTEMİ
-========================= */
-
-const KEY = "896FIT_V6_DATA";
-
-let data = JSON.parse(localStorage.getItem(KEY) || "null") || {
-
+let data=JSON.parse(
+  localStorage.getItem(KEY)||"null"
+)||{
   goals:{
     calories:2000,
     protein:150,
     weight:85,
-    water:8
+    water:2.5
   },
 
   meals:[],
-
   water:{},
-
   weights:[],
-
+  equipment:[
+    {
+      id:1,
+      name:"Dumbbell",
+      qty:2,
+      weight:5
+    },
+    {
+      id:2,
+      name:"Yürüyüş bandı",
+      qty:1,
+      weight:0
+    }
+  ],
+  programs:[],
+  workouts:[],
   fasting:{
     active:false,
     start:null
   }
-
 };
 
-function saveData(){
+data.goals=data.goals||{
+  calories:2000,
+  protein:150,
+  weight:85,
+  water:2.5
+};
 
-  localStorage.setItem(KEY,JSON.stringify(data));
+data.meals=data.meals||[];
+data.water=data.water||{};
+data.weights=data.weights||[];
+data.equipment=data.equipment||[];
+data.programs=data.programs||[];
+data.workouts=data.workouts||[];
+
+data.fasting=data.fasting||{
+  active:false,
+  start:null
+};
+
+
+function save(){
+  localStorage.setItem(
+    KEY,
+    JSON.stringify(data)
+  );
+}
+
+
+function key(d=new Date()){
+
+  return d.getFullYear()
+    +"-"
+    +String(d.getMonth()+1).padStart(2,"0")
+    +"-"
+    +String(d.getDate()).padStart(2,"0");
 
 }
+
+
+function pretty(s){
+
+  return new Date(
+    s+"T12:00:00"
+  ).toLocaleDateString(
+    "tr-TR",
+    {
+      day:"numeric",
+      month:"long",
+      year:"numeric"
+    }
+  );
+
+}
+
+
+function esc(s){
+
+  return String(s).replace(
+    /[&<>"']/g,
+    m=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[m])
+  );
+
+}
+
+
+document.getElementById("today").textContent=
+  new Date().toLocaleDateString(
+    "tr-TR",
+    {
+      weekday:"long",
+      day:"numeric",
+      month:"long"
+    }
+  );
 
 
 /* =========================
-   TARİH
+   SAYFA GEÇİŞLERİ
 ========================= */
 
-function dateKey(date=new Date()){
+function go(id,btn){
 
-  const y=date.getFullYear();
+  document
+    .querySelectorAll(".page")
+    .forEach(x=>x.classList.remove("active"));
 
-  const m=String(date.getMonth()+1).padStart(2,"0");
+  document
+    .getElementById(id)
+    .classList.add("active");
 
-  const d=String(date.getDate()).padStart(2,"0");
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(x=>x.classList.remove("active"));
 
-  return `${y}-${m}-${d}`;
+  if(btn){
 
-}
+    btn.classList.add("active");
 
-function niceDate(date){
-
-  return new Date(date).toLocaleDateString("tr-TR",{
-    day:"2-digit",
-    month:"2-digit",
-    year:"numeric"
-  });
-
-}
-
-document.getElementById("today").textContent =
-new Date().toLocaleDateString("tr-TR",{
-  day:"numeric",
-  month:"long",
-  weekday:"long"
-});
-
-
-/* =========================
-   SAYFA GEÇİŞİ
-========================= */
-
-function go(page,button){
-
-  document.querySelectorAll(".page").forEach(p=>{
-    p.classList.remove("active");
-  });
-
-  document.getElementById(page).classList.add("active");
-
-  document.querySelectorAll(".nav-btn").forEach(b=>{
-    b.classList.remove("active");
-  });
-
-  if(button){
-    button.classList.add("active");
   }else{
 
-    const map={
-      home:0,
-      food:1,
-      photo:2,
-      progress:3,
-      settings:4
-    };
+    const pages=[
+      "home",
+      "food",
+      "calendar",
+      "workout",
+      "progress",
+      "settings"
+    ];
 
-    document.querySelectorAll(".nav-btn")[map[page]]
+    const index=pages.indexOf(id);
+
+    document
+      .querySelectorAll(".nav-btn")[index]
       ?.classList.add("active");
+
   }
 
-  if(page==="home") renderHome();
 
-  if(page==="food"){
-    renderFoodResults("");
-    renderFoodHistory();
+  if(id==="home")
+    renderHome();
+
+  if(id==="/* =========================
+   TAKVİM
+========================= */
+
+let calMonth=new Date();
+let selectedDate=key();
+
+function changeMonth(n){
+
+  calMonth.setMonth(
+    calMonth.getMonth()+n
+  );
+
+  renderCalendar();
+
+}
+
+function renderCalendar(){
+
+  const y=calMonth.getFullYear();
+  const m=calMonth.getMonth();
+
+  const names=[
+    "Pzt","Sal","Çar","Per",
+    "Cum","Cmt","Paz"
+  ];
+
+  document.getElementById("monthTitle")
+    .textContent=
+      calMonth.toLocaleDateString(
+        "tr-TR",
+        {
+          month:"long",
+          year:"numeric"
+        }
+      );
+
+  const box=
+    document.getElementById("calendarGrid");
+
+  box.innerHTML=
+    names.map(n=>
+      `<div class="small muted"
+        style="text-align:center">
+        ${n}
+      </div>`
+    ).join("");
+
+  const first=
+    (new Date(y,m,1).getDay()+6)%7;
+
+  const days=
+    new Date(y,m+1,0).getDate();
+
+  for(let i=0;i<first;i++){
+
+    box.innerHTML+="<div></div>";
+
   }
 
-  if(page==="progress") renderProgress();
+  for(let d=1;d<=days;d++){
 
-  if(page==="settings") renderSettings();
+    const k=
+      `${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+
+    const has=
+      data.meals.some(x=>x.date===k)||
+      data.workouts.some(x=>x.date===k)||
+      data.water[k]!=null;
+
+    box.innerHTML+=`
+
+      <button
+        class="day
+          ${has?"has":""}
+          ${k===selectedDate?"selected":""}"
+        onclick="selectDate('${k}')">
+
+        <b>${d}</b>
+
+        ${has?"•":""}
+
+      </button>
+
+    `;
+
+  }
+
+  renderDaySummary();
+
+}
+
+
+function selectDate(k){
+
+  selectedDate=k;
+
+  renderCalendar();
+
+}
+
+
+function renderDaySummary(){
+
+  const title=
+    document.getElementById(
+      "selectedDateTitle"
+    );
+
+  title.textContent=
+    pretty(selectedDate);
+
+  const meals=
+    data.meals.filter(
+      x=>x.date===selectedDate
+    );
+
+  const workouts=
+    data.workouts.filter(
+      x=>x.date===selectedDate
+    );
+
+  const water=
+    data.water[selectedDate]||0;
+
+  const inC=
+    meals.reduce(
+      (a,x)=>a+x.cal,
+      0
+    );
+
+  const ex=
+    workouts.reduce(
+      (a,x)=>a+x.cal,
+      0
+    );
+
+  const net=
+    Math.max(
+      0,
+      inC-ex
+    );
+
+  let html=`
+
+    <div class="statgrid">
+
+      <div class="stat">
+        <b>${Math.round(inC)}</b>
+        <span>ALINAN</span>
+      </div>
+
+      <div class="stat">
+        <b>${Math.round(ex)}</b>
+        <span>EGZERSİZ</span>
+      </div>
+
+      <div class="stat">
+        <b>${Math.round(net)}</b>
+        <span>NET</span>
+      </div>
+
+    </div>
+
+    <p class="muted">
+      💧 ${water} L
+    </p>
+
+    <hr>
+
+    <b>🍽️ Yemekler</b>
+
+  `;
+
+  if(meals.length){
+
+    html+=meals.map(x=>`
+
+      <div class="item">
+
+        <b>${esc(x.name)}</b>
+
+        <small>
+          ${x.amount} ${x.unit}
+          · ${x.cal} kcal
+          · ${x.meal}
+        </small>
+
+      </div>
+
+    `).join("");
+
+  }else{
+
+    html+=`
+      <div
+        class="muted"
+        style="padding:12px 0">
+        Yemek yok.
+      </div>
+    `;
+
+  }
+
+  html+=`
+
+    <hr>
+
+    <b>🏋️ Antrenmanlar</b>
+
+  `;
+
+  if(workouts.length){
+
+    html+=workouts.map(x=>`
+
+      <div class="item">
+
+        <b>${esc(x.name)}</b>
+
+        <small>
+          ${x.duration} dk
+          · yaklaşık ${Math.round(x.cal)} kcal
+        </small>
+
+      </div>
+
+    `).join("");
+
+  }else{
+
+    html+=`
+      <div
+        class="muted"
+        style="padding:12px 0">
+        Antrenman yok.
+      </div>
+    `;
+
+  }
+
+  document.getElementById(
+    "daySummary"
+  ).innerHTML=html;
 
 }
 
 
 /* =========================
-   YEMEK VERİTABANI
+   HAREKET KÜTÜPHANESİ
 ========================= */
 
-const foods=[
+const exerciseDB=[
 
   {
-    name:"Yumurta",
-    cal:78,
-    protein:6.3,
-    carb:.6,
-    fat:5.3,
-    unit:"1 adet"
+    name:"Goblet Squat",
+    equip:"Dumbbell",
+    muscle:"Bacak + kalça",
+    sets:3,
+    reps:12,
+    rest:60,
+    desc:
+      "Dumbbell'ı göğüste tut. Kontrollü çömel ve topuklardan güç alarak kalk.",
+    img:
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80"
   },
 
   {
-    name:"Tavuk göğsü",
-    cal:165,
-    protein:31,
-    carb:0,
-    fat:3.6,
-    unit:"100 g"
+    name:"Dumbbell Row",
+    equip:"Dumbbell",
+    muscle:"Sırt + kol",
+    sets:3,
+    reps:12,
+    rest:60,
+    desc:
+      "Gövdeyi sabit tut. Dirseği geriye çek ve ağırlığı kontrollü indir.",
+    img:
+      "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=80"
   },
 
   {
-    name:"Hindi göğsü",
-    cal:135,
-    protein:29,
-    carb:0,
-    fat:1.6,
-    unit:"100 g"
+    name:"Dumbbell Shoulder Press",
+    equip:"Dumbbell",
+    muscle:"Omuz + kol",
+    sets:3,
+    reps:10,
+    rest:60,
+    desc:
+      "Ağırlıkları omuz hizasından kontrollü biçimde yukarı it ve indir.",
+    img:
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80"
   },
 
   {
-    name:"Dana kıyma",
-    cal:250,
-    protein:26,
-    carb:0,
-    fat:17,
-    unit:"100 g"
+    name:"Romanian Deadlift",
+    equip:"Dumbbell",
+    muscle:"Arka bacak + kalça",
+    sets:3,
+    reps:10,
+    rest:75,
+    desc:
+      "Dizleri hafif kır. Kalçayı geriye gönder ve sırtı nötr tut.",
+    img:
+      "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80"
   },
 
   {
-    name:"Pirinç pilavı",
-    cal:130,
-    protein:2.7,
-    carb:28,
-    fat:.3,
-    unit:"100 g"
+    name:"Glute Bridge",
+    equip:"Ekipmansız",
+    muscle:"Kalça",
+    sets:3,
+    reps:15,
+    rest:45,
+    desc:
+      "Sırtüstü yat. Ayakları yere bas ve kalçayı kontrollü yukarı kaldır.",
+    img:
+      "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80"
   },
 
   {
-    name:"Makarna",
-    cal:157,
-    protein:5.8,
-    carb:30,
-    fat:.9,
-    unit:"100 g"
+    name:"Push-up",
+    equip:"Ekipmansız",
+    muscle:"Göğüs + kol + core",
+    sets:3,
+    reps:8,
+    rest:60,
+    desc:
+      "Vücudu düz tut. Kontrollü şekilde aşağı in ve ellerden iterek yüksel.",
+    img:
+      "https://images.unsplash.com/photo-1598971639058-a4f7e4c8b3d8?auto=format&fit=crop&w=900&q=80"
   },
 
   {
-    name:"Patates",
-    cal:77,
-    protein:2,
-    carb:17,
-    fat:.1,
-    unit:"100 g"
+    name:"Lateral Raise",
+    equip:"Dumbbell",
+    muscle:"Omuz",
+    sets:3,
+    reps:12,
+    rest:45,
+    desc:
+      "Dirsekleri hafif kır. Kolları omuz hizasına kadar kontrollü aç.",
+    img:
+      "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80"
   },
 
   {
-    name:"Yoğurt",
-    cal:61,
-    protein:3.5,
-    carb:4.7,
-    fat:3.3,
-    unit:"100 g"
+    name:"Dumbbell Curl",
+    equip:"Dumbbell",
+    muscle:"Biceps",
+    sets:3,
+    reps:12,
+    rest:45,
+    desc:
+      "Dirsekleri gövdeye yakın tut. Ağırlığı kontrollü kaldırıp indir.",
+    img:
+      "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80"
   },
 
   {
-    name:"Muz",
-    cal:89,
-    protein:1.1,
-    carb:23,
-    fat:.3,
-    unit:"100 g"
-  },
-
-  {
-    name:"Elma",
-    cal:52,
-    protein:.3,
-    carb:14,
-    fat:.2,
-    unit:"100 g"
-  },
-
-  {
-    name:"Ekmek",
-    cal:265,
-    protein:9,
-    carb:49,
-    fat:3.2,
-    unit:"100 g"
-  },
-
-  {
-    name:"Yulaf",
-    cal:389,
-    protein:16.9,
-    carb:66,
-    fat:6.9,
-    unit:"100 g"
+    name:"Yürüyüş Bandı",
+    equip:"Yürüyüş bandı",
+    muscle:"Kardiyo",
+    sets:1,
+    reps:"Süre",
+    rest:0,
+    desc:
+      "Rahat ve kontrollü tempoda yürü. Süreyi antrenmanda kaydet.",
+    img:
+      "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80"
   }
 
 ];
 
 
 /* =========================
-   YEMEK ARAMA
+   EKİPMANLAR
 ========================= */
 
-function searchFoods(){
+function renderEquipment(){
 
-  const q=document
-    .getElementById("foodSearch")
-    .value
-    .toLowerCase()
-    .trim();
-
-  renderFoodResults(q);
-
-}
-
-function renderFoodResults(q){
-
-  const box=document.getElementById("foodResults");
-
-  const list=foods.filter(f=>
-    f.name.toLowerCase().includes(q)
-  );
+  const box=
+    document.getElementById(
+      "equipmentList"
+    );
 
   box.innerHTML="";
 
-  if(!list.length){
+  data.equipment.forEach(e=>{
 
-    box.innerHTML=
-      `<div class="empty">Yiyecek bulunamadı.</div>`;
+    const d=
+      document.createElement("div");
 
-    return;
-  }
+    d.className="item";
 
-  list.forEach(f=>{
+    d.innerHTML=`
 
-    const div=document.createElement("div");
+      <div class="row">
 
-    div.className="food";
+        <div>
 
-    div.innerHTML=`
+          <b>${esc(e.name)}</b>
 
-      <div class="food-name">${f.name}</div>
+          <small>
+            ${e.qty} adet
 
-      <div class="food-info">
-        ${f.unit} · ${f.protein}g protein ·
-        ${f.carb}g kh · ${f.fat}g yağ
+            ${
+              e.weight
+              ?` · ${e.weight} kg/adet`
+              :""
+            }
+
+          </small>
+
+        </div>
+
+        <button
+          class="btn danger small">
+          Sil
+        </button>
+
       </div>
 
-      <button class="btn dark"
-        onclick='selectFood(${JSON.stringify(f)})'>
-        ${f.cal} kcal
-      </button>
     `;
 
-    box.appendChild(div);
+    d.querySelector("button").onclick=()=>{
+
+      data.equipment=
+        data.equipment.filter(
+          x=>x.id!==e.id
+        );
+
+      save();
+
+      renderEquipment();
+
+    };
+
+    box.appendChild(d);
 
   });
 
+  if(!data.equipment.length){
+
+    box.innerHTML=
+      '<div class="muted">Henüz ekipman eklenmedi.</div>';
+
+  }
+
 }
 
-function selectFood(f){
 
-  document.getElementById("foodName").value=f.name;
+function addEquipment(){
 
-  document.getElementById("foodCal").value=f.cal;
+  const name=
+    prompt(
+      "Ekipman adı:\nÖrn. Dumbbell, Bench, Kettlebell, Yürüyüş bandı"
+    );
 
-  document.getElementById("foodProtein").value=f.protein;
+  if(!name)return;
 
-  document.getElementById("foodCarb").value=f.carb;
+  const qty=
+    Number(
+      prompt(
+        "Kaç adet?",
+        "1"
+      )
+    )||1;
 
-  document.getElementById("foodFat").value=f.fat;
+  const weight=
+    Number(
+      prompt(
+        "Ağırlık kg/adet?\nYoksa 0 yaz.",
+        "0"
+      )
+    )||0;
+
+  data.equipment.push({
+
+    id:Date.now(),
+    name,
+    qty,
+    weight
+
+  });
+
+  save();
+
+  renderEquipment();
+
+}
+
+
+/* =========================
+   HAREKETLER
+========================= */
+
+function renderExercises(){
+
+  const q=
+    (
+      document.getElementById(
+        "exerciseSearch"
+      ).value||""
+    ).toLocaleLowerCase("tr-TR");
+
+  const box=
+    document.getElementById(
+      "exerciseList"
+    );
+
+  box.innerHTML="";
+
+  exerciseDB
+    .filter(e=>
+      (
+        e.name+
+        " "+
+        e.equip+
+        " "+
+        e.muscle
+      )
+      .toLocaleLowerCase("tr-TR")
+      .includes(q)
+    )
+    .forEach((e,i)=>{
+
+      const d=
+        document.createElement("div");
+
+      d.className=
+        "exercise-card";
+
+      d.innerHTML=`
+
+        <img
+          class="exercise-img"
+          src="${e.img}"
+          alt="${esc(e.name)}"
+        >
+
+        <div class="exercise-body">
+
+          <div class="row">
+
+            <b>
+              ${esc(e.name)}
+            </b>
+
+            <span class="badge">
+              ${esc(e.equip)}
+            </span>
+
+          </div>
+
+          <div
+            class="small muted"
+            style="margin-top:6px">
+
+            ${esc(e.muscle)}
+            ·
+            ${e.sets}×${e.reps}
+
+          </div>
+
+          <p class="small muted">
+            ${esc(e.desc)}
+          </p>
+
+          <button
+            class="btn dark">
+            Programa Ekle
+          </button>
+
+          <button
+            class="btn">
+            Başlat
+          </button>
+
+        </div>
+
+      `;
+
+      const buttons=
+        d.querySelectorAll(
+          "button"
+        );
+
+      buttons[0].onclick=
+        ()=>addExerciseToProgram(i);
+
+      buttons[1].onclick=
+        ()=>startWorkout(
+          [{...exerciseDB[i]}],
+          "Tek Hareket"
+        );
+
+      box.appendChild(d);
+
+    });
+
+}
+
+
+/* =========================
+   PROGRAMLAR
+========================= */
+
+function addExerciseToProgram(i){
+
+  if(!data.programs.length){
+
+    return alert(
+      "Önce bir program oluştur."
+    );
+
+  }
+
+  data.programs[0]
+    .exercises
+    .push({
+      ...exerciseDB[i],
+      id:Date.now()
+    });
+
+  save();
+
+  renderPrograms();
+
+  alert(
+    "İlk programına eklendi."
+  );
+
+}
+
+
+function newProgram(){
+
+  const name=
+    prompt(
+      "Program adı:"
+    );
+
+  if(!name)return;
+
+  data.programs.push({
+
+    id:Date.now(),
+
+    name,
+
+    exercises:[]
+
+  });
+
+  save();
+
+  renderPrograms();
+
+}
+
+
+function renderPrograms(){
+
+  const box=
+    document.getElementById(
+      "programList"
+    );
+
+  box.innerHTML="";
+
+  data.programs.forEach(p=>{
+
+    const d=
+      document.createElement("div");
+
+    d.className="item";
+
+    d.innerHTML=`
+
+      <div class="row">
+
+        <div>
+
+          <b>
+            ${esc(p.name)}
+          </b>
+
+          <small>
+            ${p.exercises.length}
+            hareket
+          </small>
+
+        </div>
+
+        <button class="btn">
+          Başlat
+        </button>
+
+      </div>
+
+      <div style="margin-top:10px">
+
+        ${
+          p.exercises
+            .map(
+              (e,i)=>
+              `<div class="small muted">
+                ${i+1}. ${esc(e.name)}
+                · ${e.sets}×${e.reps}
+              </div>`
+            )
+            .join("")
+        }
+
+      </div>
+
+    `;
+
+    d.querySelector("button").onclick=
+      ()=>startWorkout(
+        p.exercises,
+        p.name
+      );
+
+    box.appendChild(d);
+
+  });
+
+
+  if(!data.programs.length){
+
+    box.innerHTML=
+      '<div class="muted">Henüz program yok.</div>';
+
+  }
+
+}
+
+
+/* =========================
+   ANTRENMAN MODU
+========================= */
+
+let active=null;
+
+
+function startWorkout(
+  exercises,
+  name
+){
+
+  active={
+
+    name,
+
+    exercises:
+      exercises.map(
+        e=>({
+          ...e,
+          doneSets:0
+        })
+      ),
+
+    start:Date.now(),
+
+    index:0
+
+  };
+
+  document
+    .getElementById(
+      "activeWorkoutCard"
+    )
+    .style.display="block";
+
+  renderActive();
 
   window.scrollTo({
     top:document.body.scrollHeight,
@@ -1052,147 +2059,197 @@ function selectFood(f){
 }
 
 
-/* =========================
-   YEMEK KAYDET
-========================= */
+function renderActive(){
 
-function saveFood(){
+  if(!active)return;
 
-  const name=document.getElementById("foodName").value.trim();
+  const e=
+    active.exercises[
+      active.index
+    ];
 
-  const cal=Number(document.getElementById("foodCal").value)||0;
+  if(!e){
 
-  const protein=Number(document.getElementById("foodProtein").value)||0;
-
-  const carb=Number(document.getElementById("foodCarb").value)||0;
-
-  const fat=Number(document.getElementById("foodFat").value)||0;
-
-  const meal=document.getElementById("mealType").value;
-
-  if(!name){
-
-    alert("Önce yiyecek adını gir.");
+    finishWorkout();
 
     return;
+
   }
 
-  data.meals.push({
+  let sets="";
 
-    id:Date.now(),
+  for(
+    let s=1;
+    s<=Number(e.sets)||1;
+    s++
+  ){
 
-    date:dateKey(),
-
-    time:new Date().toLocaleTimeString("tr-TR",{
-      hour:"2-digit",
-      minute:"2-digit"
-    }),
-
-    meal,
-
-    name,
-
-    cal,
-
-    protein,
-
-    carb,
-
-    fat
-
-  });
-
-  saveData();
-
-  clearFoodForm();
-
-  renderHome();
-
-  renderFoodHistory();
-
-  alert("Yemek kaydedildi.");
-
-}
-
-function clearFoodForm(){
-
-  document.getElementById("foodName").value="";
-
-  document.getElementById("foodCal").value="";
-
-  document.getElementById("foodProtein").value="";
-
-  document.getElementById("foodCarb").value="";
-
-  document.getElementById("foodFat").value="";
-
-}
-
-
-/* =========================
-   YEMEK GEÇMİŞİ
-========================= */
-
-function renderFoodHistory(){
-
-  const box=document.getElementById("foodHistory");
-
-  const list=[...data.meals].reverse();
-
-  box.innerHTML="";
-
-  if(!list.length){
-
-    box.innerHTML=
-      `<div class="empty">Henüz yemek kaydı yok.</div>`;
-
-    return;
-  }
-
-  list.forEach(m=>{
-
-    const div=document.createElement("div");
-
-    div.className="meal-item";
-
-    div.innerHTML=`
-
-      <strong>${m.name}</strong>
-
-      <small>
-        ${niceDate(m.date)} ${m.time}
-        · ${m.meal}
-        · ${m.cal} kcal
-        · ${m.protein}g protein
-      </small>
+    sets+=`
 
       <button
-        class="btn danger small"
-        style="margin-top:10px"
-        onclick="deleteMeal(${m.id})">
-        Sil
+        class="check ${
+          s<=e.doneSets
+          ?"done"
+          :""
+        }"
+        onclick="completeSet(${s})">
+
+        ${
+          s<=e.doneSets
+          ?"✓"
+          :s
+        }
+
       </button>
 
     `;
 
-    box.appendChild(div);
+  }
 
-  });
+  document
+    .getElementById(
+      "activeWorkout"
+    )
+    .innerHTML=`
+
+      <img
+        class="exercise-img"
+        src="${e.img}"
+        alt=""
+      >
+
+      <h2>
+        ${esc(e.name)}
+      </h2>
+
+      <div class="muted">
+        ${esc(e.desc)}
+      </div>
+
+      <p>
+        <b>
+          ${e.sets} × ${e.reps}
+        </b>
+
+        · Dinlenme
+        ${e.rest}s
+      </p>
+
+      <div>
+        ${sets}
+      </div>
+
+      <div
+        class="row"
+        style="margin-top:18px">
+
+        <button
+          class="btn dark"
+          onclick="skipExercise()">
+          Atla
+        </button>
+
+        <button
+          class="btn"
+          onclick="nextExercise()">
+          Sonraki →
+        </button>
+
+      </div>
+
+    `;
 
 }
 
-function deleteMeal(id){
 
-  if(!confirm("Bu yemek kaydını silmek istiyor musun?"))
-    return;
+function completeSet(n){
 
-  data.meals=data.meals.filter(m=>m.id!==id);
+  const e=
+    active.exercises[
+      active.index
+    ];
 
-  saveData();
+  if(n>e.doneSets)
+    e.doneSets=n;
+
+  renderActive();
+
+}
+
+
+function nextExercise(){
+
+  active.index++;
+
+  renderActive();
+
+}
+
+
+function skipExercise(){
+
+  active.index++;
+
+  renderActive();
+
+}
+
+
+function finishWorkout(){
+
+  const duration=
+    Math.max(
+      1,
+      Math.round(
+        (Date.now()-active.start)/60000
+      )
+    );
+
+  const strength=
+    active.exercises.filter(
+      e=>e.equip!=="Yürüyüş bandı"
+    ).length*35;
+
+  const cal=
+    Math.max(
+      30,
+      strength+
+      duration*3
+    );
+
+  data.workouts.push({
+
+    id:Date.now(),
+
+    date:key(),
+
+    name:active.name,
+
+    duration,
+
+    cal
+
+  });
+
+  save();
+
+  alert(
+    "Antrenman tamamlandı.\n\n"+
+    "Süre: "+duration+" dk\n"+
+    "Tahmini: "+Math.round(cal)+" kcal"
+  );
+
+  active=null;
+
+  document
+    .getElementById(
+      "activeWorkoutCard"
+    )
+    .style.display="none";
 
   renderHome();
 
-  renderFoodHistory();
+  renderCalendar();
 
 }
 
@@ -1203,164 +2260,239 @@ function deleteMeal(id){
 
 function renderHome(){
 
-  const today=dateKey();
+  const k=key();
 
-  const meals=data.meals.filter(m=>m.date===today);
+  const meals=
+    data.meals.filter(
+      x=>x.date===k
+    );
 
-  const cal=meals.reduce((a,m)=>a+m.cal,0);
+  const inC=
+    meals.reduce(
+      (a,x)=>a+x.cal,
+      0
+    );
 
-  const protein=meals.reduce((a,m)=>a+m.protein,0);
+  const ex=
+    data.workouts
+      .filter(x=>x.date===k)
+      .reduce(
+        (a,x)=>a+x.cal,
+        0
+      );
 
-  const water=data.water[today]||0;
+  const net=
+    Math.max(
+      0,
+      inC-ex
+    );
 
-  const remaining=Math.max(
-    data.goals.calories-cal,
-    0
-  );
+  const remain=
+    Math.max(
+      0,
+      data.goals.calories-net
+    );
 
-  document.getElementById("totalCal").textContent=
-    Math.round(cal);
+  const water=
+    data.water[k]||0;
 
-  document.getElementById("totalProtein").textContent=
-    Math.round(protein)+"g";
 
-  document.getElementById("waterHome").textContent=
+  document.getElementById(
+    "inCal"
+  ).textContent=
+    Math.round(inC);
+
+
+  document.getElementById(
+    "exCal"
+  ).textContent=
+    Math.round(ex);
+
+
+  document.getElementById(
+    "netCal"
+  ).textContent=
+    Math.round(net);
+
+
+  document.getElementById(
+    "remainCal"
+  ).textContent=
+    Math.round(remain);
+
+
+  document.getElementById(
+    "goalText"
+  ).textContent=
+    "Hedef: "+
+    data.goals.calories+
+    " kcal";
+
+
+  document.getElementById(
+    "calProgress"
+  ).style.width=
+    Math.min(
+      100,
+      net/data.goals.calories*100
+    )+"%";
+
+
+  document.getElementById(
+    "waterNow"
+  ).textContent=
     water;
 
-  document.getElementById("remainingCal").textContent=
-    Math.round(remaining);
 
-  document.getElementById("homeGoalCal").textContent=
-    data.goals.calories;
-
-  document.getElementById("homeGoalProtein").textContent=
-    data.goals.protein;
-
-  document.getElementById("waterGoal").textContent=
+  document.getElementById(
+    "waterGoalHome"
+  ).textContent=
     data.goals.water;
 
-  document.getElementById("waterGoal2").textContent=
-    data.goals.water;
 
-  document.getElementById("waterCount").textContent=
-    water;
+  document.getElementById(
+    "waterProgress"
+  ).style.width=
+    Math.min(
+      100,
+      water/data.goals.water*100
+    )+"%";
 
-  const percent=Math.min(
-    (water/data.goals.water)*100,
-    100
-  );
 
-  document.getElementById("waterFill").style.width=
-    percent+"%";
+  document.getElementById(
+    "todayMeals"
+  ).innerHTML=
+    meals.length
 
-  const calPercent=Math.min(
-    cal/data.goals.calories,
-    1
-  );
+    ?
 
-  document.getElementById("calorieRing").style.background=
-    `conic-gradient(
-      #fff ${calPercent*360}deg,
-      #333 ${calPercent*360}deg
-    )`;
+    meals.map(x=>`
 
-  const list=document.getElementById("todayMeals");
+      <div class="item">
 
-  list.innerHTML="";
+        <b>
+          ${esc(x.name)}
+        </b>
 
-  if(!meals.length){
+        <small>
+          ${x.amount} ${x.unit}
+          · ${x.cal} kcal
+          · ${x.meal}
+        </small>
 
-    list.innerHTML=
-      `<div class="empty">Bugün henüz yemek eklemedin.</div>`;
+      </div>
 
-    return;
-  }
+    `).join("")
 
-  meals.forEach(m=>{
+    :
 
-    const div=document.createElement("div");
+    '<div class="muted">Bugün yemek yok.</div>';
 
-    div.className="meal-item";
 
-    div.innerHTML=`
+  const workouts=
+    data.workouts.filter(
+      x=>x.date===k
+    );
 
-      <strong>${m.name}</strong>
 
-      <small>
-        ${m.meal} · ${m.cal} kcal ·
-        ${m.protein}g protein
-      </small>
+  document.getElementById(
+    "todayWorkout"
+  ).innerHTML=
 
-    `;
+    workouts.length
 
-    list.appendChild(div);
+    ?
 
-  });
+    workouts.map(x=>`
+
+      <div class="item">
+
+        <b>
+          ${esc(x.name)}
+        </b>
+
+        <small>
+          ${x.duration} dk
+          · ${Math.round(x.cal)} kcal
+        </small>
+
+      </div>
+
+    `).join("")
+
+    :
+
+    '<div class="muted">Bugün antrenman yok.</div>';
 
 }
 
 
 /* =========================
-   SU
-========================= */
-
-function addWater(){
-
-  const today=dateKey();
-
-  data.water[today]=(data.water[today]||0)+1;
-
-  saveData();
-
-  renderHome();
-
-}
-
-
-/* =========================
-   HEDEFLER
+   AYARLAR
 ========================= */
 
 function renderSettings(){
 
-  document.getElementById("goalCal").value=
+  document.getElementById(
+    "goalCal"
+  ).value=
     data.goals.calories;
 
-  document.getElementById("goalProtein").value=
+  document.getElementById(
+    "goalProtein"
+  ).value=
     data.goals.protein;
 
-  document.getElementById("goalWeight").value=
+  document.getElementById(
+    "goalWeight"
+  ).value=
     data.goals.weight;
 
-  document.getElementById("goalWater").value=
+  document.getElementById(
+    "goalWater"
+  ).value=
     data.goals.water;
 
-  document.getElementById("targetWeightText").textContent=
-    data.goals.weight;
-
 }
+
 
 function saveGoals(){
 
   data.goals.calories=
-    Number(document.getElementById("goalCal").value)||2000;
+    Number(
+      document.getElementById(
+        "goalCal"
+      ).value
+    )||2000;
 
   data.goals.protein=
-    Number(document.getElementById("goalProtein").value)||150;
+    Number(
+      document.getElementById(
+        "goalProtein"
+      ).value
+    )||150;
 
   data.goals.weight=
-    Number(document.getElementById("goalWeight").value)||85;
+    Number(
+      document.getElementById(
+        "goalWeight"
+      ).value
+    )||85;
 
   data.goals.water=
-    Number(document.getElementById("goalWater").value)||8;
+    Number(
+      document.getElementById(
+        "goalWater"
+      ).value
+    )||2.5;
 
-  saveData();
+  save();
 
   renderHome();
 
-  renderSettings();
-
-  alert("Hedefler kaydedildi.");
+  alert(
+    "Hedefler kaydedildi."
+  );
 
 }
 
@@ -1371,163 +2503,175 @@ function saveGoals(){
 
 function addWeight(){
 
-  const value=prompt("Bugünkü kilonu gir (kg):");
+  const n=
+    Number(
+      prompt(
+        "Kilon (kg):"
+      )
+    );
 
-  if(value===null)return;
-
-  const weight=Number(value);
-
-  if(!weight || weight<20 || weight>400){
-
-    alert("Geçerli bir kilo gir.");
-
-    return;
-  }
+  if(
+    !n||
+    n<20||
+    n>400
+  )return;
 
   data.weights.push({
 
     id:Date.now(),
 
-    date:dateKey(),
+    date:key(),
 
-    weight
+    weight:n
 
   });
 
-  saveData();
+  save();
 
   renderProgress();
 
-  alert("Kilo kaydedildi.");
-
 }
+
 
 function renderProgress(){
 
-  document.getElementById("targetWeightText").textContent=
+  document.getElementById(
+    "targetWeight"
+  ).textContent=
     data.goals.weight;
 
-  if(!data.weights.length){
+  const a=
+    [...data.weights]
+      .sort(
+        (x,y)=>
+          x.date.localeCompare(y.date)
+      );
 
-    document.getElementById("latestWeight").innerHTML=
-      `<div class="empty">Henüz kilo kaydı yok.</div>`;
+  const last=
+    a[a.length-1];
 
-    document.getElementById("startWeight").textContent="-";
+  const first=
+    a[0];
 
-    document.getElementById("lastWeight").textContent="-";
 
-    document.getElementById("weightChange").textContent="-";
+  document.getElementById(
+    "latestWeight"
+  ).innerHTML=
 
-    drawChart();
+    last
 
-    return;
+    ?
 
-  }
+    `
 
-  const sorted=[...data.weights]
-    .sort((a,b)=>new Date(a.date)-new Date(b.date));
+      <b style="font-size:30px">
+        ${last.weight} kg
+      </b>
 
-  const first=sorted[0];
+      <div class="muted">
+        ${pretty(last.date)}
+      </div>
 
-  const last=sorted[sorted.length-1];
+    `
 
-  const change=last.weight-first.weight;
+    :
 
-  document.getElementById("latestWeight").innerHTML=`
+    '<div class="muted">Kayıt yok.</div>';
 
-    <div class="kilo">${last.weight} kg</div>
 
-    <div class="muted">
-      Son ölçüm: ${niceDate(last.date)}
-    </div>
+  document.getElementById(
+    "weightStats"
+  ).innerHTML=
 
-  `;
+    last
 
-  document.getElementById("startWeight").textContent=
-    first.weight+" kg";
+    ?
 
-  document.getElementById("lastWeight").textContent=
-    last.weight+" kg";
+    `
 
-  document.getElementById("weightChange").textContent=
-    (change>0?"+":"")+change.toFixed(1)+" kg";
+      Başlangıç:
+      <b>${first.weight} kg</b>
 
-  drawChart();
+      <br>
+
+      Son:
+      <b>${last.weight} kg</b>
+
+      <br>
+
+      Değişim:
+      <b>
+        ${(last.weight-first.weight).toFixed(1)}
+        kg
+      </b>
+
+    `
+
+    :
+
+    "Kilo kaydı yok.";
+
+
+  drawChart(a);
 
 }
 
 
 /* =========================
-   KİLO GRAFİĞİ
+   GRAFİK
 ========================= */
 
-function drawChart(){
+function drawChart(a){
 
-  const canvas=document.getElementById("weightChart");
+  const canvas=
+    document.getElementById(
+      "chart"
+    );
 
-  if(!canvas)return;
+  const ctx=
+    canvas.getContext("2d");
 
-  const ctx=canvas.getContext("2d");
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
 
-  const w=canvas.width;
 
-  const h=canvas.height;
-
-  ctx.clearRect(0,0,w,h);
-
-  const values=[...data.weights]
-    .sort((a,b)=>new Date(a.date)-new Date(b.date));
-
-  if(values.length===0){
+  if(!a.length){
 
     ctx.fillStyle="#777";
-
-    ctx.font="16px Arial";
 
     ctx.textAlign="center";
 
     ctx.fillText(
       "Kilo kayıtların burada görünecek",
-      w/2,
-      h/2
+      canvas.width/2,
+      130
     );
 
     return;
+
   }
 
-  const min=Math.min(...values.map(x=>x.weight))-2;
 
-  const max=Math.max(...values.map(x=>x.weight))+2;
+  const min=
+    Math.min(
+      ...a.map(v=>v.weight)
+    )-2;
+
+  const max=
+    Math.max(
+      ...a.map(v=>v.weight)
+    )+2;
 
   const left=45;
 
-  const right=15;
+  const w=canvas.width-60;
 
-  const top=20;
+  const h=210;
 
-  const bottom=35;
-
-  const chartW=w-left-right;
-
-  const chartH=h-top-bottom;
-
-  ctx.strokeStyle="#292929";
-
-  ctx.lineWidth=1;
-
-  for(let i=0;i<5;i++){
-
-    const y=top+(chartH/4)*i;
-
-    ctx.beginPath();
-
-    ctx.moveTo(left,y);
-
-    ctx.lineTo(w-right,y);
-
-    ctx.stroke();
-
-  }
 
   ctx.strokeStyle="#fff";
 
@@ -1535,45 +2679,33 @@ function drawChart(){
 
   ctx.beginPath();
 
-  values.forEach((item,i)=>{
 
-    const x=
-      values.length===1
-      ? left+chartW/2
-      : left+(chartW/(values.length-1))*i;
+  a.forEach((v,i)=>{
 
-    const y=
-      top+
-      ((max-item.weight)/(max-min))*chartH;
+    const px=
+      a.length===1
+      ?canvas.width/2
+      :left+
+        (w-left)*
+        i/
+        (a.length-1);
 
-    if(i===0)ctx.moveTo(x,y);
+    const py=
+      20+
+      (max-v.weight)/
+      (max-min)*
+      h;
 
-    else ctx.lineTo(x,y);
+
+    if(i)
+      ctx.lineTo(px,py);
+    else
+      ctx.moveTo(px,py);
 
   });
+
 
   ctx.stroke();
-
-  values.forEach((item,i)=>{
-
-    const x=
-      values.length===1
-      ? left+chartW/2
-      : left+(chartW/(values.length-1))*i;
-
-    const y=
-      top+
-      ((max-item.weight)/(max-min))*chartH;
-
-    ctx.fillStyle="#fff";
-
-    ctx.beginPath();
-
-    ctx.arc(x,y,5,0,Math.PI*2);
-
-    ctx.fill();
-
-  });
 
 }
 
@@ -1584,133 +2716,134 @@ function drawChart(){
 
 function toggleFast(){
 
-  if(!data.fasting.active){
+  data.fasting.active=
+    !data.fasting.active;
 
-    data.fasting.active=true;
+  data.fasting.start=
+    data.fasting.active
+    ?Date.now()
+    :null;
 
-    data.fasting.start=Date.now();
+  save();
 
-  }else{
-
-    data.fasting.active=false;
-
-    data.fasting.start=null;
-
-  }
-
-  saveData();
-
-  renderSettings();
+  updateFast();
 
 }
 
-function updateFastTimer(){
 
-  const timer=document.getElementById("fastTimer");
+function updateFast(){
 
-  const status=document.getElementById("fastStatus");
+  const timer=
+    document.getElementById(
+      "fastTimer"
+    );
 
-  const button=document.getElementById("fastButton");
+  const status=
+    document.getElementById(
+      "fastStatus"
+    );
+
+  const button=
+    document.getElementById(
+      "fastBtn"
+    );
+
 
   if(!data.fasting.active){
 
-    timer.textContent="00:00:00";
+    timer.textContent=
+      "00:00:00";
 
-    status.textContent="Başlamadı";
+    status.textContent=
+      "Başlamadı";
 
-    button.textContent="Başlat";
+    button.textContent=
+      "Başlat";
 
     return;
 
   }
 
-  const diff=
-    Date.now()-data.fasting.start;
 
-  const total=Math.floor(diff/1000);
+  let z=
+    Math.floor(
+      (Date.now()-
+       data.fasting.start)/1000
+    );
 
-  const hours=Math.floor(total/3600);
-
-  const minutes=Math.floor((total%3600)/60);
-
-  const seconds=total%60;
 
   timer.textContent=
-    String(hours).padStart(2,"0")+":"+
-    String(minutes).padStart(2,"0")+":"+
-    String(seconds).padStart(2,"0");
 
-  status.textContent="Oruç devam ediyor";
+    [
 
-  button.textContent="Bitir";
+      Math.floor(z/3600),
+
+      Math.floor(
+        z%3600/60
+      ),
+
+      z%60
+
+    ]
+
+    .map(
+      x=>String(x).padStart(2,"0")
+    )
+
+    .join(":");
+
+
+  status.textContent=
+    "Devam ediyor";
+
+  button.textContent=
+    "Bitir";
 
 }
 
-setInterval(updateFastTimer,1000);
 
-
-/* =========================
-   FOTOĞRAF
-========================= */
-
-document
-.getElementById("photoInput")
-.addEventListener("change",function(){
-
-  const file=this.files[0];
-
-  if(!file)return;
-
-  const reader=new FileReader();
-
-  reader.onload=function(e){
-
-    document.getElementById("photoPreview").innerHTML=`
-
-      <img
-        src="${e.target.result}"
-        style="
-          width:100%;
-          border-radius:20px;
-          display:block;
-        "
-      >
-
-    `;
-
-  };
-
-  reader.readAsDataURL(file);
-
-});
+setInterval(
+  updateFast,
+  1000
+);
 
 
 /* =========================
    YEDEKLEME
 ========================= */
 
-function backupData(){
+function backup(){
 
-  const backup={
-    app:"896 FIT",
-    version:"V6",
-    exportedAt:new Date().toISOString(),
-    data
-  };
+  const blob=
+    new Blob(
+      [
+        JSON.stringify(
+          {
+            app:"896 FIT",
+            version:"V7",
+            data
+          },
+          null,
+          2
+        )
+      ],
+      {
+        type:"application/json"
+      }
+    );
 
-  const blob=new Blob(
-    [JSON.stringify(backup,null,2)],
-    {type:"application/json"}
-  );
+  const url=
+    URL.createObjectURL(blob);
 
-  const url=URL.createObjectURL(blob);
-
-  const a=document.createElement("a");
+  const a=
+    document.createElement("a");
 
   a.href=url;
 
   a.download=
-    "896-FIT-yedek-"+dateKey()+".json";
+    "896-FIT-V7-"+
+    key()+
+    ".json";
 
   a.click();
 
@@ -1720,50 +2853,51 @@ function backupData(){
 
 
 /* =========================
-   GERİ YÜKLE
+   GERİ YÜKLEME
 ========================= */
 
-function restoreData(){
+function restore(e){
 
-  document.getElementById("restoreInput").click();
-
-}
-
-document
-.getElementById("restoreInput")
-.addEventListener("change",function(){
-
-  const file=this.files[0];
+  const file=
+    e.target.files[0];
 
   if(!file)return;
 
-  const reader=new FileReader();
+  const reader=
+    new FileReader();
 
-  reader.onload=function(){
+  reader.onload=()=>{
 
     try{
 
-      const backup=JSON.parse(reader.result);
+      const backupData=
+        JSON.parse(
+          reader.result
+        );
 
-      if(!backup.data){
+      if(!backupData.data)
+        throw new Error();
 
-        throw new Error("Geçersiz yedek");
+      if(
+        confirm(
+          "Mevcut veriler yedekle değiştirilecek. Devam?"
+        )
+      ){
+
+        data=
+          backupData.data;
+
+        save();
+
+        location.reload();
 
       }
 
-      if(!confirm(
-        "Mevcut verilerin yedekle değiştirilecek. Devam edilsin mi?"
-      ))return;
+    }catch(err){
 
-      data=backup.data;
-
-      saveData();
-
-      location.reload();
-
-    }catch(e){
-
-      alert("Yedek dosyası okunamadı.");
+      alert(
+        "Geçersiz yedek dosyası."
+      );
 
     }
 
@@ -1771,22 +2905,26 @@ document
 
   reader.readAsText(file);
 
-});
+}
 
 
 /* =========================
    TÜM VERİLERİ SİL
 ========================= */
 
-function deleteAllData(){
+function wipe(){
 
-  if(!confirm(
-    "TÜM yemek, su, kilo ve hedef kayıtların silinecek. Emin misin?"
-  ))return;
+  if(
+    !confirm(
+      "Tüm veriler silinsin mi?"
+    )
+  )return;
 
-  if(!confirm(
-    "Bu işlem geri alınamaz. Gerçekten tüm verileri sil?"
-  ))return;
+  if(
+    !confirm(
+      "Bu işlem geri alınamaz. Emin misin?"
+    )
+  )return;
 
   localStorage.removeItem(KEY);
 
@@ -1799,23 +2937,25 @@ function deleteAllData(){
    BAŞLANGIÇ
 ========================= */
 
-function init(){
+renderHome();
 
-  renderHome();
+renderFoods();
 
-  renderFoodResults("");
+renderHistory();
 
-  renderFoodHistory();
+renderCalendar();
 
-  renderProgress();
+renderEquipment();
 
-  renderSettings();
+renderPrograms();
 
-  updateFastTimer();
+renderExercises();
 
-}
+renderProgress();
 
-init();
+renderSettings();
+
+updateFast();
 
 </script>
 
