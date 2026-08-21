@@ -1,16 +1,22 @@
 {
-  "name": "FitTakip",
-  "short_name": "FitTakip",
-  "start_url": "./",
+  "name": "896 FIT",
+  "short_name": "896",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#11131d",
-  "theme_color": "#171923",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "lang": "tr",
   "icons": [
     {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]
