@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#000000">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-512.png">
 <title>896 FIT V7</title>
 <style>
 :root{--bg:#000;--card:#111;--card2:#1a1a1a;--text:#fff;--muted:#929292;--line:#2b2b2b;--danger:#5b1b1b}
@@ -36,6 +34,22 @@ input,select{width:100%;background:#1b1b1b;color:#fff;border:1px solid #303030;b
 .timer{font-size:45px;font-weight:900;text-align:center;margin:14px 0}
 hr{border:0;border-top:1px solid #292929;margin:18px 0}
 @media(max-width:620px){.dashboard{grid-template-columns:1fr 1fr 1fr}.ring{grid-column:1/-1}.grid2{grid-template-columns:1fr 1fr}.nav button{font-size:10px}}
+
+.motivation-card{background:#111;border:1px solid #292929;border-radius:26px;padding:20px;margin-bottom:16px}
+.motivation-big{font-size:25px;font-weight:900;line-height:1.2}
+.badges{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.badge-card{background:#191919;border:1px solid #292929;border-radius:18px;padding:14px}
+.badge-card.locked{opacity:.4}
+.score{font-size:52px;font-weight:900}
+.streak{font-size:34px;font-weight:900}
+
+
+.rank-item{padding:14px;border:1px solid #292929;border-radius:16px;background:#191919;margin:8px 0}
+.rank-item.current{border-color:#fff}
+.day-plan{display:grid;grid-template-columns:90px 1fr auto;gap:8px;align-items:center;padding:12px 0;border-bottom:1px solid #292929}
+.day-plan:last-child{border-bottom:0}
+.day-plan select{padding:10px;margin:0}
+
 </style>
 </head>
 <body>
@@ -94,6 +108,27 @@ hr{border:0;border-top:1px solid #292929;margin:18px 0}
 <div class="card"><h2>💾 Veriler</h2><p class="muted">Veriler otomatik olarak bu cihazda tutulur.</p><button class="btn dark full" onclick="backup()">Verilerimi Yedekle</button><button class="btn dark full" style="margin-top:10px" onclick="document.getElementById('restoreInput').click()">Yedekten Geri Yükle</button><input id="restoreInput" type="file" accept=".json" hidden onchange="restore(event)"><button class="btn danger full" style="margin-top:10px" onclick="wipe()">Tüm Verileri Sil</button></div>
 <div class="card"><h2>🔐 Gizlilik</h2><p class="muted">Bu kişisel sürümde kayıtlar cihazında saklanır. Hesap veya sunucu gerekmez.</p></div>
 </section>
+
+<section id="motivation" class="page">
+<div class="title">🦁 896 MOTİVASYON</div>
+<div class="motivation-card">
+  <div class="muted small">BUGÜNÜN MESAJI</div>
+  <div class="motivation-big" id="motivationText" style="margin-top:8px">896 seni bekliyor 😎</div>
+  <button class="btn full" style="margin-top:14px" onclick="newMotivation()">Başka bir tane söyle 😂</button>
+</div>
+<div class="motivation-card">
+  <div class="row"><div><div class="muted small">896 PUANI</div><div class="score" id="score">0</div></div><div style="text-align:right"><div class="muted small">SERİ</div><div class="streak" id="streak">0 🔥</div></div></div>
+</div>
+<div class="motivation-card">
+  <h2>🏆 Rozetler</h2>
+  <div class="badges" id="badges"></div>
+</div>
+<div class="motivation-card">
+  <h2>📊 Haftalık Özet</h2>
+  <div id="weeklySummary" class="muted"></div>
+</div>
+</section>
+
 </div>
 
 <nav class="bottom"><div class="nav">
@@ -153,6 +188,162 @@ function backup(){let blob=new Blob([JSON.stringify({app:"896 FIT",version:"V7",
 function restore(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let b=JSON.parse(r.result);if(!b.data)throw 0;if(confirm("Mevcut veriler yedekle değiştirilsin mi?")){data=b.data;save();location.reload()}}catch(x){alert("Geçersiz yedek dosyası.")}};r.readAsText(f)}
 function wipe(){if(confirm("Tüm veriler silinsin mi?")&&confirm("Bu işlem geri alınamaz. Emin misin?")){localStorage.removeItem(KEY);location.reload()}}
 renderHome();renderFoods();renderHistory();renderCalendar();renderEquipment();renderPrograms();renderExercises();renderProgress();renderSettings();updateFast();
+
+const MOTIVATIONS=[
+"😎 Bugün iyi iş çıkarıyoruz aslan parçası.",
+"🦁 896 burada. Bahane yok, küçük bir adım yeter.",
+"💪 Bir set daha. Kaçış yok 😂",
+"🔥 Bugün dünden biraz daha iyiyiz.",
+"👀 896 seni görüyor. Hadi başlayalım.",
+"😂 Dumbbelllar seni sordu, haberin olsun.",
+"🏆 Küçük ilerleme de ilerlemedir.",
+"😤 Son seti de bitiriyoruz.",
+"🧠 Mükemmel olmak gerekmiyor, devam etmek gerekiyor.",
+"🚀 Bugünün görevi: başladığın işi tamamlamak."
+];
+const BADGES=[
+["🥉 İlk Adım","İlk yemek veya antrenman kaydı",1],
+["💪 İlk Antrenman","İlk antrenmanını tamamla",2],
+["🔥 3 Gün Seri","3 gün takip et",3],
+["🔥 7 Gün Seri","7 gün takip et",7],
+["🏋️ 10 Antrenman","10 antrenman tamamla",10],
+["🍽️ 50 Yemek","50 yemek kaydı oluştur",50],
+["🦁 30 Gün","30 gün takip et",30]
+];
+function newMotivation(){
+  document.getElementById("motivationText").textContent=
+    MOTIVATIONS[Math.floor(Math.random()*MOTIVATIONS.length)];
+}
+function motivationScore(){
+  const k=key(), meals=data.meals.filter(x=>x.date===k);
+  const workouts=data.workouts.filter(x=>x.date===k);
+  const water=Number(data.water[k]||0);
+  let score=0;
+  if(meals.length)score+=30;
+  if(workouts.length)score+=40;
+  if(data.goals.water>0)score+=Math.min(20,water/data.goals.water*20);
+  if(meals.length||workouts.length)score+=10;
+  return Math.round(score);
+}
+function calcStreak(){
+  const active=new Set([...data.meals.map(x=>x.date),...data.workouts.map(x=>x.date)]);
+  let d=new Date(),s=0;
+  while(active.has(key(d))){s++;d.setDate(d.getDate()-1)}
+  return s;
+}
+function renderMotivation(){
+  document.getElementById("score").textContent=motivationScore();
+  document.getElementById("streak").textContent=calcStreak()+" 🔥";
+  const count=data.workouts.length, mealCount=data.meals.length;
+  const earned=[mealCount>=1,count>=1,calcStreak()>=3,calcStreak()>=7,count>=10,mealCount>=50,calcStreak()>=30];
+  document.getElementById("badges").innerHTML=BADGES.map((b,i)=>
+    `<div class="badge-card ${earned[i]?"":"locked"}"><b>${b[0]}</b><div class="small muted" style="margin-top:5px">${b[1]}</div></div>`
+  ).join("");
+  let now=new Date(), totalCal=0,totalBurn=0,days=0;
+  for(let i=0;i<7;i++){let d=new Date(now);d.setDate(now.getDate()-i);let k=key(d);let ms=data.meals.filter(x=>x.date===k);let ws=data.workouts.filter(x=>x.date===k);if(ms.length||ws.length)days++;totalCal+=ms.reduce((a,x)=>a+x.cal,0);totalBurn+=ws.reduce((a,x)=>a+x.cal,0)}
+  document.getElementById("weeklySummary").innerHTML=`Son 7 gün: <b>${Math.round(totalCal)} kcal</b> alındı · <b>${Math.round(totalBurn)} kcal</b> egzersizle yakıldı · <b>${days}/7</b> gün kayıt var.<br><br>🦁 ${days>=5?"Bu hafta iyi gidiyorsun aslan parçası!":"Daha birkaç gün var, geri dönüyoruz 😅"}`;
+}
+
+
+/* ===== 896 V11 RÜTBE / PROGRAM SİSTEMİ ===== */
+data.stats = data.stats || {steps:0, sets:0, reps:0, exercises:0, burn:0, minutes:0};
+data.weekPlan = data.weekPlan || {
+  "1":"Üst Vücut",
+  "2":"Karın + Alt Vücut",
+  "3":"Dinlenme",
+  "4":"Göğüs + Omuz",
+  "5":"Sırt + Kol",
+  "6":"Full Body + Yürüyüş",
+  "0":"Dinlenme"
+};
+
+const RANKS=[
+  {days:10,name:"🥉 Başlangıç"},
+  {days:20,name:"🥈 Düzenli"},
+  {days:30,name:"🥇 Disiplinli"},
+  {days:50,name:"💪 Savaşçı"},
+  {days:75,name:"🔥 İleri Seviye"},
+  {days:100,name:"🦁 896 Aslanı"},
+  {days:180,name:"👑 Usta"},
+  {days:365,name:"🏆 896 Efsanesi"}
+];
+
+function plannedDays(){
+  const set=new Set();
+  // Workout records count as active days.
+  (data.workouts||[]).forEach(w=>{if(w.date)set.add(w.date)});
+  // Also count manually recorded meals only if an explicit workout exists; meals alone don't advance the training rank.
+  return set;
+}
+function activeStreak(){
+  const active=plannedDays();
+  let d=new Date(), count=0;
+  for(let i=0;i<1000;i++){
+    const dow=String(d.getDay());
+    const plan=data.weekPlan[dow]||"Dinlenme";
+    if(plan==="Dinlenme"||plan==="İzin") {
+      d.setDate(d.getDate()-1);
+      continue;
+    }
+    if(active.has(key(d))) count++;
+    else break;
+    d.setDate(d.getDate()-1);
+  }
+  return count;
+}
+function currentRank(){
+  const days=Array.from(plannedDays()).length;
+  let r={days:0,name:"🏃 Yeni Başlangıç"};
+  RANKS.forEach(x=>{if(days>=x.days)r=x});
+  return {rank:r,days};
+}
+function renderRank(){
+  const cr=currentRank(), next=RANKS.find(x=>x.days>cr.days);
+  document.getElementById("rankName").textContent=cr.rank.name;
+  document.getElementById("rankProgressText").textContent=next
+    ? `${cr.days} / ${next.days} aktif gün · sonraki rütbe: ${next.name}`
+    : `${cr.days} aktif gün · zirvedesin 🏆`;
+  const start=next ? (RANKS[RANKS.indexOf(next)-1]?.days||0) : 365;
+  const pct=next ? Math.min(100,((cr.days-start)/(next.days-start))*100) : 100;
+  document.getElementById("rankFill").style.width=pct+"%";
+
+  const s=data.stats||{};
+  document.getElementById("statSteps").textContent=(s.steps||0).toLocaleString("tr-TR");
+  document.getElementById("statSets").textContent=(s.sets||0).toLocaleString("tr-TR");
+  document.getElementById("statReps").textContent=(s.reps||0).toLocaleString("tr-TR");
+  document.getElementById("statExercises").textContent=(s.exercises||0).toLocaleString("tr-TR");
+  document.getElementById("statBurn").textContent=Math.round(s.burn||0).toLocaleString("tr-TR");
+  document.getElementById("statMinutes").textContent=Math.round(s.minutes||0)+" dk";
+  const totalWater=Object.values(data.water||{}).reduce((a,b)=>a+Number(b||0),0);
+  document.getElementById("statWater").textContent=totalWater.toFixed(1)+" L";
+
+  document.getElementById("rankList").innerHTML=RANKS.map(x=>{
+    const done=cr.days>=x.days;
+    return `<div class="rank-item ${cr.rank.days===x.days?'current':''}">
+      <div class="row"><strong>${x.name}</strong><span>${x.days} aktif gün</span></div>
+      <div class="small muted" style="margin-top:5px">${done?"✅ Açıldı":"🔒 Henüz açılmadı"}</div>
+    </div>`;
+  }).join("");
+
+  const names=["Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi","Pazar"];
+  const keys=[1,2,3,4,5,6,0];
+  document.getElementById("weeklyPlan").innerHTML=keys.map((k,i)=>{
+    const val=data.weekPlan[String(k)]||"Dinlenme";
+    return `<div class="day-plan">
+      <strong>${names[i]}</strong>
+      <select onchange="setPlanDay('${k}',this.value)">
+        ${["Dinlenme","Üst Vücut","Alt Vücut","Kol","Göğüs","Sırt","Omuz","Karın","Full Body","Full Body + Yürüyüş"].map(o=>`<option ${o===val?"selected":""}>${o}</option>`).join("")}
+      </select>
+      <span class="badge">${val==="Dinlenme"?"🛌":"🔥"}</span>
+    </div>`;
+  }).join("");
+}
+function setPlanDay(day,value){
+  data.weekPlan[String(day)]=value;
+  saveData();
+  renderRank();
+}
+
 </script>
 </body>
 </html>
