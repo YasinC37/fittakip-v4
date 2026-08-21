@@ -3,313 +3,280 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#171923">
+<meta name="theme-color" content="#000000">
 <link rel="manifest" href="manifest.json">
-<title>FitTakip V5</title>
+<title>896 FIT</title>
 
 <style>
 :root{
---bg:#0d0e10;
---card:#17191c;
---card2:#202327;
---text:#f5f5f5;
---muted:#9a9da3;
---accent:#ff6a00;
---green:#57d58a;
---red:#ff6b6b;
---line:#34373c
+ --bg:#000;
+ --card:#111;
+ --card2:#1b1b1b;
+ --text:#fff;
+ --muted:#999;
+ --line:#292929;
+ --white:#fff;
+ --black:#000;
 }
-
 *{box-sizing:border-box}
-
 body{
-margin:0;
-background:var(--bg);
-color:var(--text);
-font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif
+ margin:0;
+ background:var(--bg);
+ color:var(--text);
+ font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif
 }
+button,input,select{font:inherit}
+button{
+ border:0;border-radius:14px;padding:13px 16px;
+ font-weight:800;cursor:pointer
+}
+.primary{background:#fff;color:#000}
+.secondary{background:var(--card2);color:#fff;border:1px solid var(--line)}
+.danger{background:#321818;color:#ff8b8b}
+.full{width:100%}
 
 .app{
-max-width:520px;
-margin:auto;
-min-height:100vh;
-padding-bottom:90px
+ max-width:520px;
+ margin:auto;
+ min-height:100vh;
+ padding-bottom:90px
 }
-
 .top{
-padding:24px 20px 10px
+ padding:25px 20px 12px
 }
-
 .brand{
-font-size:25px;
-font-weight:800
+ font-size:30px;
+ font-weight:900;
+ letter-spacing:-1px
 }
-
+.brand span{font-weight:500}
 .date{
-color:var(--muted);
-font-size:13px;
-margin-top:4px
+ color:var(--muted);
+ font-size:13px;
+ margin-top:4px
 }
 
-.screen{
-display:none;
-padding:12px 16px
-}
-
-.screen.active{
-display:block
-}
+.screen{display:none;padding:12px 16px}
+.screen.active{display:block}
 
 .card{
-background:var(--card);
-border:1px solid #292c31;
-border-radius:20px;
-padding:18px;
-margin-bottom:14px
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:22px;
+ padding:18px;
+ margin-bottom:15px
 }
-
 h2{
-margin:5px 0 14px;
-font-size:21px
+ margin:5px 0 15px;
+ font-size:23px
 }
-
-.muted{
-color:var(--muted)
-}
-
-.small{
-font-size:13px
-}
-
-.cal{
-display:flex;
-align-items:center;
-gap:18px
-}
-
-.ring{
-width:112px;
-height:112px;
-border-radius:50%;
-display:grid;
-place-items:center;
-background:conic-gradient(
-var(--accent) var(--p,0%),
-#34373c 0
-);
-position:relative;
-flex-shrink:0
-}
-
-.ring:after{
-content:"";
-position:absolute;
-inset:9px;
-background:var(--card);
-border-radius:50%
-}
-
-.ring b{
-position:relative;
-z-index:1;
-font-size:20px
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:8px;
-flex:1
-}
-
-.stat{
-background:var(--card2);
-padding:12px 8px;
-border-radius:14px;
-text-align:center
-}
-
-.stat b{
-display:block;
-font-size:17px
-}
-
-.stat span{
-font-size:11px;
-color:var(--muted)
-}
+h3{margin:0 0 8px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
 
 .row{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px
-}
-
-.meal{
-padding:14px 0;
-border-bottom:1px solid var(--line)
-}
-
-.meal:last-child{
-border-bottom:0
-}
-
-.meal b{
-display:block
-}
-
-.meal small{
-color:var(--muted)
-}
-
-button,input,select{
-font:inherit
-}
-
-button{
-border:0;
-border-radius:13px;
-padding:12px 15px;
-font-weight:700;
-cursor:pointer
-}
-
-.primary{
-background:var(--accent);
-color:#0d0e10
-}
-
-.secondary{
-background:var(--card2);
-color:var(--text)
-}
-
-.danger{
-background:#3a2024;
-color:#ff9292
-}
-
-.full{
-width:100%
-}
-
-input,select{
-width:100%;
-background:var(--card2);
-border:1px solid var(--line);
-color:var(--text);
-border-radius:12px;
-padding:12px;
-margin:5px 0 12px
-}
-
-.formgrid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
-}
-
-nav{
-position:fixed;
-bottom:0;
-left:0;
-right:0;
-background:#0d0e10F2;
-backdrop-filter:blur(14px);
-border-top:1px solid var(--line);
-display:flex;
-justify-content:center;
-z-index:5
-}
-
-nav .navin{
-max-width:520px;
-width:100%;
-display:grid;
-grid-template-columns:repeat(5,1fr)
-}
-
-nav button{
-background:none;
-color:var(--muted);
-border-radius:0;
-padding:11px 3px;
-font-size:10px
-}
-
-nav button.active{
-color:var(--accent)
-}
-
-nav i{
-display:block;
-font-style:normal;
-font-size:20px;
-margin-bottom:3px
-}
-
-.modal{
-position:fixed;
-inset:0;
-background:#0009;
-display:none;
-align-items:flex-end;
-z-index:10
-}
-
-.modal.open{
-display:flex
-}
-
-.sheet{
-width:100%;
-max-width:520px;
-margin:auto;
-background:var(--card);
-border-radius:24px 24px 0 0;
-padding:20px;
-max-height:88vh;
-overflow:auto
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px
 }
 
 .kpi{
-font-size:30px;
-font-weight:800
+ font-size:38px;
+ font-weight:900
 }
 
 .pill{
-padding:5px 9px;
-background:var(--card2);
-border-radius:20px;
-font-size:12px;
-color:var(--muted)
+ display:inline-block;
+ padding:5px 10px;
+ border-radius:20px;
+ background:#222;
+ color:#bbb;
+ font-size:12px
+}
+
+.cal{
+ display:flex;
+ align-items:center;
+ gap:18px
+}
+.ring{
+ width:120px;
+ height:120px;
+ min-width:120px;
+ border-radius:50%;
+ display:grid;
+ place-items:center;
+ background:conic-gradient(
+  #fff var(--p,0%),
+  #333 0
+ );
+ position:relative
+}
+.ring:after{
+ content:"";
+ position:absolute;
+ inset:10px;
+ background:#111;
+ border-radius:50%
+}
+.ring b{
+ position:relative;
+ z-index:1;
+ font-size:21px
+}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:7px;
+ flex:1
+}
+.stat{
+ background:var(--card2);
+ padding:12px 5px;
+ border-radius:14px;
+ text-align:center
+}
+.stat b{
+ display:block;
+ font-size:17px
+}
+.stat span{
+ font-size:10px;
+ color:var(--muted)
+}
+
+.meal{
+ padding:14px 0;
+ border-bottom:1px solid var(--line)
+}
+.meal:last-child{border-bottom:0}
+.meal b{display:block}
+.meal small{color:var(--muted)}
+
+input,select{
+ width:100%;
+ background:#1b1b1b;
+ border:1px solid #333;
+ color:#fff;
+ border-radius:13px;
+ padding:13px;
+ margin:6px 0 13px;
+ outline:none
+}
+input:focus,select:focus{
+ border-color:#fff
+}
+.formgrid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px
+}
+label{
+ display:block;
+ margin-top:4px;
+ font-size:13px;
+ color:#bbb
+}
+
+.progress{
+ height:9px;
+ background:#333;
+ border-radius:10px;
+ overflow:hidden;
+ margin:10px 0
+}
+.progress div{
+ height:100%;
+ width:0;
+ background:#fff
+}
+
+nav{
+ position:fixed;
+ bottom:0;
+ left:0;
+ right:0;
+ background:#080808f5;
+ backdrop-filter:blur(14px);
+ border-top:1px solid #292929;
+ z-index:20
+}
+.navin{
+ max-width:520px;
+ width:100%;
+ margin:auto;
+ display:grid;
+ grid-template-columns:repeat(5,1fr)
+}
+nav button{
+ background:none;
+ color:#777;
+ border-radius:0;
+ padding:11px 3px 9px;
+ font-size:10px
+}
+nav button.active{color:#fff}
+nav i{
+ display:block;
+ font-style:normal;
+ font-size:21px;
+ margin-bottom:3px
 }
 
 .empty{
-text-align:center;
-padding:25px;
-color:var(--muted)
+ text-align:center;
+ padding:28px 10px;
+ color:#777
 }
 
-.badge{
-display:inline-block;
-padding:5px 9px;
-border-radius:20px;
-font-size:11px;
-font-weight:700;
-background:#2b2019;
-color:var(--accent)
+.modal{
+ position:fixed;
+ inset:0;
+ background:#000c;
+ display:none;
+ align-items:flex-end;
+ z-index:50
+}
+.modal.open{display:flex}
+.sheet{
+ width:100%;
+ max-width:520px;
+ margin:auto;
+ background:#111;
+ border:1px solid #333;
+ border-radius:25px 25px 0 0;
+ padding:20px;
+ max-height:88vh;
+ overflow:auto
 }
 
-.success{
-color:var(--green)
+video{
+ width:100%;
+ border-radius:16px;
+ background:#050505
+}
+.photo{
+ width:100%;
+ max-height:300px;
+ object-fit:cover;
+ border-radius:16px
 }
 
-.divider{
-height:1px;
-background:var(--line);
-margin:15px 0
+.statline{
+ padding:15px 0;
+ border-bottom:1px solid var(--line)
+}
+.statline:last-child{border-bottom:0}
+
+.notice{
+ background:#181818;
+ border:1px solid #333;
+ border-radius:14px;
+ padding:13px;
+ color:#bbb;
+ font-size:13px
 }
 </style>
 </head>
@@ -319,807 +286,673 @@ margin:15px 0
 <div class="app">
 
 <header class="top">
-<div class="brand">
-FIT<span style="color:var(--accent)">TAKİP</span>
-<span class="pill" style="color:var(--accent)">PRO</span>
-</div>
-<div class="date" id="date"></div>
+ <div class="brand">896 <span>FIT</span></div>
+ <div class="date" id="date"></div>
 </header>
 
 <!-- ANA SAYFA -->
-
 <main id="home" class="screen active">
 
-<div class="card">
+ <div class="card">
+  <div class="cal">
+   <div class="ring" id="ring">
+    <b id="remaining">2000</b>
+   </div>
 
-<div class="cal">
+   <div class="stats">
+    <div class="stat">
+     <b id="calIn">0</b>
+     <span>KALORİ</span>
+    </div>
+    <div class="stat">
+     <b id="protein">0g</b>
+     <span>PROTEİN</span>
+    </div>
+    <div class="stat">
+     <b id="water">0</b>
+     <span>SU</span>
+    </div>
+   </div>
+  </div>
+ </div>
 
-<div class="ring" id="ring">
-<b id="remaining">2000</b>
-</div>
+ <div class="card">
+  <div class="row">
+   <h2>Bugün</h2>
+   <button class="primary" onclick="openFood()">+ Yemek</button>
+  </div>
+  <div id="meals"></div>
+ </div>
 
-<div class="stats">
+ <div class="card">
+  <div class="row">
+   <div>
+    <b>💧 Su Takibi</b>
+    <div class="muted small">Hedef: 8 bardak</div>
+   </div>
+   <button class="secondary" onclick="addWater()">+1</button>
+  </div>
 
-<div class="stat">
-<b id="calIn">0</b>
-<span>Kalori</span>
-</div>
+  <div class="progress">
+   <div id="waterBar"></div>
+  </div>
+ </div>
 
-<div class="stat">
-<b id="protein">0g</b>
-<span>Protein</span>
-</div>
-
-<div class="stat">
-<b id="water">0</b>
-<span>Su</span>
-</div>
-
-</div>
-</div>
-</div>
-
-<div class="card">
-
-<div class="row">
-<h2>Bugün</h2>
-<button class="primary" onclick="openFood()">+ Yemek</button>
-</div>
-
-<div id="meals"></div>
-
-</div>
-
-<div class="card">
-
-<div class="row">
-
-<div>
-<b>💧 Su Takibi</b>
-<div class="muted small">
-Hedef: 8 bardak
-</div>
-</div>
-
-<button class="secondary" onclick="addWater()">+1</button>
-
-</div>
-
-<div style="margin-top:12px">
-<div style="
-height:9px;
-background:#34373c;
-border-radius:10px;
-overflow:hidden
-">
-<div id="waterBar" style="
-height:100%;
-width:0%;
-background:var(--accent);
-transition:.3s
-"></div>
-</div>
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="row">
-
-<div>
-<b>🎯 Günlük Hedef</b>
-<div class="muted small">
-Kalori ve protein hedeflerini yönet
-</div>
-</div>
-
-<button class="secondary" onclick="show('profile',document.querySelectorAll('nav button')[4])">
-Ayarla
-</button>
-
-</div>
-
-</div>
+ <div class="card">
+  <div class="row">
+   <div>
+    <b>🎯 Günlük Hedef</b>
+    <div class="muted small">
+     <span id="homeGoal">2000</span> kcal
+    </div>
+   </div>
+   <button class="secondary" onclick="openGoals()">Ayarla</button>
+  </div>
+ </div>
 
 </main>
 
 
 <!-- YEMEK -->
-
 <main id="food" class="screen">
 
-<h2>🍽 Yemek Ekle</h2>
+ <h2>🍽️ Yemek Ekle</h2>
 
-<div class="card">
+ <div class="card">
+  <div class="row">
+   <div>
+    <b>📷 Barkod Tara</b>
+    <div class="muted small">
+     Paketli ürünün barkodunu okut.
+    </div>
+   </div>
+   <button class="primary" onclick="openScanner()">Tara</button>
+  </div>
 
-<div class="row">
+  <div id="scannerBox" style="display:none;margin-top:14px">
+   <video id="barcodeVideo" playsinline autoplay muted></video>
+   <div class="small muted" id="scanStatus">
+    Barkod aranıyor...
+   </div>
+   <button class="secondary full"
+    style="margin-top:10px"
+    onclick="closeScanner()">
+    Kamerayı Kapat
+   </button>
+  </div>
 
-<div>
-<b>📷 Barkod Tara</b>
-<div class="muted small">
-Paketli ürünün barkodunu okut.
-</div>
-</div>
-
-<button class="primary" onclick="openScanner()">
-Tara
-</button>
-
-</div>
-
-<div id="scannerBox" style="display:none;margin-top:14px">
-
-<video
-id="barcodeVideo"
-playsinline
-autoplay
-muted
-style="
-width:100%;
-border-radius:16px;
-background:#080910;
-max-height:280px;
-object-fit:cover
-">
-</video>
-
-<div
-class="small muted"
-id="scanStatus"
-style="margin-top:8px">
-Barkod aranıyor...
-</div>
-
-<button
-class="secondary full"
-style="margin-top:10px"
-onclick="closeScanner()">
-Kamerayı Kapat
-</button>
-
-</div>
-
-<div id="barcodeResult"></div>
-
-</div>
+  <div id="barcodeResult"></div>
+ </div>
 
 
-<div class="card">
+ <div class="card">
+  <b>🔎 Hazır Yiyecekler</b>
+  <p class="muted small">
+   Yiyeceği ara ve dokun.
+  </p>
 
-<b>🔎 Hazır Yiyecekler</b>
+  <input id="foodSearch"
+   placeholder="Örn. tavuk, yumurta, pilav..."
+   oninput="searchFoods()">
 
-<p class="muted small">
-Yiyeceği ara ve tek dokunuşla forma aktar.
-</p>
-
-<input
-id="foodSearch"
-placeholder="Örn. tavuk, yumurta, pilav..."
-oninput="searchFoods()">
-
-<div id="foodResults"></div>
-
-</div>
+  <div id="foodResults"></div>
+ </div>
 
 
-<div class="card">
+ <div class="card">
 
-<label>Öğün</label>
+  <label>Öğün</label>
+  <select id="mealType">
+   <option>Kahvaltı</option>
+   <option>Öğle</option>
+   <option>Akşam</option>
+   <option>Ara Öğün</option>
+  </select>
 
-<select id="mealType">
-<option>Kahvaltı</option>
-<option>Öğle</option>
-<option>Akşam</option>
-<option>Ara Öğün</option>
-</select>
+  <label>Yiyecek</label>
+  <input id="foodName" placeholder="Örn. tavuk göğsü">
 
-<label>Yiyecek</label>
+  <div class="formgrid">
 
-<input
-id="foodName"
-placeholder="Örn. Tavuk göğsü">
+   <div>
+    <label>Kalori</label>
+    <input id="foodCal" type="number" min="0">
+   </div>
 
-<div class="formgrid">
+   <div>
+    <label>Protein (g)</label>
+    <input id="foodPro" type="number" min="0">
+   </div>
 
-<div>
-<label>Kalori</label>
-<input id="foodCal" type="number" min="0">
-</div>
+  </div>
 
-<div>
-<label>Protein (g)</label>
-<input id="foodPro" type="number" min="0">
-</div>
+  <div class="formgrid">
 
-</div>
+   <div>
+    <label>Karbonhidrat (g)</label>
+    <input id="foodCarb" type="number" min="0">
+   </div>
 
-<div class="formgrid">
+   <div>
+    <label>Yağ (g)</label>
+    <input id="foodFat" type="number" min="0">
+   </div>
 
-<div>
-<label>Karbonhidrat (g)</label>
-<input id="foodCarb" type="number" min="0">
-</div>
+  </div>
 
-<div>
-<label>Yağ (g)</label>
-<input id="foodFat" type="number" min="0">
-</div>
+  <button class="primary full" onclick="saveFood()">
+   Kaydet
+  </button>
 
-</div>
+  <button class="secondary full"
+   style="margin-top:8px"
+   onclick="clearFoodForm()">
+   Temizle
+  </button>
 
-<button class="primary full" onclick="saveFood()">
-Yemeği Kaydet
-</button>
-
-<button
-class="secondary full"
-style="margin-top:8px"
-onclick="clearFoodForm()">
-Temizle
-</button>
-
-</div>
+ </div>
 
 </main>
 
 
 <!-- FOTOĞRAF -->
-
 <main id="photo" class="screen">
 
-<div class="row">
+ <h2>📷 Yemek Fotoğrafı</h2>
 
-<h2>📸 Fotoğraf</h2>
+ <div class="card">
 
-<span class="badge">
-PREMIUM
-</span>
+  <b>Tabağını fotoğraflandır</b>
 
-</div>
+  <p class="muted small">
+   Fotoğrafını seç veya kamerayla çek.
+  </p>
 
-<div class="card">
+  <label for="mealPhoto"
+   class="secondary full"
+   style="display:block;text-align:center;padding:14px;cursor:pointer">
+   📷 Fotoğraf Seç / Çek
+  </label>
 
-<b>🍽 Tabağını Analiz Et</b>
+  <input
+   id="mealPhoto"
+   type="file"
+   accept="image/*"
+   capture="environment"
+   style="display:none">
 
-<p class="muted small">
-Yemeğinin fotoğrafını seç veya kamerayla çek.
-</p>
+  <div id="photoPreview"></div>
+  <div id="photoResult"></div>
 
-<label
-for="mealPhoto"
-class="secondary full"
-style="
-display:block;
-text-align:center;
-cursor:pointer
-">
-📷 Fotoğraf Seç / Çek
-</label>
+ </div>
 
-<input
-id="mealPhoto"
-type="file"
-accept="image/*"
-capture="environment"
-style="display:none">
+ <div class="card">
+  <b>ℹ️ Nasıl çalışacak?</b>
 
-<div id="photoPreview"></div>
+  <div class="statline">
+   <b>1. Fotoğrafı çek</b>
+   <div class="muted small">Yemeğini görüntüle.</div>
+  </div>
 
-<div id="photoResult"></div>
+  <div class="statline">
+   <b>2. Yemeği tanı</b>
+   <div class="muted small">Yemekleri belirle.</div>
+  </div>
 
-</div>
+  <div class="statline">
+   <b>3. Porsiyonu kontrol et</b>
+   <div class="muted small">Gram miktarını düzenle.</div>
+  </div>
 
-<div class="card">
-
-<b>AI Kalori Analizi</b>
-
-<div class="meal">
-<b>1️⃣ Yemeği tanı</b>
-<small>
-Fotoğraftaki yiyecekleri belirle.
-</small>
-</div>
-
-<div class="meal">
-<b>2️⃣ Porsiyonu tahmin et</b>
-<small>
-Yaklaşık gramajı hesapla.
-</small>
-</div>
-
-<div class="meal">
-<b>3️⃣ Besin değerlerini çıkar</b>
-<small>
-Kalori, protein, karbonhidrat ve yağ.
-</small>
-</div>
-
-<div class="meal">
-<b>4️⃣ Sen onayla</b>
-<small>
-Sonucu düzenleyip günlüğe ekle.
-</small>
-</div>
-
-</div>
+  <div class="statline">
+   <b>4. Günlüğe ekle</b>
+   <div class="muted small">Onayladığında otomatik kaydolur.</div>
+  </div>
+ </div>
 
 </main>
 
 
 <!-- İLERLEME -->
+<main id="progressScreen" class="screen">
 
-<main id="progress" class="screen">
+ <h2>📊 İlerleme</h2>
 
-<h2>📈 İlerleme</h2>
+ <div class="card">
 
-<div class="card">
+  <div class="row">
+   <div>
+    <b>Kilo Takibi</b>
+    <div class="muted small">
+     Hedef: <span id="progressGoal">85</span> kg
+    </div>
+   </div>
 
-<div class="row">
+   <button class="primary" onclick="addWeight()">
+    + Kayıt
+   </button>
+  </div>
 
-<div>
-<b>Kilo Takibi</b>
-<div class="muted small">
-Hedef: <span id="targetWeightText">85</span> kg
-</div>
-</div>
+  <div id="weights"></div>
 
-<button class="primary" onclick="addWeight()">
-+ Kayıt
-</button>
+ </div>
 
-</div>
 
-<div id="weights"></div>
+ <div class="card">
 
-</div>
+  <b>📈 Son Durum</b>
 
-<div class="card">
+  <div class="statline">
+   <div class="muted">Başlangıç</div>
+   <b id="startWeight">-</b>
+  </div>
 
-<b>📊 Son Durum</b>
+  <div class="statline">
+   <div class="muted">Son ölçüm</div>
+   <b id="lastWeight">-</b>
+  </div>
 
-<div class="divider"></div>
+  <div class="statline">
+   <div class="muted">Değişim</div>
+   <b id="weightChange">-</b>
+  </div>
 
-<div class="row">
-<span class="muted">Başlangıç</span>
-<b id="firstWeight">-</b>
-</div>
-
-<div class="divider"></div>
-
-<div class="row">
-<span class="muted">Son ölçüm</span>
-<b id="lastWeight">-</b>
-</div>
-
-<div class="divider"></div>
-
-<div class="row">
-<span class="muted">Değişim</span>
-<b id="weightChange">-</b>
-</div>
-
-</div>
+ </div>
 
 </main>
 
 
 <!-- PROFİL -->
-
 <main id="profile" class="screen">
 
-<h2>⚙️ Profil & Hedefler</h2>
+ <h2>⚙️ 896 FIT</h2>
 
-<div class="card">
+ <div class="card">
 
-<div class="row">
+  <h3>🎯 Hedefler</h3>
 
-<div>
-<b>FitTakip PRO</b>
-<div class="muted small">
-Gelişmiş takip özellikleri
-</div>
-</div>
+  <label>Günlük kalori</label>
+  <input id="goalCal" type="number" min="500" step="50">
 
-<span class="badge">
-PRO
-</span>
+  <label>Protein hedefi (g)</label>
+  <input id="goalPro" type="number" min="0">
 
-</div>
+  <label>Hedef kilo (kg)</label>
+  <input id="goalWeight" type="number" min="1" step=".1">
 
-<div class="divider"></div>
+  <button class="primary full" onclick="saveGoals()">
+   Hedefleri Kaydet
+  </button>
 
-<label>Günlük Kalori Hedefi</label>
-
-<input
-id="goalCal"
-type="number"
-min="500"
-step="50">
-
-<label>Protein Hedefi (g)</label>
-
-<input
-id="goalPro"
-type="number"
-min="0">
-
-<label>Hedef Kilo (kg)</label>
-
-<input
-id="goalWeight"
-type="number"
-min="1"
-step=".1">
-
-<button
-class="primary full"
-onclick="saveGoals()">
-🎯 Hedefleri Kaydet
-</button>
-
-</div>
+ </div>
 
 
-<div class="card">
+ <div class="card">
 
-<b>💰 Premium</b>
+  <h3>⏱️ Aralıklı Oruç</h3>
 
-<p class="muted small">
-İleride AI fotoğraf analizi ve gelişmiş
-özellikler için kullanılacak.
-</p>
+  <div class="kpi" id="fastTime">
+   00:00:00
+  </div>
 
-<div class="meal row">
-<span>Aylık</span>
-<b>40 TL</b>
-</div>
+  <div class="row">
+   <span id="fastStatus" class="pill">
+    Başlamadı
+   </span>
 
-<div class="meal row">
-<span>Yıllık</span>
-<b>400 TL</b>
-</div>
+   <button class="primary"
+    id="fastBtn"
+    onclick="toggleFast()">
+    Başlat
+   </button>
+  </div>
 
-<button
-class="secondary full"
-onclick="showPremiumInfo()">
-Premium'u İncele
-</button>
-
-</div>
+ </div>
 
 
-<div class="card">
+ <div class="card">
 
-<b>🔐 Gizlilik</b>
+  <h3>💾 Veriler</h3>
 
-<p class="muted small">
-Temel yemek, su, kilo ve hedef verileri
-bu sürümde cihazında tutulur.
-</p>
+  <p class="muted small">
+   Kayıtların otomatik olarak cihazında tutulur.
+  </p>
 
-</div>
+  <button class="secondary full"
+   onclick="backupData()">
+   Verilerimi Yedekle
+  </button>
+
+  <button class="secondary full"
+   style="margin-top:8px"
+   onclick="restoreData()">
+   Yedekten Geri Yükle
+  </button>
+
+  <button class="danger full"
+   style="margin-top:8px"
+   onclick="resetData()">
+   Tüm Verileri Sil
+  </button>
+
+ </div>
+
+
+ <div class="card">
+  <h3>🔐 Gizlilik</h3>
+  <p class="muted small">
+   Bu kişisel sürümde yemek, su, kilo ve hedef
+   kayıtların cihazında saklanır.
+  </p>
+ </div>
+
+ <div class="notice">
+  <b>896 FIT V1</b><br>
+  Kişisel kullanım sürümü.
+ </div>
 
 </main>
 
 </div>
 
 
-<!-- ALT MENÜ -->
-
+<!-- NAV -->
 <nav>
+ <div class="navin">
 
-<div class="navin">
+  <button class="active"
+   onclick="show('home',this)">
+   <i>⌂</i>Ana Sayfa
+  </button>
 
-<button
-class="active"
-onclick="show('home',this)">
-<i>⌂</i>
-Ana Sayfa
-</button>
+  <button
+   onclick="show('food',this)">
+   <i>🍽️</i>Yemek
+  </button>
 
-<button
-onclick="show('food',this)">
-<i>🍽</i>
-Yemek
-</button>
+  <button
+   onclick="show('photo',this)">
+   <i>📷</i>Fotoğraf
+  </button>
 
-<button
-onclick="show('photo',this)">
-<i>📷</i>
-Fotoğraf
-</button>
+  <button
+   onclick="show('progressScreen',this)">
+   <i>📊</i>İlerleme
+  </button>
 
-<button
-onclick="show('progress',this)">
-<i>📈</i>
-İlerleme
-</button>
+  <button
+   onclick="show('profile',this)">
+   <i>⚙️</i>Ayarlar
+  </button>
 
-<button
-onclick="show('profile',this)">
-<i>⚙️</i>
-Profil
-</button>
-
-</div>
-
+ </div>
 </nav>
 
 
-<!-- KİLO MODAL -->
+<!-- KİLO MODALI -->
+<div class="modal" id="weightModal">
 
-<div class="modal" id="modal">
+ <div class="sheet">
 
-<div class="sheet">
+  <div class="row">
+   <h2>Kilo Kaydı</h2>
+   <button class="secondary"
+    onclick="closeWeightModal()">
+    Kapat
+   </button>
+  </div>
 
-<div class="row">
+  <label>Kilon (kg)</label>
+  <input id="weightInput"
+   type="number"
+   step=".1"
+   min="1"
+   placeholder="120">
 
-<h2>Kilo Kaydı</h2>
+  <button class="primary full"
+   onclick="saveWeight()">
+   Kaydet
+  </button>
 
-<button
-class="secondary"
-onclick="closeModal()">
-Kapat
-</button>
-
-</div>
-
-<label>Kilon (kg)</label>
-
-<input
-id="weightInput"
-type="number"
-step=".1"
-min="1"
-placeholder="120">
-
-<button
-class="primary full"
-onclick="saveWeight()">
-Kaydet
-</button>
-
-</div>
+ </div>
 
 </div>
 
 
 <script>
 
-const KEY='fittakip_v5';
+const KEY="896_fit_v1";
 
-let data=
-JSON.parse(localStorage.getItem(KEY)||'null')
-||
-{
-goalCal:2000,
-goalPro:150,
-goalWeight:85,
-foods:[],
-water:0,
-weights:[],
-fastStart:null
+let data=JSON.parse(
+ localStorage.getItem(KEY)||"null"
+)||{
+ goalCal:2000,
+ goalPro:150,
+ goalWeight:85,
+ foods:[],
+ water:0,
+ waterDate:"",
+ weights:[],
+ fastStart:null
 };
 
 const $=id=>document.getElementById(id);
 
 function persist(){
-localStorage.setItem(KEY,JSON.stringify(data));
+ localStorage.setItem(KEY,JSON.stringify(data));
 }
 
 function today(){
-return new Date().toISOString().slice(0,10);
+ return new Date().toLocaleDateString(
+  "sv-SE"
+ );
 }
 
 function todayFoods(){
-return data.foods.filter(x=>x.date===today());
+ return data.foods.filter(
+  x=>x.date===today()
+ );
 }
 
 
-/* SAYFA GEÇİŞİ */
+/* SAYFA */
 
 function show(id,btn){
 
-document
-.querySelectorAll('.screen')
-.forEach(x=>x.classList.remove('active'));
+ document.querySelectorAll(".screen")
+ .forEach(x=>x.classList.remove("active"));
 
-$(id).classList.add('active');
+ $(id).classList.add("active");
 
-document
-.querySelectorAll('nav button')
-.forEach(x=>x.classList.remove('active'));
+ document.querySelectorAll("nav button")
+ .forEach(x=>x.classList.remove("active"));
 
-if(btn) btn.classList.add('active');
+ btn.classList.add("active");
 
-window.scrollTo(0,0);
+ window.scrollTo(0,0);
 
-render();
+ render();
+}
 
+function openFood(){
+ show(
+  "food",
+  document.querySelectorAll("nav button")[1]
+ );
+}
+
+function openGoals(){
+ show(
+  "profile",
+  document.querySelectorAll("nav button")[4]
+ );
 }
 
 
-/* YEMEK */
+/* YEMEK VERİTABANI */
 
 const FOOD_DB=[
 
-{n:"Yumurta",u:"1 adet",cal:78,pro:6.3,carb:.6,fat:5.3},
+ {n:"Yumurta",u:"1 adet",cal:78,pro:6.3,carb:.6,fat:5.3},
 
-{n:"Tavuk göğsü",u:"100 g",cal:165,pro:31,carb:0,fat:3.6},
+ {n:"Tavuk göğsü",u:"100 g",cal:165,pro:31,carb:0,fat:3.6},
 
-{n:"Hindi göğsü",u:"100 g",cal:135,pro:29,carb:0,fat:1.6},
+ {n:"Hindi göğsü",u:"100 g",cal:135,pro:29,carb:0,fat:1.6},
 
-{n:"Dana kıyma",u:"100 g",cal:250,pro:26,carb:0,fat:17},
+ {n:"Dana kıyma",u:"100 g",cal:250,pro:26,carb:0,fat:17},
 
-{n:"Ton balığı",u:"100 g",cal:116,pro:26,carb:0,fat:1},
+ {n:"Ton balığı",u:"100 g",cal:116,pro:26,carb:0,fat:1},
 
-{n:"Pirinç pilavı",u:"100 g",cal:130,pro:2.7,carb:28,fat:.3},
+ {n:"Pirinç pilavı",u:"100 g",cal:130,pro:2.7,carb:28,fat:.3},
 
-{n:"Bulgur pilavı",u:"100 g",cal:114,pro:3.1,carb:25.4,fat:.4},
+ {n:"Bulgur pilavı",u:"100 g",cal:114,pro:3.1,carb:25.4,fat:.4},
 
-{n:"Makarna",u:"100 g",cal:158,pro:5.8,carb:30.9,fat:.9},
+ {n:"Makarna",u:"100 g",cal:158,pro:5.8,carb:30.9,fat:.9},
 
-{n:"Patates",u:"100 g",cal:77,pro:2,carb:17,fat:.1},
+ {n:"Patates",u:"100 g",cal:77,pro:2,carb:17,fat:.1},
 
-{n:"Yoğurt",u:"100 g",cal:61,pro:3.5,carb:4.7,fat:3.3},
+ {n:"Yoğurt",u:"100 g",cal:61,pro:3.5,carb:4.7,fat:3.3},
 
-{n:"Süt",u:"200 ml",cal:122,pro:6.4,carb:9.6,fat:6.6},
+ {n:"Süt",u:"200 ml",cal:122,pro:6.4,carb:9.6,fat:6.6},
 
-{n:"Beyaz peynir",u:"30 g",cal:80,pro:4.5,carb:1,fat:6.5},
+ {n:"Beyaz peynir",u:"30 g",cal:80,pro:4.5,carb:1,fat:6.5},
 
-{n:"Kaşar peyniri",u:"30 g",cal:107,pro:7.5,carb:.5,fat:8.5},
+ {n:"Kaşar peyniri",u:"30 g",cal:107,pro:7.5,carb:.5,fat:8.5},
 
-{n:"Ekmek",u:"1 dilim",cal:80,pro:2.7,carb:15,fat:1},
+ {n:"Ekmek",u:"1 dilim",cal:80,pro:2.7,carb:15,fat:1},
 
-{n:"Muz",u:"1 orta boy",cal:105,pro:1.3,carb:27,fat:.4},
+ {n:"Muz",u:"1 orta boy",cal:105,pro:1.3,carb:27,fat:.4},
 
-{n:"Elma",u:"1 orta boy",cal:95,pro:.5,carb:25,fat:.3},
+ {n:"Elma",u:"1 orta boy",cal:95,pro:.5,carb:25,fat:.3},
 
-{n:"Yulaf ezmesi",u:"40 g",cal:152,pro:5.2,carb:27,fat:2.8},
+ {n:"Yulaf ezmesi",u:"40 g",cal:152,pro:5.2,carb:27,fat:2.8},
 
-{n:"Badem",u:"30 g",cal:174,pro:6.4,carb:6.1,fat:15},
+ {n:"Badem",u:"30 g",cal:174,pro:6.4,carb:6.1,fat:15},
 
-{n:"Fıstık ezmesi",u:"20 g",cal:118,pro:5,carb:4,fat:10},
+ {n:"Fıstık ezmesi",u:"20 g",cal:118,pro:5,carb:4,fat:10},
 
-{n:"Zeytinyağı",u:"10 g",cal:90,pro:0,carb:0,fat:10}
+ {n:"Zeytinyağı",u:"10 g",cal:90,pro:0,carb:0,fat:10},
+
+ {n:"Lor peyniri",u:"100 g",cal:98,pro:11,carb:3,fat:4},
+
+ {n:"Kefir",u:"200 ml",cal:110,pro:6,carb:8,fat:5},
+
+ {n:"Mercimek",u:"100 g",cal:116,pro:9,carb:20,fat:.4},
+
+ {n:"Nohut",u:"100 g",cal:164,pro:8.9,carb:27.4,fat:2.6}
 
 ];
 
 
 function searchFoods(){
 
-const q=
-($('foodSearch').value||'')
-.toLocaleLowerCase('tr-TR')
-.trim();
+ const q=(
+  $("foodSearch").value||""
+ ).toLocaleLowerCase("tr-TR").trim();
 
-const list=q
-?FOOD_DB.filter(x=>
-x.n.toLocaleLowerCase('tr-TR').includes(q))
-:FOOD_DB.slice(0,6);
+ const list=q
+  ?FOOD_DB.filter(x=>
+   x.n.toLocaleLowerCase("tr-TR").includes(q))
+  :FOOD_DB.slice(0,8);
 
-$('foodResults').innerHTML=
-list.length
-?
-list.map(x=>`
+ $("foodResults").innerHTML=list.length
+ ?list.map(x=>`
 
-<div
-class="meal row"
-style="cursor:pointer"
-onclick="pickFood(${FOOD_DB.indexOf(x)})">
+ <div class="meal row"
+  style="cursor:pointer"
+  onclick="pickFood(${FOOD_DB.indexOf(x)})">
 
-<div>
+  <div>
+   <b>${esc(x.n)}</b>
+   <small>
+    ${x.u} · ${x.pro}g protein ·
+    ${x.carb}g kh · ${x.fat}g yağ
+   </small>
+  </div>
 
-<b>${x.n}</b>
+  <span class="pill">${x.cal} kcal</span>
 
-<small>
-${x.u} · ${x.pro}g protein ·
-${x.carb}g kh · ${x.fat}g yağ
-</small>
+ </div>
 
-</div>
-
-<span class="pill">
-${x.cal} kcal
-</span>
-
-</div>
-
-`).join('')
-:
-'<div class="empty">Yiyecek bulunamadı.</div>';
-
+ `).join("")
+ :'<div class="empty">Yiyecek bulunamadı.</div>';
 }
 
 
 function pickFood(i){
 
-const x=FOOD_DB[i];
+ const x=FOOD_DB[i];
 
-$('foodName').value=x.n;
-$('foodCal').value=x.cal;
-$('foodPro').value=x.pro;
-$('foodCarb').value=x.carb;
-$('foodFat').value=x.fat;
+ $("foodName").value=x.n;
+ $("foodCal").value=x.cal;
+ $("foodPro").value=x.pro;
+ $("foodCarb").value=x.carb;
+ $("foodFat").value=x.fat;
 
-window.scrollTo({
-top:document.body.scrollHeight,
-behavior:'smooth'
-});
-
+ window.scrollTo({
+  top:document.body.scrollHeight,
+  behavior:"smooth"
+ });
 }
 
 
 function clearFoodForm(){
 
-[
-'foodName',
-'foodCal',
-'foodPro',
-'foodCarb',
-'foodFat',
-'foodSearch'
-].forEach(id=>$(id).value='');
+ [
+  "foodName",
+  "foodCal",
+  "foodPro",
+  "foodCarb",
+  "foodFat",
+  "foodSearch"
+ ].forEach(id=>$(id).value="");
 
-searchFoods();
-
-}
-
-
-function openFood(){
-
-show(
-'food',
-document.querySelectorAll('nav button')[1]
-);
-
+ searchFoods();
 }
 
 
 function saveFood(){
 
-const name=$('foodName').value.trim();
+ const name=$("foodName").value.trim();
+ const cal=+$("foodCal").value||0;
 
-const cal=+$('foodCal').value||0;
+ if(!name||!cal){
+  alert("Yiyecek adı ve kalori gir.");
+  return;
+ }
 
-if(!name||!cal){
+ data.foods.push({
 
-alert('Yiyecek adı ve kalori gir.');
+  id:Date.now(),
 
-return;
+  date:today(),
 
-}
+  type:$("mealType").value,
 
-data.foods.push({
+  name:name,
 
-date:today(),
+  cal:cal,
 
-type:$('mealType').value,
+  pro:+$("foodPro").value||0,
 
-name,
+  carb:+$("foodCarb").value||0,
 
-cal,
+  fat:+$("foodFat").value||0
 
-pro:+$('foodPro').value||0,
+ });
 
-carb:+$('foodCarb').value||0,
+ persist();
 
-fat:+$('foodFat').value||0
+ clearFoodForm();
 
-});
+ render();
 
-persist();
+ alert("Yemek otomatik olarak kaydedildi.");
 
-clearFoodForm();
-
-render();
-
-show(
-'home',
-document.querySelectorAll('nav button')[0]
-);
-
+ show(
+  "home",
+  document.querySelectorAll("nav button")[0]
+ );
 }
 
 
@@ -1127,12 +960,15 @@ document.querySelectorAll('nav button')[0]
 
 function addWater(){
 
-data.water=Math.min(99,data.water+1);
+ if(data.waterDate!==today()){
+  data.water=0;
+  data.waterDate=today();
+ }
 
-persist();
+ data.water=Math.min(99,data.water+1);
 
-render();
-
+ persist();
+ render();
 }
 
 
@@ -1140,18 +976,14 @@ render();
 
 function saveGoals(){
 
-data.goalCal=+$('goalCal').value||2000;
+ data.goalCal=+$("goalCal").value||2000;
+ data.goalPro=+$("goalPro").value||0;
+ data.goalWeight=+$("goalWeight").value||85;
 
-data.goalPro=+$('goalPro').value||0;
+ persist();
+ render();
 
-data.goalWeight=+$('goalWeight').value||85;
-
-persist();
-
-render();
-
-alert('🎯 Hedeflerin kaydedildi.');
-
+ alert("Hedefler otomatik olarak kaydedildi.");
 }
 
 
@@ -1159,44 +991,86 @@ alert('🎯 Hedeflerin kaydedildi.');
 
 function addWeight(){
 
-$('weightInput').value='';
+ $("weightInput").value="";
 
-$('modal').classList.add('open');
-
+ $("weightModal")
+ .classList.add("open");
 }
 
-function closeModal(){
 
-$('modal').classList.remove('open');
+function closeWeightModal(){
 
+ $("weightModal")
+ .classList.remove("open");
 }
+
 
 function saveWeight(){
 
-const w=+$('weightInput').value;
+ const w=+$("weightInput").value;
 
-if(!w){
+ if(!w){
+  alert("Kilonu gir.");
+  return;
+ }
 
-alert('Kilonu gir.');
+ data.weights.push({
+  date:new Date().toLocaleDateString("tr-TR"),
+  iso:today(),
+  weight:w
+ });
 
-return;
+ persist();
 
+ closeWeightModal();
+
+ render();
+
+ alert("Kilo otomatik olarak kaydedildi.");
 }
 
-data.weights.push({
 
-date:new Date().toLocaleDateString('tr-TR'),
+/* ORUÇ */
 
-weight:w
+function toggleFast(){
 
-});
+ if(data.fastStart){
+  data.fastStart=null;
+ }else{
+  data.fastStart=Date.now();
+ }
 
-persist();
+ persist();
+ render();
+}
 
-closeModal();
 
-render();
+function updateFast(){
 
+ if(!data.fastStart){
+
+  $("fastTime").textContent="00:00:00";
+  $("fastStatus").textContent="Başlamadı";
+  $("fastBtn").textContent="Başlat";
+
+  return;
+ }
+
+ const s=Math.floor(
+  (Date.now()-data.fastStart)/1000
+ );
+
+ const h=Math.floor(s/3600);
+ const m=Math.floor((s%3600)/60);
+ const sec=s%60;
+
+ $("fastTime").textContent=
+ [h,m,sec]
+ .map(v=>String(v).padStart(2,"0"))
+ .join(":");
+
+ $("fastStatus").textContent="Oruç devam ediyor";
+ $("fastBtn").textContent="Bitir";
 }
 
 
@@ -1205,553 +1079,565 @@ render();
 let scanStream=null;
 let scanTimer=null;
 
+
 async function openScanner(){
 
-$('scannerBox').style.display='block';
+ $("scannerBox").style.display="block";
+ $("scanStatus").textContent="Kamera açılıyor...";
 
-$('scanStatus').textContent=
-'Kamera açılıyor...';
+ try{
 
-try{
+  if(!navigator.mediaDevices ||
+     !navigator.mediaDevices.getUserMedia){
 
-if(
-!navigator.mediaDevices ||
-!navigator.mediaDevices.getUserMedia
-){
+   $("scanStatus").textContent=
+    "Kamera desteklenmiyor. Barkodu elle girebilirsin.";
 
-$('scanStatus').textContent=
-'Kamera desteklenmiyor. Barkodu elle girebilirsin.';
+   return;
+  }
 
-return;
+  scanStream=
+   await navigator.mediaDevices.getUserMedia({
+    video:{
+     facingMode:{ideal:"environment"}
+    },
+    audio:false
+   });
 
-}
+  $("barcodeVideo").srcObject=scanStream;
 
-scanStream=
-await navigator.mediaDevices.getUserMedia({
+  $("scanStatus").textContent=
+   "Barkodu kameranın ortasına getir.";
 
-video:{
-facingMode:{ideal:'environment'},
-width:{ideal:1280},
-height:{ideal:720}
-},
+  if("BarcodeDetector" in window){
 
-audio:false
+   const detector=
+    new BarcodeDetector({
+     formats:[
+      "ean_13",
+      "ean_8",
+      "upc_a",
+      "upc_e"
+     ]
+    });
 
-});
+   scanTimer=setInterval(async()=>{
 
-$('barcodeVideo').srcObject=scanStream;
+    try{
 
-$('scanStatus').textContent=
-'Barkodu kameranın ortasına getir...';
+     const codes=
+      await detector.detect(
+       $("barcodeVideo")
+      );
 
-if('BarcodeDetector' in window){
+     if(codes.length &&
+        codes[0].rawValue){
 
-const detector=
-new BarcodeDetector({
+      const code=codes[0].rawValue;
 
-formats:[
-'ean_13',
-'ean_8',
-'upc_a',
-'upc_e'
-]
+      $("scanStatus").textContent=
+       "Barkod bulundu: "+code;
 
-});
+      await lookupBarcode(code);
 
-scanTimer=setInterval(async()=>{
+      closeScanner();
+     }
 
-try{
+    }catch(e){}
 
-const codes=
-await detector.detect(
-$('barcodeVideo')
-);
+   },600);
 
-if(
-codes.length &&
-codes[0].rawValue
-){
+  }else{
 
-const code=
-codes[0].rawValue;
+   $("scanStatus").innerHTML=
+    `Otomatik barkod tarama desteklenmiyor.
+     <br>
+     <button class="secondary"
+      style="margin-top:8px"
+      onclick="manualBarcode()">
+      Barkodu Elle Gir
+     </button>`;
+  }
 
-$('scanStatus').textContent=
-'Barkod bulundu: '+code;
+ }catch(e){
 
-await lookupBarcode(code);
-
-closeScanner();
-
-}
-
-}catch(e){}
-
-},500);
-
-}else{
-
-$('scanStatus').innerHTML=
-'Otomatik tarama desteklenmiyor.<br><br>'+
-'<button class="secondary" onclick="manualBarcode()">Barkodu Elle Gir</button>';
-
-}
-
-}catch(e){
-
-$('scanStatus').textContent=
-'Kamera açılamadı. Kamera iznini kontrol et.';
-
-}
-
+  $("scanStatus").textContent=
+   "Kamera açılamadı. Kamera iznini kontrol et.";
+ }
 }
 
 
 function closeScanner(){
 
-if(scanTimer){
+ if(scanTimer){
+  clearInterval(scanTimer);
+  scanTimer=null;
+ }
 
-clearInterval(scanTimer);
+ if(scanStream){
 
-scanTimer=null;
+  scanStream.getTracks()
+   .forEach(t=>t.stop());
 
-}
+  scanStream=null;
+ }
 
-if(scanStream){
-
-scanStream
-.getTracks()
-.forEach(t=>t.stop());
-
-scanStream=null;
-
-}
-
-$('scannerBox').style.display='none';
-
+ $("scannerBox").style.display="none";
 }
 
 
 function manualBarcode(){
 
-const code=
-prompt('Barkod numarasını gir:');
+ const code=prompt(
+  "Barkod numarasını gir:"
+ );
 
-if(
-code &&
-/^\d{8,14}$/.test(code)
-){
+ if(code &&
+    /^\d{8,14}$/.test(code)){
 
-lookupBarcode(code);
+  lookupBarcode(code);
 
-}else if(code){
+ }else if(code){
 
-alert('Geçerli bir barkod gir.');
-
-}
-
+  alert("Geçerli barkod gir.");
+ }
 }
 
 
 async function lookupBarcode(code){
 
-$('barcodeResult').innerHTML=
-'<div class="pill">Ürün aranıyor...</div>';
+ $("barcodeResult").innerHTML=
+  '<div class="pill">Ürün aranıyor...</div>';
 
-try{
+ try{
 
-const r=
-await fetch(
-'https://world.openfoodfacts.org/api/v2/product/'
-+encodeURIComponent(code)+'.json'
-);
+  const r=await fetch(
+   "https://world.openfoodfacts.org/api/v2/product/"
+   +encodeURIComponent(code)+".json"
+  );
 
-const d=await r.json();
+  const d=await r.json();
 
-if(
-d.status!==1 ||
-!d.product
-){
+  if(d.status!==1||!d.product){
 
-$('barcodeResult').innerHTML=
-'<div class="empty">Ürün bulunamadı.</div>';
+   $("barcodeResult").innerHTML=
+    '<div class="empty">Ürün bulunamadı.</div>';
 
-return;
+   return;
+  }
 
-}
+  const x=d.product;
+  const n=
+   x.product_name_tr||
+   x.product_name||
+   "Barkodlu ürün";
 
-const x=d.product;
+  const nutr=x.nutriments||{};
 
-const n=
-x.product_name_tr||
-x.product_name||
-'Barkodlu ürün';
+  const cal=Math.round(
+   nutr["energy-kcal_100g"]||
+   ((nutr["energy_100g"]||0)/4.184)||
+   0
+  );
 
-const nutr=x.nutriments||{};
+  const pro=+(nutr.proteins_100g||0);
+  const carb=+(nutr.carbohydrates_100g||0);
+  const fat=+(nutr.fat_100g||0);
 
-const cal=
-Math.round(
-nutr['energy-kcal_100g']||
-((nutr['energy_100g']||0)/4.184)||
-0
-);
+  $("foodName").value=n;
+  $("foodCal").value=cal;
+  $("foodPro").value=pro;
+  $("foodCarb").value=carb;
+  $("foodFat").value=fat;
 
-const pro=
-+(nutr.proteins_100g||0);
+  $("barcodeResult").innerHTML=`
 
-const carb=
-+(nutr.carbohydrates_100g||0);
+   <div class="meal row">
 
-const fat=
-+(nutr.fat_100g||0);
+    <div>
+     <b>${esc(n)}</b>
+     <small>Barkod: ${esc(code)} · 100 g</small>
+    </div>
 
-$('foodName').value=n;
-$('foodCal').value=cal;
-$('foodPro').value=pro;
-$('foodCarb').value=carb;
-$('foodFat').value=fat;
+    <span class="pill">${cal} kcal</span>
 
-$('barcodeResult').innerHTML=`
+   </div>
+  `;
 
-<div class="meal row">
+  alert(
+   "Ürün bulundu. Porsiyonu kontrol edip kaydet."
+  );
 
-<div>
+ }catch(e){
 
-<b>${esc(n)}</b>
-
-<small>
-Barkod: ${esc(code)} · 100 g
-</small>
-
-</div>
-
-<span class="pill">
-${cal} kcal
-</span>
-
-</div>
-
-`;
-
-alert(
-'Ürün bulundu. Porsiyonu kontrol edip Kaydet diyebilirsin.'
-);
-
-}catch(e){
-
-$('barcodeResult').innerHTML=
-'<div class="empty">Ürün veritabanına ulaşılamadı.</div>';
-
-}
-
+  $("barcodeResult").innerHTML=
+   '<div class="empty">Ürün veritabanına ulaşılamadı.</div>';
+ }
 }
 
 
 /* FOTOĞRAF */
 
-$('mealPhoto').addEventListener(
-'change',
-e=>{
+$("mealPhoto").addEventListener(
+ "change",
+ e=>{
 
-const file=
-e.target.files &&
-e.target.files[0];
+  const file=
+   e.target.files&&e.target.files[0];
 
-if(!file)return;
+  if(!file)return;
 
-const url=
-URL.createObjectURL(file);
+  const url=
+   URL.createObjectURL(file);
 
-$('photoPreview').innerHTML=`
+  $("photoPreview").innerHTML=`
 
-<img
-src="${url}"
-alt="Yemek"
-style="
-width:100%;
-max-height:300px;
-object-fit:cover;
-border-radius:16px;
-margin-top:12px
-">
+   <img class="photo"
+    src="${url}"
+    alt="Yemek fotoğrafı">
 
-`;
+  `;
 
-$('photoResult').innerHTML=`
+  $("photoResult").innerHTML=`
 
-<div class="card" style="margin-top:12px">
+   <div class="card"
+    style="margin-top:12px">
 
-<span class="badge">
-AI HAZIR
-</span>
+    <b>Fotoğraf hazır ✓</b>
 
-<p class="muted small">
+    <p class="muted small">
+     Şimdilik ücretsiz kişisel sürümde
+     fotoğraf cihazında işlenmeden
+     yalnızca önizleme olarak gösterilir.
+    </p>
 
-Gerçek AI analizi için güvenli bir
-sunucu/API bağlantısı ekleyeceğiz.
-API anahtarını telefona koymayacağız.
+    <button class="secondary full"
+     onclick="photoDemo()">
+     Örnek Analizi Gör
+    </button>
 
-</p>
+   </div>
 
-<button
-class="secondary full"
-onclick="demoPhotoResult()">
-
-Demo Analiz Göster
-
-</button>
-
-</div>
-
-`;
-
-});
+  `;
+ });
 
 
-function demoPhotoResult(){
+function photoDemo(){
 
-$('photoResult').innerHTML=`
+ $("photoResult").innerHTML=`
 
-<div class="card" style="margin-top:12px">
+  <div class="card">
 
-<div class="row">
+   <div class="row">
+    <b>Tahmini Analiz</b>
+    <span class="pill">ÖRNEK</span>
+   </div>
 
-<b>Tahmini Analiz</b>
+   <div class="meal row">
+    <span>🍗 Izgara tavuk</span>
+    <b>297 kcal</b>
+   </div>
 
-<span class="badge">
-DEMO
-</span>
+   <div class="meal row">
+    <span>🍚 Pilav</span>
+    <b>195 kcal</b>
+   </div>
 
-</div>
+   <div class="meal row">
+    <span>🥗 Salata</span>
+    <b>40 kcal</b>
+   </div>
 
-<div class="meal row">
-<span>🍗 Izgara tavuk · 180 g</span>
-<b>297 kcal</b>
-</div>
+   <div class="row"
+    style="margin-top:12px">
+    <b>Toplam</b>
+    <b>532 kcal</b>
+   </div>
 
-<div class="meal row">
-<span>🍚 Pilav · 150 g</span>
-<b>195 kcal</b>
-</div>
+  </div>
 
-<div class="meal row">
-<span>🥗 Salata · 100 g</span>
-<b>40 kcal</b>
-</div>
+ `;
+}
 
-<div
-class="row"
-style="margin-top:12px">
 
-<b>Toplam</b>
+/* YEDEKLEME */
 
-<b style="color:var(--accent)">
-532 kcal
-</b>
+function backupData(){
 
-</div>
+ const blob=new Blob(
+  [JSON.stringify(data,null,2)],
+  {type:"application/json"}
+ );
 
-</div>
+ const url=URL.createObjectURL(blob);
 
-`;
+ const a=document.createElement("a");
+
+ a.href=url;
+ a.download=
+  "896-FIT-yedek-"+today()+".json";
+
+ a.click();
+
+ URL.revokeObjectURL(url);
 
 }
 
 
-/* PREMIUM */
+function restoreData(){
 
-function showPremiumInfo(){
+ const input=document.createElement("input");
 
-alert(
-'Premium özellikleri daha sonra güvenli ödeme sistemiyle bağlayacağız. Şu anda herhangi bir ödeme alınmaz.'
-);
+ input.type="file";
+ input.accept=".json,application/json";
 
+ input.onchange=e=>{
+
+  const file=e.target.files[0];
+
+  if(!file)return;
+
+  const reader=new FileReader();
+
+  reader.onload=()=>{
+
+   try{
+
+    const restored=
+     JSON.parse(reader.result);
+
+    if(!restored||
+       !Array.isArray(restored.foods)||
+       !Array.isArray(restored.weights)){
+
+     throw new Error();
+    }
+
+    if(confirm(
+     "Mevcut verilerin yedekteki verilerle değiştirilecek. Devam?"
+    )){
+
+     data=restored;
+
+     persist();
+     render();
+
+     alert("Yedek geri yüklendi.");
+    }
+
+   }catch(e){
+
+    alert("Geçerli bir 896 FIT yedeği değil.");
+   }
+  };
+
+  reader.readAsText(file);
+ };
+
+ input.click();
 }
 
 
-/* RENDER */
+function resetData(){
+
+ if(!confirm(
+  "TÜM kayıtların silinecek. Emin misin?"
+ ))return;
+
+ if(!confirm(
+  "Son kez soruyorum: tüm yemek, su ve kilo kayıtları silinsin mi?"
+ ))return;
+
+ data={
+  goalCal:2000,
+  goalPro:150,
+  goalWeight:85,
+  foods:[],
+  water:0,
+  waterDate:"",
+  weights:[],
+  fastStart:null
+ };
+
+ persist();
+ render();
+
+ alert("896 FIT sıfırlandı.");
+}
+
+
+/* EKRANI ÇİZ */
 
 function render(){
 
-$('date').textContent=
-new Date().toLocaleDateString(
-'tr-TR',
-{
-weekday:'long',
-day:'numeric',
-month:'long'
-}
-);
+ $("date").textContent=
+  new Date().toLocaleDateString(
+   "tr-TR",
+   {
+    weekday:"long",
+    day:"numeric",
+    month:"long"
+   }
+  );
 
-const foods=todayFoods();
+ if(data.waterDate!==today()){
+  data.water=0;
+  data.waterDate=today();
+  persist();
+ }
 
-const cal=
-foods.reduce((s,x)=>s+x.cal,0);
+ const foods=todayFoods();
 
-const pro=
-foods.reduce((s,x)=>s+x.pro,0);
+ const cal=foods.reduce(
+  (s,x)=>s+x.cal,0
+ );
 
-$('calIn').textContent=
-Math.round(cal);
+ const pro=foods.reduce(
+  (s,x)=>s+x.pro,0
+ );
 
-$('protein').textContent=
-Math.round(pro)+'g';
+ const rem=Math.max(
+  0,
+  data.goalCal-cal
+ );
 
-$('water').textContent=
-data.water;
+ $("calIn").textContent=
+  Math.round(cal);
 
-const rem=
-Math.max(
-0,
-data.goalCal-cal
-);
+ $("protein").textContent=
+  Math.round(pro)+"g";
 
-$('remaining').textContent=
-Math.round(rem);
+ $("water").textContent=
+  data.water;
 
-const pct=
-Math.min(
-100,
-cal/data.goalCal*100
-);
+ $("remaining").textContent=
+  Math.round(rem);
 
-$('ring').style.setProperty(
-'--p',
-pct+'%'
-);
+ const pct=
+  data.goalCal
+  ?Math.min(100,cal/data.goalCal*100)
+  :0;
 
-$('waterBar').style.width=
-Math.min(
-100,
-data.water/8*100
-)+'%';
+ $("ring").style
+  .setProperty("--p",pct+"%");
 
-$('goalCal').value=
-data.goalCal;
+ $("waterBar").style.width=
+  Math.min(100,data.water/8*100)+"%";
 
-$('goalPro').value=
-data.goalPro;
+ $("homeGoal").textContent=
+  data.goalCal;
 
-$('goalWeight').value=
-data.goalWeight;
+ $("meals").innerHTML=
+  foods.length
+  ?foods.map(x=>`
 
-$('targetWeightText').textContent=
-data.goalWeight;
+   <div class="meal row">
 
-$('meals').innerHTML=
-foods.length
+    <div>
+     <b>${esc(x.name)}</b>
+     <small>
+      ${esc(x.type)} ·
+      ${x.pro}g protein ·
+      ${x.carb}g kh ·
+      ${x.fat}g yağ
+     </small>
+    </div>
 
-?
+    <b>${x.cal} kcal</b>
 
-foods.map(x=>`
+   </div>
 
-<div class="meal row">
-
-<div>
-
-<b>${esc(x.name)}</b>
-
-<small>
-${x.type} ·
-${x.pro}g protein ·
-${x.carb}g kh ·
-${x.fat}g yağ
-</small>
-
-</div>
-
-<b>
-${x.cal} kcal
-</b>
-
-</div>
-
-`).join('')
-
-:
-
-'<div class="empty">Bugün henüz yemek eklemedin.</div>';
+  `).join("")
+  :'<div class="empty">Bugün henüz yemek eklemedin.</div>';
 
 
-/* KİLO */
+ $("goalCal").value=data.goalCal;
+ $("goalPro").value=data.goalPro;
+ $("goalWeight").value=data.goalWeight;
 
-$('weights').innerHTML=
-data.weights.length
+ $("progressGoal").textContent=
+  data.goalWeight;
 
-?
+ if(data.weights.length){
 
-data.weights
-.slice()
-.reverse()
-.map(x=>`
+  $("weights").innerHTML=
+   data.weights
+   .slice()
+   .reverse()
+   .map(x=>`
 
-<div class="meal row">
+    <div class="meal row">
+     <span>${x.date}</span>
+     <b>${x.weight} kg</b>
+    </div>
 
-<span>${x.date}</span>
+   `).join("");
 
-<b>${x.weight} kg</b>
+  const first=data.weights[0].weight;
+  const last=
+   data.weights[data.weights.length-1].weight;
 
-</div>
+  $("startWeight").textContent=
+   first+" kg";
 
-`).join('')
+  $("lastWeight").textContent=
+   last+" kg";
 
-:
+  const change=
+   +(last-first).toFixed(1);
 
-'<div class="empty">Henüz kilo kaydı yok.</div>';
+  $("weightChange").textContent=
+   (change>0?"+":"")+change+" kg";
 
+ }else{
 
-if(data.weights.length){
+  $("weights").innerHTML=
+   '<div class="empty">Henüz kilo kaydı yok.</div>';
 
-const first=
-data.weights[0].weight;
+  $("startWeight").textContent="-";
+  $("lastWeight").textContent="-";
+  $("weightChange").textContent="-";
+ }
 
-const last=
-data.weights[data.weights.length-1].weight;
-
-$('firstWeight').textContent=
-first+' kg';
-
-$('lastWeight').textContent=
-last+' kg';
-
-const change=
-(last-first).toFixed(1);
-
-$('weightChange').textContent=
-(change>0?'+':'')+
-change+' kg';
-
-}else{
-
-$('firstWeight').textContent='-';
-$('lastWeight').textContent='-';
-$('weightChange').textContent='-';
-
-}
-
+ updateFast();
 }
 
 
 function esc(s){
 
-return String(s).replace(
-/[&<>"']/g,
-m=>({
-'&':'&amp;',
-'<':'&lt;',
-'>':'&gt;',
-'"':'&quot;',
-"'":'&#39;'
-}[m])
-);
-
+ return String(s).replace(
+  /[&<>"']/g,
+  m=>({
+   "&":"&amp;",
+   "<":"&lt;",
+   ">":"&gt;",
+   '"':"&quot;",
+   "'":"&#39;"
+  }[m])
+ );
 }
 
 
-/* BAŞLANGIÇ */
+/* BAŞLAT */
+
+setInterval(
+ updateFast,
+ 1000
+);
 
 render();
-
 searchFoods();
+
+
+/* PWA */
+
+if("serviceWorker" in navigator){
+
+ navigator.serviceWorker
+  .register("sw.js")
+  .catch(()=>{});
+
+}
 
 </script>
 
