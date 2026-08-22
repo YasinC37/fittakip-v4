@@ -3,313 +3,1187 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0b0b">
+<meta name="theme-color" content="#090909">
 <title>896 FIT V22</title>
 <style>
-:root{--bg:#090909;--card:#141414;--card2:#1b1b1b;--line:#292929;--text:#f4f4f4;--muted:#9b9b9b;--orange:#ff7600;--orange2:#ff9a32;--green:#57d68d;--red:#ff5b5b}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
-button,input,select{font:inherit}button{cursor:pointer}.app{max-width:760px;margin:auto;min-height:100vh;padding-bottom:82px}
-header{padding:18px 18px 8px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:rgba(9,9,9,.94);backdrop-filter:blur(12px);z-index:5}
-.brand{display:flex;gap:10px;align-items:center}.logo{width:42px;height:42px;border:1px solid #633100;border-radius:13px;display:grid;place-items:center;color:var(--orange);font-weight:900;font-size:15px;background:#111}.brand b{font-size:22px}.brand small{display:block;color:var(--muted)}
-.page{display:none;padding:12px 16px}.page.active{display:block}.title{font-size:28px;font-weight:900;margin:12px 0 5px}.sub{color:var(--muted);margin-bottom:18px}
-.card{background:linear-gradient(145deg,var(--card),#101010);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 10px 30px rgba(0,0,0,.16)}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.stat{background:#101010;border:1px solid var(--line);border-radius:14px;padding:12px}.stat b{font-size:21px;display:block}.stat span{font-size:12px;color:var(--muted)}
-.btn{border:1px solid var(--line);background:#191919;color:#fff;border-radius:13px;padding:11px 14px}.btn.orange{background:var(--orange);border-color:var(--orange);color:#080808;font-weight:900}.btn.ghost{background:transparent;color:var(--orange);border-color:#6b360d}
-.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.chips{display:flex;gap:7px;overflow:auto;padding:4px 0}.chip{white-space:nowrap;border:1px solid var(--line);background:#151515;color:#ccc;border-radius:999px;padding:8px 11px}.chip.on{background:#351b08;color:var(--orange2);border-color:#7a3e0c}
-input,select{width:100%;background:#111;color:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;outline:none}label{font-size:12px;color:var(--muted);display:block;margin:8px 0 5px}
-.progress{height:9px;background:#292929;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--orange),var(--orange2));border-radius:99px}
- .workoutHero{display:flex;align-items:center;justify-content:space-between;border-color:#5a300f}.heroIcon{font-size:38px}.moveCard{background:linear-gradient(145deg,#151515,#0e0e0e);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin:12px 0}.moveVisual{height:145px;background:radial-gradient(circle at 50% 40%,#2b1708,#101010);display:grid;place-items:center;position:relative}.moveVisual svg{width:92%;height:92%}.moveBody{padding:14px}.moveMeta{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px}.tag{font-size:11px;padding:5px 8px;border-radius:999px;background:#1d1d1d;color:#bbb;border:1px solid #303030}.target{color:var(--orange2)}.learnVisual{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:12px 0}.frame{background:#111;border:1px solid #2b2b2b;border-radius:12px;padding:6px;text-align:center}.frame svg{width:100%;height:95px}.arrowLegend{font-size:12px;color:#aaa;text-align:center;margin:4px 0 12px}.stepList{counter-reset:steps;padding-left:0;list-style:none}.stepList li{counter-increment:steps;display:flex;gap:10px;margin:10px 0}.stepList li:before{content:counter(steps);min-width:25px;height:25px;border-radius:50%;background:var(--orange);color:#090909;font-weight:900;display:grid;place-items:center}.moveTap{cursor:pointer}
-.photoGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}.categoryGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}.categoryCard{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#111;cursor:pointer;min-height:145px}.categoryCard img{width:100%;height:145px;object-fit:cover;display:block}.categoryCard:after{content:'';position:absolute;inset:40% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.95))}.categoryInfo{position:absolute;left:12px;right:12px;bottom:10px;z-index:1}.categoryInfo b{font-size:18px}.categoryInfo span{display:block;color:#bbb;font-size:12px}.movePhoto{width:100%;height:180px;object-fit:cover;display:block}.phaseGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.phaseCard{background:#0d0d0d;border:1px solid #2b2b2b;border-radius:13px;padding:7px}.phaseCard img{width:100%;height:105px;object-fit:cover;border-radius:9px}.phaseCard b{font-size:12px;display:block;margin-top:6px}.photoNote{font-size:10px;color:#777;margin-top:7px}
-.photoArrowWrap{position:relative;overflow:hidden;border-radius:12px;background:#0b0b0b}
-.photoArrowWrap img{width:100%;height:100%;object-fit:cover;display:block}
-.photoArrowWrap .arrowOverlay{position:absolute;inset:0;pointer-events:none}
-.photoArrowWrap .arrowLabel{position:absolute;left:10px;bottom:8px;background:rgba(0,0,0,.72);border:1px solid rgba(255,118,0,.55);color:#fff;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:800}
-.phaseCard .photoArrowWrap{height:105px}
-.phaseCard .photoArrowWrap img{height:105px}
-.detailHeroArrow{height:240px;border-radius:16px}
-.detailHeroArrow img{height:240px}
-.rankJourney{display:grid;gap:9px;margin-top:12px}
-.rankStep{display:flex;align-items:center;gap:12px;padding:11px;border:1px solid var(--line);border-radius:14px;background:#101010}
-.rankStep.on{border-color:#8a460d;background:linear-gradient(90deg,#261507,#111)}
-.rankStep.done{opacity:.75}
-.rankOrb{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#1c1c1c;border:1px solid #333;color:#888;font-weight:900}
-.rankStep.on .rankOrb{color:#090909;background:var(--orange);border-color:var(--orange)}
-.rankStep b{display:block}.rankStep span{font-size:12px;color:#999}
-.milestone{padding:12px;border:1px solid var(--line);border-radius:14px;background:#101010}
-.milestone b{display:block;margin-bottom:4px}.milestone.done{border-color:#4c7a5f}.milestone.done b{color:var(--green)}
-@media(min-width:700px){.categoryGrid{grid-template-columns:repeat(4,1fr)}}
-.food,.move,.equip,.program,.mission{display:flex;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #242424}.food:last-child,.move:last-child,.equip:last-child,.program:last-child,.mission:last-child{border-bottom:0}
-.iconbox{width:42px;height:42px;border-radius:12px;background:#1e1e1e;display:grid;place-items:center;font-size:21px}.grow{flex:1}.muted{color:var(--muted);font-size:13px}.orangeText{color:var(--orange)}.danger{color:var(--red)}.good{color:var(--green)}
-.nav{position:fixed;bottom:0;left:0;right:0;background:rgba(12,12,12,.96);border-top:1px solid var(--line);z-index:10}.navin{max-width:760px;margin:auto;display:grid;grid-template-columns:repeat(7,1fr)}.nav button{border:0;background:none;color:#777;padding:10px 4px;font-size:11px}.nav button.on{color:var(--orange)}.nav button div{font-size:19px;margin-bottom:2px}
-.big{font-size:38px;font-weight:900}.ring{width:150px;height:150px;border-radius:50%;border:12px solid #272727;border-top-color:var(--orange);display:grid;place-items:center;margin:auto}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:end;z-index:20}.modal.open{display:flex}.sheet{background:#111;border:1px solid var(--line);border-radius:22px 22px 0 0;padding:18px;width:100%;max-height:86vh;overflow:auto}.close{float:right}
-.badge{border:1px solid #693508;border-radius:16px;padding:14px;background:#17110b;text-align:center}.rank{font-size:25px;font-weight:900;color:var(--orange)}
-.quote{font-style:italic;color:#ddd}.tiny{font-size:11px;color:#777}
-
-.timerWrap{display:grid;place-items:center;padding:12px 0 18px}.timer{font-size:58px;font-weight:950;letter-spacing:-2px}.timer.warn{color:var(--red);animation:pulse .8s infinite}.timerLabel{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}.liveMove{font-size:25px;font-weight:900}.liveMeta{color:var(--muted);margin-top:4px}.liveBtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.streak{display:flex;align-items:center;gap:12px}.streakIcon{font-size:42px;filter:drop-shadow(0 0 10px rgba(255,118,0,.25))}.streakIcon.s4{filter:hue-rotate(35deg) drop-shadow(0 0 10px rgba(255,118,0,.3))}.streakIcon.s7{filter:hue-rotate(150deg) drop-shadow(0 0 10px rgba(80,160,255,.35))}.streakIcon.s14{filter:hue-rotate(245deg) drop-shadow(0 0 10px rgba(160,80,255,.4))}.streakIcon.s30{filter:hue-rotate(300deg) saturate(1.8) drop-shadow(0 0 12px rgba(255,200,60,.45))}.streakIcon.s100{filter:grayscale(1) brightness(1.8) drop-shadow(0 0 14px white)}@keyframes pulse{50%{transform:scale(1.06);opacity:.72}}
-@media(min-width:700px){.page{padding:20px}.nav{left:calc(50% - 380px);right:calc(50% - 380px);border-radius:18px 18px 0 0}.grid{grid-template-columns:repeat(4,1fr)}}
-
-.foodVisual{display:flex;gap:11px;align-items:center;padding:10px 0;border-bottom:1px solid #242424}
-.foodVisual:last-child{border-bottom:0}
-.foodThumb{width:58px;height:58px;border-radius:14px;object-fit:cover;flex:none;border:1px solid #303030;background:#111}
-.foodThumb.big{width:82px;height:82px;border-radius:16px}
-.foodInfo{min-width:0;flex:1}
-.foodInfo b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.foodPill{display:inline-block;font-size:10px;padding:4px 7px;border-radius:999px;background:#1b1b1b;color:#aaa;border:1px solid #303030;margin-top:5px}
-.foodHero{display:grid;grid-template-columns:1.15fr .85fr;gap:10px;align-items:stretch}
-.foodHero img{width:100%;height:170px;object-fit:cover;border-radius:16px;border:1px solid #303030}
-.foodHeroText{display:flex;flex-direction:column;justify-content:center}
-.calendarStats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.calendarStat{background:#101010;border:1px solid var(--line);border-radius:14px;padding:12px}
-.calendarStat b{font-size:20px;display:block}
-.calendarStat span{font-size:11px;color:var(--muted)}
-.weekStrip{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:10px}
-.dayCell{border:1px solid var(--line);background:#101010;border-radius:12px;padding:8px 3px;text-align:center;cursor:pointer;min-width:0}
-.dayCell.today{border-color:#7a3e0c;background:#211307}
-.dayCell.selected{outline:2px solid var(--orange);outline-offset:-2px}
-.dayCell b{display:block;font-size:11px}
-.dayCell span{display:block;color:#777;font-size:10px;margin-top:4px}
-.dayDot{width:6px;height:6px;border-radius:50%;background:#333;display:inline-block;margin-top:5px}
-.dayDot.active{background:var(--orange)}
-.dayDot.work{background:var(--green)}
-.calendarTimeline{display:grid;gap:8px}
-.timelineItem{display:flex;gap:10px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:13px;background:#101010}
-.timelineIcon{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:#1b1b1b;font-size:19px}
-.emptyCalendar{padding:14px;border:1px dashed #333;border-radius:13px;color:#888;text-align:center}
-@media(max-width:520px){.foodHero{grid-template-columns:1fr}.foodHero img{height:145px}.calendarStats{grid-template-columns:repeat(2,1fr)}}
-
-
+:root{
+ --bg:#090909;--card:#131313;--card2:#171717;--line:#2a2a2a;--text:#f7f7f7;--muted:#a4a4a4;
+ --orange:#ff7800;--orange2:#ff9b32;--green:#39d98a;--red:#ff4d4d;--yellow:#ffd34d;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.app{max-width:760px;margin:auto;min-height:100vh;padding-bottom:92px}
+header{position:sticky;top:0;z-index:20;background:rgba(9,9,9,.94);backdrop-filter:blur(14px);padding:16px 16px 10px;border-bottom:1px solid #171717}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;border:1px solid #713600;border-radius:15px;display:grid;place-items:center;color:var(--orange);font-weight:900;font-size:17px}
+.brand h1{margin:0;font-size:22px}.brand small{color:#858585}
+.page{display:none;padding:18px 16px}.page.active{display:block}
+h2{font-size:28px;margin:8px 0}.sub{color:var(--muted);margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.card{background:linear-gradient(145deg,#151515,#101010);border:1px solid var(--line);border-radius:22px;padding:16px;margin-bottom:12px}
+.stat{min-height:100px}.stat b{font-size:27px;display:block;margin-top:5px}.label{color:#9a9a9a;font-size:13px}
+.btn{border:1px solid #3b3b3b;background:#181818;color:#fff;border-radius:14px;padding:12px 15px;font-weight:750}
+.btn.primary{background:var(--orange);color:#111;border-color:var(--orange)}
+.btn.ghost{color:var(--orange);border-color:#7b3d00}
+.btn.danger{color:#fff;background:#5c1515;border-color:#8d2222}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.full{width:100%}
+input,select{width:100%;background:#111;border:1px solid #303030;color:#fff;border-radius:14px;padding:13px;outline:none}
+input:focus,select:focus{border-color:var(--orange)}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.progress{height:10px;border-radius:99px;background:#292929;overflow:hidden}.progress i{display:block;height:100%;background:var(--orange);width:0}
+.hero{padding:20px;border:1px solid #3b240f;border-radius:24px;background:radial-gradient(circle at 85% 10%,#4a2306,#141414 45%)}
+.hero .big{font-size:38px;font-weight:900}
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(14,14,14,.97);border-top:1px solid #292929;display:flex;justify-content:center}
+.navinner{width:min(760px,100%);display:grid;grid-template-columns:repeat(6,1fr)}
+.nav button{border:0;background:transparent;color:#777;padding:10px 3px 12px;font-size:11px}.nav button span{display:block;font-size:20px;margin-bottom:3px}.nav button.active{color:var(--orange)}
+.section-title{font-size:18px;font-weight:850;margin:22px 0 10px}
+.chips{display:flex;gap:8px;overflow:auto;padding-bottom:5px}.chip{white-space:nowrap;padding:10px 13px;border-radius:99px;background:#151515;border:1px solid #303030;color:#aaa}.chip.active{color:#111;background:var(--orange);border-color:var(--orange)}
+.exercise{overflow:hidden;padding:0}.exercise img{width:100%;height:170px;object-fit:cover;display:block;background:#222}.exercise-body{padding:14px}.exercise h3{margin:0 0 4px}.muscle{color:var(--orange2);font-size:13px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:50;display:none;align-items:flex-end}.modal.open{display:flex}
+.sheet{background:#111;border:1px solid #333;border-radius:28px 28px 0 0;width:min(760px,100%);max-height:92vh;overflow:auto;padding:20px}
+.sheet img{width:100%;max-height:250px;object-fit:cover;border-radius:18px}.close{float:right;border:0;background:#222;color:#fff;width:42px;height:42px;border-radius:13px;font-size:22px}
+.step{display:flex;gap:12px;margin:10px 0}.num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--orange);color:#111;display:grid;place-items:center;font-weight:900}
+.timer{text-align:center;font-size:58px;font-weight:900;letter-spacing:2px;margin:15px 0}.timer.ready{color:var(--orange)}.timer.rest{color:var(--green)}.timer.warn{color:var(--red)}
+.exercise-live{border:1px solid #333;border-radius:20px;padding:15px;margin:10px 0;background:#141414}
+.exercise-live.done{border-color:#246e4b}
+.kcal{color:var(--orange2);font-weight:800}
+.food{display:flex;gap:12px;align-items:center}.food img{width:74px;height:74px;border-radius:15px;object-fit:cover}.food h3{margin:0}
+table{width:100%;border-collapse:collapse}td,th{padding:10px 5px;border-bottom:1px solid #292929;text-align:left;font-size:13px}
+.empty{padding:28px;text-align:center;color:#777;border:1px dashed #333;border-radius:18px}
+.badge{display:inline-flex;padding:6px 9px;border-radius:99px;background:#2a190b;color:var(--orange2);font-size:12px;font-weight:800}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);opacity:0;background:#eee;color:#111;padding:12px 16px;border-radius:14px;z-index:80;transition:.25s;font-weight:750}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:500px){.grid3{grid-template-columns:1fr 1fr}.formgrid{grid-template-columns:1fr}.exercise img{height:150px}}
 </style>
+</head>
+<body>
+<div class="app">
+<header>
+ <div class="brand">
+  <div class="logo">896</div>
+  <div><h1>896 FIT</h1><small>V22 • Mizaḥ + Motivasyon + İlerleme</small></div>
+ </div>
+</header>
+
+<main>
+<section id="home" class="page active">
+ <div class="hero">
+  <div class="badge">🔥 BUGÜN</div>
+  <h2>Günaydın, Şampiyon! 💪</h2>
+  <p class="sub">Bugün küçük bir adım bile sayılır.</p>
+  <div class="grid3">
+   <div><span class="label">Kalori</span><b id="homeKcal">0</b></div>
+   <div><span class="label">Su</span><b id="homeWater">0 L</b></div>
+   <div><span class="label">Set</span><b id="homeSets">0</b></div>
+  </div>
+  <div style="margin-top:15px"><div class="progress"><i id="homeProgress"></i></div><p class="small muted" id="homeProgressText">Günlük hedefe başla.</p></div>
+ </div>
+
+ <div class="section-title">🎯 Günün görevleri</div>
+ <div class="card"><div class="row"><div><b>Su hedefi</b><div class="muted small">Gün içinde su ekle.</div></div><button class="btn primary" onclick="addWater()">+250 ml</button></div></div>
+
+ <div class="card"><div class="row"><div><b>Antrenman</b><div class="muted small">Programından canlı antrenmanı başlat.</div></div><button class="btn ghost" onclick="go('program')">Programa git</button></div></div>
+
+ <div class="section-title">🔥 Seri</div>
+ <div class="card"><div class="row"><div><b id="streakText">0 gün</b><div class="muted">Aralıksız takip serin</div></div><div id="streakIcon" style="font-size:42px">🔥</div></div></div>
+</section>
+
+<section id="nutrition" class="page">
+ <h2>Beslenme 🍽️</h2>
+ <p class="sub">Ne yediğini, nasıl hazırlandığını ve kalan kaloriyi takip et.</p>
+
+ <div class="grid">
+  <div class="stat card"><span class="label">Günlük hedef</span><b id="targetKcal">2000</b><span class="muted small">kcal</span></div>
+  <div class="stat card"><span class="label">Kalan</span><b id="remainingKcal">2000</b><span class="muted small">kcal</span></div>
+ </div>
+
+ <div class="card">
+  <div class="section-title" style="margin-top:0">➕ Yemek ekle</div>
+
+  <div class="formgrid">
+   <input id="foodName" placeholder="Örn. Yumurta">
+   <input id="foodAmount" type="number" min="1" value="1" placeholder="Porsiyon">
+  </div>
+
+  <div style="height:10px"></div>
+
+  <select id="foodType">
+   <option value="yumurta">Yumurta</option>
+   <option value="tavuk">Tavuk göğsü</option>
+   <option value="pirinc">Pirinç</option>
+   <option value="yulaf">Yulaf</option>
+   <option value="yoğurt">Yoğurt</option>
+   <option value="muz">Muz</option>
+   <option value="ekmek">Ekmek</option>
+   <option value="salata">Salata</option>
+   <option value="diger">Diğer</option>
+  </select>
+
+  <div style="height:10px"></div>
+
+  <select id="foodMethod">
+   <option value="haslanmis">Haşlanmış</option>
+   <option value="sahanda">Sahanda</option>
+   <option value="kizartma">Kızartma</option>
+   <option value="airfryer">Airfryer</option>
+   <option value="tost">Tost makinasında</option>
+   <option value="firin">Fırında</option>
+   <option value="cig">Çiğ / sade</option>
+  </select>
+
+  <div style="height:10px"></div>
+  <button class="btn primary full" onclick="addFood()">Yemeği günlüğe ekle</button>
+ </div>
+
+ <div class="section-title">Bugün ne yedin?</div>
+ <div id="foodList"></div>
+</section>
+
+<section id="workout" class="page">
+ <h2>Antrenman 🏋️</h2>
+ <p class="sub">Hareketleri aramana gerek kalmadan direkt gör; karta dokununca öğretici bilgi açılır.</p>
+
+ <input id="exerciseSearch" placeholder="Hareket ara..." oninput="renderExercises()">
+
+ <div class="chips" style="margin-top:10px">
+  <button class="chip active" onclick="setMuscle('Tümü',this)">Tümü</button>
+  <button class="chip" onclick="setMuscle('Göğüs',this)">Göğüs</button>
+  <button class="chip" onclick="setMuscle('Sırt',this)">Sırt</button>
+  <button class="chip" onclick="setMuscle('Omuz',this)">Omuz</button>
+  <button class="chip" onclick="setMuscle('Bacak',this)">Bacak</button>
+  <button class="chip" onclick="setMuscle('Kol',this)">Kol</button>
+  <button class="chip" onclick="setMuscle('Ekipmansız',this)">Ekipmansız</button>
+ </div>
+
+ <div class="section-title">Hareketler</div>
+ <div id="exerciseList" class="grid"></div>
+</section>
+
+<section id="program" class="page">
+ <h2>Antrenman Programı 📋</h2>
+ <p class="sub">Programını seç, izin günlerini belirle ve doğrudan canlı antrenmana geç.</p>
+
+ <div class="card">
+  <div class="row">
+   <div>
+    <b>Aktif program</b>
+    <div id="activeProgramName" class="muted">Henüz seçilmedi</div>
+   </div>
+   <button class="btn primary" onclick="startSelectedProgram()">Antrenmana Başla</button>
+  </div>
+ </div>
+
+ <div id="programList"></div>
+
+ <div class="card">
+  <div class="section-title" style="margin-top:0">➕ Kendi programını oluştur</div>
+  <input id="newProgramName" placeholder="Program adı">
+  <div style="height:10px"></div>
+  <button class="btn ghost full" onclick="createProgram()">Program oluştur</button>
+ </div>
+</section>
+
+<section id="calendar" class="page">
+ <h2>Takvim 📅</h2>
+ <p class="sub">Antrenman, dinlenme ve ilerleme günlerini tek yerde gör.</p>
+
+ <div class="card">
+  <div class="row">
+   <button class="btn" onclick="changeMonth(-1)">‹</button>
+   <b id="monthTitle"></b>
+   <button class="btn" onclick="changeMonth(1)">›</button>
+  </div>
+
+  <div id="calendarGrid" class="grid3" style="margin-top:14px"></div>
+ </div>
+
+ <div class="grid">
+  <div class="card stat"><span class="label">Bu ay set</span><b id="monthSets">0</b></div>
+  <div class="card stat"><span class="label">Antrenman saati</span><b id="monthHours">0</b></div>
+ </div>
+
+ <div class="card">
+  <b>🧠 Haftalık özet</b>
+  <p class="muted small">Takvim artık yalnızca tarih göstermiyor; antrenman ve dinlenme planını da takip ediyor.</p>
+ </div>
+</section>
+
+<section id="rank" class="page">
+ <h2>Rütbe 🏆</h2>
+ <p class="sub">Emek verdikçe rütben yükselir.</p>
+
+ <div class="hero">
+  <div class="badge">CURRENT RANK</div>
+  <div class="big" id="rankName">Çaylak</div>
+  <p class="muted" id="rankInfo">İlk adımı attın. Devam!</p>
+  <div class="progress"><i id="rankProgress"></i></div>
+  <p class="small" id="rankXp">0 XP</p>
+ </div>
+
+ <div class="section-title">🏅 Rütbe yolu</div>
+ <div id="rankRoad"></div>
+</section>
+
+<section id="weight" class="page">
+ <h2>Tartı ⚖️</h2>
+ <p class="sub">Kilonu değil, emeğini de gör.</p>
+
+ <div class="card">
+  <div class="formgrid">
+   <input id="startWeight" type="number" step=".1" placeholder="İlk kilo">
+   <input id="weighDay" type="number" min="0" max="6" placeholder="Tartım günü (0=Pazartesi)">
+  </div>
+
+  <div style="height:10px"></div>
+  <input id="currentWeight" type="number" step=".1" placeholder="Bugünkü kilo">
+
+  <div style="height:10px"></div>
+  <button class="btn primary full" onclick="saveWeight()">Tartımı kaydet</button>
+ </div>
+
+ <div class="grid">
+  <div class="stat card"><span class="label">Başlangıç</span><b id="weightStart">—</b></div>
+  <div class="stat card"><span class="label">Son</span><b id="weightCurrent">—</b></div>
+ </div>
+
+ <div class="card">
+  <h3 id="weightMessage">İlk tartımını kaydet.</h3>
+  <p class="muted" id="weightDelta"></p>
+ </div>
+
+ <div class="section-title">📈 Biriken emek</div>
+
+ <div class="grid">
+  <div class="stat card"><span class="label">Toplam set</span><b id="totalSets">0</b></div>
+  <div class="stat card"><span class="label">Toplam kalori</span><b id="totalCalories">0</b></div>
+  <div class="stat card"><span class="label">Antrenman süresi</span><b id="totalHours">0</b></div>
+  <div class="stat card"><span class="label">Tartım sayısı</span><b id="weighCount">0</b></div>
+ </div>
+
+ <div id="weightHistory"></div>
+</section>
+</main>
+
+<nav class="nav">
+ <div class="navinner">
+  <button class="active" onclick="go('home',this)"><span>⌂</span>Ana Sayfa</button>
+  <button onclick="go('nutrition',this)"><span>🍽️</span>Beslenme</button>
+  <button onclick="go('workout',this)"><span>🏋️</span>Antrenman</button>
+  <button onclick="go('program',this)"><span>📋</span>Program</button>
+  <button onclick="go('calendar',this)"><span>📅</span>Takvim</button>
+  <button onclick="go('rank',this)"><span>🏆</span>Rütbe</button>
+ </div>
+</nav>
+</div>
+
+<div id="modal" class="modal" onclick="if(event.target.id==='modal')closeModal()">
+ <div class="sheet">
+  <button class="close" onclick="closeModal()">×</button>
+  <div id="modalContent"></div>
+ </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
 <script>
-/* ===== 896 FIT V22 LIVE ENGINE ===== */
-let v22Live={
- exercises:[], index:0, set:1, started:false, setStarted:false,
- setStart:0, elapsed:0, elapsedTimer:null, restTimer:null, restLeft:0,
- restAuto:45, sessionDate:today(), completedSets:0
+const IMG={
+ bench:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80",
+ row:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80",
+ shoulder:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=80",
+ squat:"https://images.unsplash.com/photo-1434608519344-49d77a699ded?auto=format&fit=crop&w=900&q=80",
+ curl:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80",
+ push:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?auto=format&fit=crop&w=900&q=80",
+ plank:"https://images.unsplash.com/photo-1566241142559-40e1dab266c6?auto=format&fit=crop&w=900&q=80",
+ swing:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80"
 };
 
-function v22TodayIndex(){return (new Date().getDay()+6)%7}
-function v22LoadPlan(){
- const p=normalizeProgramV21(activeProgram());
- const i=v22TodayIndex();
- v22Live.exercises=p.days[i]?(p.dayExercises[i]||[]):[];
- return p;
-}
-function v22Format(s){
- s=Math.max(0,Math.round(s)); return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
-}
-function v22Reset(){
- clearInterval(v22Live.elapsedTimer);clearInterval(v22Live.restTimer);
- const p=v22LoadPlan();
- v22Live={exercises:p.days[v22TodayIndex()]?(p.dayExercises[v22TodayIndex()]||[]):[],index:0,set:1,started:false,setStarted:false,setStart:0,elapsed:0,elapsedTimer:null,restTimer:null,restLeft:0,restAuto:45,sessionDate:today(),completedSets:0};
- renderV22Live();
-}
-function startV22Live(){
- if(!v22Live.exercises.length){renderV22Live();return}
- if(v22Live.started)return;
- v22Live.started=true;
- v22Live.setStarted=false;
- v22Live.elapsedTimer=setInterval(()=>{
-   v22Live.elapsed++;
-   const el=document.getElementById('v22Elapsed');if(el)el.textContent=v22Format(v22Live.elapsed);
- },1000);
- renderV22Live();
-}
-function selectFoodForAdd(x){
- selectedFood={name:x[0],category:x[1],portion:x[2],cal:Number(x[3]),protein:Number(x[4]||0),carb:Number(x[5]||0)};
- selectedCook='boiled'; renderCookOptions(); updateFoodEstimate();
- document.getElementById('cookOptions')?.scrollIntoView({behavior:'smooth',block:'center'});
-}
-function updateFoodEstimate(){
- const el=document.getElementById('foodEstimate');
- if(!el || !selectedFood)return;
- const method=cookMethods.find(c=>c.id===selectedCook)||cookMethods[0];
- const base=Number(selectedFood.cal)||0;
- const portion=Number(selectedFood.portion)||1;
- const extra=Number(method?.extra||0);
- const kcal=Math.max(0,Math.round(base*portion+extra));
- el.textContent=`${kcal} kcal`;
-}
-function arrowPhoto(src,type,phase,cls=''){return `<div class="photoArrowWrap ${cls}"><img src="${src}" loading="lazy" onerror="this.style.opacity='.25'">${moveArrow(type,phase)}</div>`}
-function detailMove(x){
- const info=moveInfo[x[0]]||{target:x[1],secondary:'',what:`${x[0]} hareketi ${x[1]} bölgesini hedefler.`,steps:['Başlangıç pozisyonunu kontrollü al.','Hareketi yavaş ve kontrollü şekilde gerçekleştir.','Başlangıç pozisyonuna kontrollü dön.'],tips:'Form bozuluyorsa dur ve uygun seviyeye dön.',tempo:'Kontrollü tempo'};
- const src=imgForMove(x),alt=x[0].includes('Bench')?photo.bench2:src,type=x[4]||'squat';
- document.getElementById('modalBody').innerHTML=`
- <div class="row"><h2>${x[0]}</h2><button class="btn" onclick="closeModal()">✕</button></div>
- <p class="muted">🎯 ${info.target}${info.secondary?' • '+info.secondary:''}</p>
- ${arrowPhoto(src,type,1,'detailHeroArrow')}
- <p class="photoNote">Gerçek hareket fotoğrafı + yön oku. Turuncu ok, hareketin temel yönünü gösterir.</p>
- <div class="card"><b>💡 Bu hareket nedir?</b><p>${info.what}</p></div>
- <div class="card"><b>📖 Nasıl yapılır?</b>
-   <ol class="stepList">
-    ${info.steps.map((z,i)=>`<li><div><b>${['Başlangıç pozisyonu','Kontrollü hareket','Kontrollü dönüş'][i]||'Adım'}</b><br>${z}</div></li>`).join('')}
-   </ol>
- </div>
- <div class="card">
-   <b>👀 Gerçek görselle hareketin her aşaması</b>
-   <p class="muted">Fotoğrafın üzerine eklenen ok, o aşamada nereye ve hangi yönde hareket etmen gerektiğini gösterir.</p>
-   <div class="phaseGrid">
-     <div class="phaseCard">${arrowPhoto(src,type,3)}<b>1. Başlangıç / hazırlık</b></div>
-     <div class="phaseCard">${arrowPhoto(alt,type,1)}<b>2. Kontrollü iniş / çekiş</b></div>
-     <div class="phaseCard">${arrowPhoto(src,type,2)}<b>3. İtiş / dönüş</b></div>
-   </div>
-   <p class="muted" style="margin-top:10px">Önce pozisyonu kur → yavaş hareket et → kontrol ederek başlangıca dön.</p>
- </div>
- <div class="card"><b>⚠️ Dikkat</b><p>${info.tips}</p>
-   <div class="grid"><div class="stat"><b>${x[2]}</b><span>Zorluk</span></div><div class="stat"><b>${info.tempo}</b><span>Önerilen tempo</span></div></div>
- </div>
- <button class="btn orange" style="width:100%" onclick='addMove(${JSON.stringify(x)});closeModal()'>＋ Programa Ekle</button>`;
- document.getElementById('modal').classList.add('open')
-}
-function closeModal(){document.getElementById('modal').classList.remove('open')}
-function renderEquipment(){
- const names=['Dumbbell','Direnç Bandı','Barbell','Kettlebell','Cable','Treadmill','Vücut Ağırlığı'];document.getElementById('equipSelect').innerHTML=names.map(n=>`<option>${n}</option>`).join('');
- const e=document.getElementById('equipSelect').value;document.getElementById('equipLevel').innerHTML=(e==='Dumbbell'?['2.5 kg','5 kg','10 kg','20 kg','40 kg','60 kg','80 kg']:e==='Direnç Bandı'?['Hafif','Orta','Ağır','Çok ağır']:['Standart']).map(x=>`<option>${x}</option>`).join('');
- const list=moves.filter(x=>x[3]===e);document.getElementById('equipmentResult').innerHTML=`<div class="card"><b>${e} ile yapılabilecek ${list.length} hareket</b>${list.map(x=>`<div class="equip"><div class="grow"><b>${x[0]}</b><div class="muted">${x[1]} • ${x[2]}</div></div><button class="btn orange" onclick='addMove(${JSON.stringify(x)})'>+</button></div>`).join('')}</div>`;
-}
-function addProgram(){let day=prompt('Program günü (Pazartesi, Salı...)','Pazartesi');if(!day)return;data.programs.push({day,name:day+' Programı',moves:[]});save();renderAll()}
-function renderPrograms(){const defaults=data.programs.length?data.programs:[{day:'Pazartesi',name:'Üst Vücut'},{day:'Salı',name:'Alt Vücut + Karın'},{day:'Çarşamba',name:'Dinlenme'}];document.getElementById('programList').innerHTML=defaults.map((p,i)=>`<div class="program"><div class="iconbox">📋</div><div class="grow"><b>${p.day}</b><div class="muted">${p.name} • ${data.programMoves.length} hareket • ${data.programMoves.reduce((a,m)=>a+m.sets,0)} set</div></div><button class="btn orange" onclick="startProgram(${i})">▶ Başlat</button></div>`).join('');document.getElementById('programMoves').innerHTML=data.programMoves.length?data.programMoves.map((m,i)=>`<div class="move"><div class="grow"><b>${m.name}</b><div class="muted">(${m.body}) • ${m.equipment}</div><div class="row" style="margin-top:7px"><button class="btn" onclick="changeMove(${i},'sets',-1)">−</button><span>${m.sets} set × ${m.reps} tekrar</span><button class="btn" onclick="changeMove(${i},'sets',1)">+</button></div></div><button class="btn" onclick="changeMove(${i},'reps',-1)">− tekrar</button><button class="btn" onclick="changeMove(${i},'reps',1)">+ tekrar</button></div>`).join(''):'Henüz hareket eklemedin. Antrenman sekmesinden + ile ekleyebilirsin.'}
-function startProgram(){if(!data.programMoves.length)return toast('Önce programa hareket ekle.');show('live');startLive()}
-function changeMove(i,k,d){data.programMoves[i][k]=Math.max(1,data.programMoves[i][k]+d);save();renderPrograms()}
-let effortPeriod='week';
-function periodStart(period){const d=new Date();d.setHours(0,0,0,0);if(period==='week'){const day=d.getDay();d.setDate(d.getDate()-(day===0?6:day-1))}else if(period==='month'){d.setDate(1)}else{d.setMonth(0,1)}return d.toISOString().slice(0,10)}
-function renderWeight(){let last=data.weights.at(-1)?.weight??data.startWeight,prev=data.weights.length>1?data.weights[data.weights.length-2].weight:null,change=last!=null&&prev!=null?last-prev:null;document.getElementById('weightSummary').innerHTML=`<div class="grid"><div class="stat"><b>${data.startWeight??'—'}</b><span>🏁 Başlangıç</span></div><div class="stat"><b>${last??'—'}</b><span>⚖️ Son ölçüm</span></div><div class="stat"><b>${data.startWeight!=null&&last!=null?(last-data.startWeight).toFixed(1):'—'}</b><span>Toplam değişim</span></div><div class="stat"><b>${data.weights.length}</b><span>Tartım kaydı</span></div></div>`;document.getElementById('weightHistory').innerHTML=data.weights.slice().reverse().map(w=>`<div class="row" style="padding:10px 0;border-bottom:1px solid #242424"><span>${w.date}</span><b>${w.weight} kg</b></div>`).join('')||'<span class="muted">Henüz tartım kaydı yok.</span>';document.getElementById('weighDay').innerHTML=['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'].map((x,i)=>`<option value="${i}" ${i===data.weighDay?'selected':''}>${x}</option>`).join('');document.getElementById('weightMessage').textContent=change===null?'İlk tartımını kaydet. Başlangıç noktanı birlikte takip edeceğiz. 💪':change<0?`🔥 Geçen haftaya göre ${Math.abs(change).toFixed(1)} kg daha aşağıdasın. Emeğin tartıda görünüyor. Gurur duyabilirsin. 😎`:change===0?'💪 Tartı aynı. Tek bir ölçüm bütün emeğini anlatmaz. Devam ediyoruz.':'🟠 Bu hafta ölçüm yükselmiş olabilir. Moral bozmak yok; asıl önemli olan uzun vadeli gidişat ve verdiğin emek.';renderEffort()}
-function addWeight(){let v=parseFloat(document.getElementById('weightInput').value);if(!v)return;let prev=data.weights.at(-1)?.weight;if(data.startWeight===null){data.startWeight=v;toast('🏁 Başlangıç kilon kaydedildi. Bundan sonra korunacak.')}data.weights.push({date:today(),weight:v});data.xp+=20;save();document.getElementById('weightInput').value='';toast(prev==null?'⚖️ Başlangıç kilon kaydedildi.':v<prev?`🔥 ${(prev-v).toFixed(1)} kg değişim. İyi iş!`:'💪 Kayıt alındı. Yolculuk devam ediyor.');renderAll()}
-function saveWeightDay(){data.weighDay=+document.getElementById('weighDay').value;save()}
-function resetStartWeight(){if(confirm('Başlangıç kilosunu gerçekten sıfırlamak istiyor musun?')){data.startWeight=null;save();renderAll()}}
-function setEffortPeriod(p,btn){effortPeriod=p;document.querySelectorAll('#weight .chip').forEach(x=>x.classList.remove('on'));btn.classList.add('on');renderEffort()}
-function renderEffort(){const p=effortPeriod||'week',start=periodStart(p),meals=data.meals.filter(x=>x.date>=start&&x.date<=today()),logs=data.workoutLogs.filter(x=>x.date>=start&&x.date<=today()),sets=logs.reduce((a,x)=>a+(x.sets||0),0),cal=meals.reduce((a,x)=>a+(x.cal||0),0),secs=logs.reduce((a,x)=>a+(x.seconds||0),0);document.getElementById('effortSets').textContent=sets;document.getElementById('effortCalories').textContent=cal;document.getElementById('effortHours').textContent=`${Math.floor(secs/3600)}s ${Math.floor(secs%3600/60)}dk`;document.getElementById('effortWorkouts').textContent=logs.length;document.getElementById('effortMessage').textContent=logs.length?`Bu ${p==='week'?'hafta':p==='month'?'ay':'yıl'} verdiğin emek burada: ${logs.length} antrenman, ${sets} set ve ${Math.floor(secs/60)} dakika. Sonucu değil, süreci de görüyorsun. 🖤🟧`:'Bu dönemde henüz antrenman kaydı yok. İlk adımı atınca burada birikecek. 💪'}
-function renderMissions(){let done=data.claimed[today()]||{};let ms=[['water','💧 2.5 L su iç',20],['steps','🚶 5.000 adım at',20],['sets','🏋️ 20 set tamamla',25],['meal','🍽️ Öğünlerini kaydet',15]];document.getElementById('missionList').innerHTML=ms.map(m=>{let cur=m[0]==='water'?data.water:m[0]==='steps'?data.steps:m[0]==='sets'?data.sets:data.meals.filter(x=>x.date===today()).length;let ok=!!done[m[0]]||cur>=(m[0]==='water'?2.5:m[0]==='steps'?5000:m[0]==='sets'?20:1);return `<div class="mission"><div class="grow"><b>${m[1]}</b><div class="${ok?'good':'muted'}">${ok?'Tamamlandı ✅':'Devam ediyor'}</div></div><span>+${m[2]} XP</span></div>`}).join('')}
-function claimSurprise(){let k=today();if(data.claimed[k]?.surprise)return toast('Bugünün sürprizini zaten aldın 😅');data.claimed[k]={...(data.claimed[k]||{}),surprise:true};data.xp+=50;save();toast('🎁 +50 XP! Bugünün sürprizi alındı.');renderAll()}
-function renderRank(){
- let idx=Math.min(ranks.length-1,Math.floor(data.xp/500)),base=idx*500,next=(idx+1)*500;
- document.getElementById('rankName').textContent=ranks[idx][0];
- document.getElementById('rankDesc').textContent=ranks[idx][1];
- const pct=idx===ranks.length-1?100:Math.min(100,((data.xp-base)/(next-base))*100);
- document.getElementById('rankBar').style.width=pct+'%';
- document.getElementById('rankXp').textContent=`${data.xp} XP • sonraki rütbe: ${idx<ranks.length-1?next+' XP':'MAKSİMUM'}`;
- document.getElementById('rankSets').textContent=data.sets;
- document.getElementById('rankSteps').textContent=data.steps;
- document.getElementById('rankDays').textContent=new Set(data.weights.map(x=>x.date)).size+data.workouts;
- document.getElementById('rankStreak').textContent=`🔥 ${currentStreak()} gün seri`;
- document.getElementById('rankJourney').innerHTML=ranks.map((r,i)=>{
-   const done=i<idx,on=i===idx;
-   const req=i*500;
-   return `<div class="rankStep ${on?'on':''} ${done?'done':''}"><div class="rankOrb">${done?'✓':on?'896':'•'}</div><div class="grow"><b>${r[0]}</b><span>${r[1]} • ${req} XP</span></div>${on?'<span class="orangeText">BURADASIN</span>':done?'<span class="good">Tamam</span>':''}</div>`;
- }).join('');
- if(idx<ranks.length-1){
-   document.getElementById('nextRankName').textContent=ranks[idx+1][0];
-   document.getElementById('nextRankText').textContent=`${Math.max(0,next-data.xp)} XP daha kazanırsan ${ranks[idx+1][0]} açılıyor. Her kayıt, set ve görev seni oraya yaklaştırıyor.`;
-   document.getElementById('nextRankBar').style.width=pct+'%';
- }else{
-   document.getElementById('nextRankName').textContent='LEGEND';
-   document.getElementById('nextRankText').textContent='Maksimum rütbedesin. Artık hedef yeni bir seviye değil, kendi rekorunu geliştirmek.';
-   document.getElementById('nextRankBar').style.width='100%';
+const exercises=[
+ {
+  id:"bench",
+  name:"Bench Press",
+  muscle:"Göğüs",
+  eq:"Barbell",
+  img:IMG.bench,
+  sets:3,
+  reps:10,
+  time:60,
+  desc:"Bench Press, göğüs kaslarının ana itiş hareketlerinden biridir. Barı kontrollü şekilde göğse indirip yukarı iterken gövdeyi sabit tutmayı öğretir.",
+  steps:[
+   "Bench'e sırtüstü uzan; ayaklarını yere sağlam bas ve kürek kemiklerini geriye-aşağı sabitle.",
+   "Barı omuzlardan biraz geniş tut. Barı raftan çıkarırken bilekleri nötr tut.",
+   "Barı göğsün orta-alt bölümüne doğru kontrollü indir. Dirsekleri tamamen yana açma.",
+   "Göğse hafifçe yaklaştırdıktan sonra nefes vererek barı yukarı it. Tepede dirsekleri kilitlemeden başlangıca dön."
+  ],
+  tip:"Ağrı oluşursa dur. Hız yerine kontrollü tekrar ve doğru formu önceliklendir."
+ },
+ {
+  id:"row",
+  name:"Dumbbell Row",
+  muscle:"Sırt",
+  eq:"Dumbbell",
+  img:IMG.row,
+  sets:3,
+  reps:10,
+  time:55,
+  desc:"Tek kol Dumbbell Row, sırt kaslarını hedefleyen çekiş hareketidir. Dirseği kalçaya doğru çekmek temel fikirdir.",
+  steps:[
+   "Bir el ve dizi destek yüzeyine koy; sırtı nötr ve gövdeyi sabit tut.",
+   "Dumbbell'ı kol aşağıda olacak şekilde tut. Omuzu kulağa doğru kaldırma.",
+   "Dirseği geriye ve kalçaya doğru çek; ağırlığı gövdeye yaklaştır.",
+   "Üst noktada kısa kontrol yap ve ağırlığı sallamadan aşağı indir."
+  ],
+  tip:"Gövdeyi döndürerek ağırlığı çekme; hareketi sırttan başlat."
+ },
+ {
+  id:"shoulder",
+  name:"Dumbbell Shoulder Press",
+  muscle:"Omuz",
+  eq:"Dumbbell",
+  img:IMG.shoulder,
+  sets:3,
+  reps:10,
+  time:60,
+  desc:"Dumbbell Shoulder Press, özellikle omuzların itiş kuvvetini geliştiren temel bir harekettir.",
+  steps:[
+   "Dumbbell'ları omuz hizasında, dirsekleri kontrollü konumda tut.",
+   "Karın bölgesini sık ve belini aşırı çukurlaştırmadan dik dur.",
+   "Ağırlıkları başın üstüne doğru kontrollü şekilde it.",
+   "Üstte kısa dur, sonra dirsekleri kontrol ederek omuz hizasına dön."
+  ],
+  tip:"Belden destek almak için ağırlığı gereğinden fazla artırma."
+ },
+ {
+  id:"squat",
+  name:"Goblet Squat",
+  muscle:"Bacak",
+  eq:"Dumbbell",
+  img:IMG.squat,
+  sets:3,
+  reps:12,
+  time:70,
+  desc:"Goblet Squat, çömelme mekaniğini öğrenmek için kullanışlı bir bacak hareketidir.",
+  steps:[
+   "Dumbbell'ı göğüs önünde iki elinle tut, ayakları rahat genişlikte aç.",
+   "Kalçayı geriye ve aşağı gönderirken dizleri ayak yönünde takip ettir.",
+   "Uylukların rahat ettiğin derinliğe kadar kontrollü in.",
+   "Ayak tabanından güç alarak kalk ve başlangıç pozisyonuna dön."
+  ],
+  tip:"Dizlerin içe doğru çökmesine izin verme; hareket açıklığını kontrollü seç."
+ },
+ {
+  id:"curl",
+  name:"Dumbbell Curl",
+  muscle:"Kol",
+  eq:"Dumbbell",
+  img:IMG.curl,
+  sets:3,
+  reps:10,
+  time:50,
+  desc:"Dumbbell Curl, dirsek eklemi üzerinden biceps kaslarını çalıştıran temel bir kol hareketidir.",
+  steps:[
+   "Dik dur, dirsekleri gövdenin yanında sabitle ve avuçları öne çevir.",
+   "Dumbbell'ı dirseği ileri kaçırmadan yukarı kıvır.",
+   "Üst noktada kısa sıkıştırma yap.",
+   "Ağırlığı düşürmeden, kontrollü biçimde başlangıca indir."
+  ],
+  tip:"Vücudu sallayarak tekrar üretme."
+ },
+ {
+  id:"push",
+  name:"Şınav",
+  muscle:"Ekipmansız",
+  eq:"Vücut ağırlığı",
+  img:IMG.push,
+  sets:3,
+  reps:8,
+  time:50,
+  desc:"Şınav, göğüs, ön omuz ve triceps kaslarını birlikte çalıştıran ekipmansız bir itiş hareketidir.",
+  steps:[
+   "Eller omuzlardan biraz geniş, gövde baştan topuğa düz olacak şekilde pozisyon al.",
+   "Karın ve kalçayı sık; dirsekleri kontrollü bir açıyla bük.",
+   "Göğsü yere doğru kontrollü indir; omuzları kulaklara çekme.",
+   "Yeri iterek başlangıç pozisyonuna dön."
+  ],
+  tip:"Zor gelirse diz destekli varyasyonu kullanabilirsin."
+ },
+ {
+  id:"plank",
+  name:"Plank",
+  muscle:"Ekipmansız",
+  eq:"Vücut ağırlığı",
+  img:IMG.plank,
+  sets:3,
+  reps:1,
+  time:45,
+  desc:"Plank, gövdeyi sabit tutma ve karın bölgesini aktif kullanma becerisini geliştirir.",
+  steps:[
+   "Dirsekleri omuzların altına al ve ayak uçlarını yere yerleştir.",
+   "Baş-boyun-sırt-kalça aynı çizgide kalsın.",
+   "Karnı ve kalçayı sık, nefesi tutma.",
+   "Form bozulmadan süreyi tamamla; bel çökmeye başlarsa seti bitir."
+  ],
+  tip:"Süreyi artırmaktan önce düzgün formu hedefle."
+ },
+ {
+  id:"swing",
+  name:"Kettlebell Swing",
+  muscle:"Full Body",
+  eq:"Kettlebell",
+  img:IMG.swing,
+  sets:3,
+  reps:12,
+  time:60,
+  desc:"Kettlebell Swing, kalça merkezli patlayıcı bir kalça menteşesi hareketidir ve tüm vücudu birlikte çalıştırır.",
+  steps:[
+   "Ayakları rahat aç, kettlebell'ı iki elle önünde tut.",
+   "Dizleri hafif kırıp kalçayı geriye gönder; ağırlığı bacakların arasına al.",
+   "Kalçayı güçlü şekilde öne uzat ve kettlebell'ın göğüs hizasına kadar yükselmesine izin ver.",
+   "Ağırlığı omuzla kaldırmaya çalışma; kalça hareketini tekrar ederek ritmi koru."
+  ],
+  tip:"Swing bir çömelme değil, kalça menteşesi hareketidir. Form bozulursa dur."
  }
- const milestones=[['msSets',data.sets>=100],['msWorkouts',data.workouts>=10],['msSteps',data.steps>=50000],['msXp',data.xp>=1000]];
- milestones.forEach(([id,ok])=>document.getElementById(id).classList.toggle('done',ok));
-}
-function renderHome(){let meals=data.meals.filter(x=>x.date===today()),cal=meals.reduce((s,x)=>s+(x.cal||0),0);document.getElementById('homeCal').textContent=cal;document.getElementById('homeXp').textContent=data.xp;document.getElementById('waterHome').textContent=data.water.toFixed(1)+' L';document.getElementById('stepsHome').textContent=data.steps;document.getElementById('setsHome').textContent=data.sets;document.getElementById('quote').textContent='“'+quotes[new Date().getDay()%quotes.length]+'”';document.getElementById('surprise').textContent=surprises[new Date().getDay()%surprises.length];document.getElementById('surprise2').textContent=surprises[new Date().getDay()%surprises.length];document.getElementById('homeFoods').innerHTML=meals.map(x=>`<div class="food"><div class="grow"><b>${x.name}</b><div class="muted">${x.portion}</div></div><span>${x.cal||0} kcal</span></div>`).join('')||'<span class="muted">Bugün henüz öğün eklenmedi.</span>';document.getElementById('homeMissions').innerHTML='<div class="muted">Görevler hazır. Bugün küçük bir adım bile sayılır. 😎</div>'}
-function dateKey(d){return new Date(d+'T12:00:00').toISOString().slice(0,10)}
-function addDays(key,n){const d=new Date(key+'T12:00:00');d.setDate(d.getDate()+n);return dateKey(d)}
-function monthKey(key){return key.slice(0,7)}
-function logsForDate(d){return data.workoutLogs.filter(x=>x.date===d)}
-function setsForDate(d){return logsForDate(d).reduce((a,x)=>a+(x.sets||0),0)}
-function secondsForDate(d){return logsForDate(d).reduce((a,x)=>a+(x.seconds||0),0)}
-function mealsForDate(d){return data.meals.filter(x=>x.date===d)}
-function calForDate(d){return mealsForDate(d).reduce((a,x)=>a+(x.cal||0),0)}
-function renderCalendarDay(){
- const input=document.getElementById('calDate');
- let d=input?.value||today(); if(input)input.value=d;
- const ms=mealsForDate(d), sets=setsForDate(d), secs=secondsForDate(d), kcal=calForDate(d);
- const dt=new Date(d+'T12:00:00');
- const dayName=dt.toLocaleDateString('tr-TR',{weekday:'long'});
- document.getElementById('calSelectedLabel').textContent=dt.toLocaleDateString('tr-TR',{day:'2-digit',month:'long',year:'numeric'});
- document.getElementById('calDay').innerHTML=`
-   <div class="grid3">
-    <div class="stat"><b>${ms.length}</b><span>Öğün</span></div>
-    <div class="stat"><b>${kcal}</b><span>Alınan kcal</span></div>
-    <div class="stat"><b>${sets}</b><span>Set</span></div>
-   </div>
-   <div class="card" style="margin:10px 0 0;background:#0e0e0e">
-    <div class="row"><b>${dayName.charAt(0).toUpperCase()+dayName.slice(1)}</b><span class="orangeText">${formatTime(secs)}</span></div>
-    <div class="muted" style="margin-top:5px">${secs?`🏋️ ${Math.floor(secs/60)} dk antrenman kaydı`: 'Henüz tamamlanmış antrenman kaydı yok.'}</div>
-   </div>
-   ${ms.length?`<div style="margin-top:12px"><b>🍽️ Öğünler</b>${ms.map(x=>`<div class="foodVisual"><img class="foodThumb" src="${foodImg(x.name)}" loading="lazy" alt="${x.name}" onerror="this.src=foodFallback"><div class="foodInfo"><b>${x.name}</b><div class="muted">${x.portion}</div></div><span>${x.cal||0} kcal</span></div>`).join('')}</div>`:'<div class="emptyCalendar" style="margin-top:12px">Bu güne kayıtlı öğün yok.</div>'}
- `;
- renderCalendarWeek(d);
- renderCalendarPeriod(d);
- renderCalendarTimeline(d);
- const next=ms.length&&sets?`Bugün hem beslenme hem antrenman kaydı var. 🔥 Bu disiplin 896 seviyesidir.`:sets?`Antrenman tamam. Beslenme kaydını da ekleyip günü kapatabilirsin. 😎`:ms.length?`Beslenme tamam. Kısa bir hareket bile bugününü tamamlar. 💪`:`Bugünü boş bırakma. Bir öğün veya kısa bir yürüyüşle takvime iz bırak.`;
- document.getElementById('calendarNextStep').textContent=next;
-}
-function renderCalendarWeek(selected){
- const start=addDays(selected,-((new Date(selected+'T12:00:00').getDay()+6)%7));
- const labels=['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
- document.getElementById('weekStrip').innerHTML=Array.from({length:7},(_,i)=>{
-   const d=addDays(start,i),ms=mealsForDate(d).length,sets=setsForDate(d),isToday=d===today(),isSel=d===selected;
-   const dd=new Date(d+'T12:00:00').getDate();
-   return `<div class="dayCell ${isToday?'today':''} ${isSel?'selected':''}" onclick="document.getElementById('calDate').value='${d}';renderCalendarDay()"><b>${labels[i]}</b><span>${dd}</span><i class="dayDot ${ms||sets?'active':''}"></i>${sets?`<small style="display:block;color:#57d68d;font-size:9px">${sets} set</small>`:''}</div>`;
- }).join('');
-}
-function renderCalendarPeriod(selected){
- const mk=monthKey(selected),monthMeals=data.meals.filter(x=>monthKey(x.date)===mk);
- const monthLogs=data.workoutLogs.filter(x=>monthKey(x.date)===mk);
- const active=new Set([...monthMeals.map(x=>x.date),...monthLogs.map(x=>x.date)]).size;
- const sets=monthLogs.reduce((a,x)=>a+(x.sets||0),0);
- const secs=monthLogs.reduce((a,x)=>a+(x.seconds||0),0);
- document.getElementById('calendarPeriodLabel').textContent=new Date(selected+'T12:00:00').toLocaleDateString('tr-TR',{month:'long',year:'numeric'});
- document.getElementById('calActiveDays').textContent=active;
- document.getElementById('calMealCount').textContent=monthMeals.length;
- document.getElementById('calSetCount').textContent=sets;
- document.getElementById('calWorkoutHours').textContent=(secs/3600).toFixed(1)+'s';
-}
-function renderCalendarTimeline(selected){
- const start=addDays(selected,-((new Date(selected+'T12:00:00').getDay()+6)%7));
- const labels=['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'];
- document.getElementById('calendarTimeline').innerHTML=Array.from({length:7},(_,i)=>{
-   const d=addDays(start,i),ms=mealsForDate(d),sets=setsForDate(d),secs=secondsForDate(d);
-   return `<div class="timelineItem"><div class="timelineIcon">${sets?'🏋️':ms.length?'🍽️':'○'}</div><div class="grow"><b>${labels[i]}</b><div class="muted">${ms.length} öğün • ${sets} set • ${secs?Math.floor(secs/60)+' dk':''}</div></div><span class="${sets?'good':'muted'}">${sets?'Tamamlandı':'Boş'}</span></div>`;
- }).join('');
-}
-function renderStats(){for(const [id,v] of Object.entries({stSets:data.sets,stReps:data.reps,stSteps:data.steps,stWater:data.water.toFixed(1)+' L',stWorkouts:data.workouts,stMeals:data.meals.length,stDays:new Set(data.meals.map(x=>x.date)).size+data.workouts,stXp:data.xp}))document.getElementById(id).textContent=v}
-let liveTick=null;
-function ensureStreak(){if(!Array.isArray(data.streakDays))data.streakDays=[];}
-function markActiveDay(){ensureStreak();const d=today();if(!data.streakDays.includes(d)){data.streakDays.push(d);data.streakDays=data.streakDays.slice(-365);save()}}
-function currentStreak(){ensureStreak();let set=new Set(data.streakDays),d=new Date();let n=0;for(;;){const key=d.toISOString().slice(0,10);if(!set.has(key))break;n++;d.setDate(d.getDate()-1)}return n}
-function streakVisual(n){if(n>=100)return ['s100','🔥','100+ günlük seri'];if(n>=30)return ['s30','🔥','30 günlük seri'];if(n>=14)return ['s14','🔥','14 günlük seri'];if(n>=7)return ['s7','🔥','7 günlük seri'];if(n>=4)return ['s4','🔥','4 günlük seri'];return ['','🔥',n+' günlük seri']}
-function renderStreak(){markActiveDay();const n=currentStreak(),v=streakVisual(n),ic=document.getElementById('streakIcon');if(!ic)return;ic.className='streakIcon '+v[0];ic.textContent=v[1];document.getElementById('streakTitle').textContent=v[2];document.getElementById('streakMsg').textContent=n>=30?'896 alevi artık kendi kendine yanıyor. 😎':n>=7?'Kıvılcım büyüdü. Devam et. 🔥':'Bugün de bir kıvılcım bıraktın.'}
-function startLive(){if(!data.programMoves.length)return toast('Önce programa hareket ekle.');if(liveTick)clearInterval(liveTick);data.live={active:true,move:0,set:1,phase:'set',seconds:0,restLeft:0,total:0,completedSets:0,completedReps:0};save();renderLive();liveTick=setInterval(()=>{if(!data.live?.active)return;data.live.seconds++;data.live.total++;save();renderLiveTimerOnly()},1000)}
-function setFinished(){if(!data.live?.active)return;const m=data.programMoves[data.live.move];data.sets++;data.reps+=(m?.reps||0);data.xp+=3;data.live.completedSets=(data.live.completedSets||0)+1;data.live.completedReps=(data.live.completedReps||0)+(m?.reps||0);markActiveDay();data.live.phase='rest';data.live.restLeft=m?.rest||90;data.live.seconds=0;save();renderLive();toast('🔥 Set tamam! Şimdi kontrollü dinlen.');}
-function finishRest(){if(!data.live?.active)return;nextLiveSet();}
-function nextLiveSet(){const m=data.programMoves[data.live.move];if(data.live.set<m.sets){data.live.set++;data.live.phase='set';data.live.seconds=0;data.live.restLeft=0}else if(data.live.move<data.programMoves.length-1){data.live.move++;data.live.set=1;data.live.phase='set';data.live.seconds=0;data.live.restLeft=0}else{finishLive();return}save();renderLive()}
-function finishLive(){const total=data.live?.total||0;const completedSets=data.live?.completedSets||0;const completedReps=data.live?.completedReps||0;data.workoutLogs.push({date:today(),seconds:total,sets:completedSets,reps:completedReps});data.workouts++;data.xp+=20;data.live=null;if(liveTick){clearInterval(liveTick);liveTick=null}save();toast(`🏆 Antrenman tamamlandı! ${Math.floor(total/60)} dk ${total%60} sn. 896 onayladı. 😎`);renderAll()}
-function renderLiveTimerOnly(){const t=document.getElementById('liveTimer');if(!t||!data.live)return;const seconds=data.live.phase==='rest'?data.live.restLeft:data.live.seconds;t.textContent=formatTime(data.live.phase==='rest'?Math.max(0,seconds):seconds);t.classList.toggle('warn',data.live.phase==='rest'&&seconds<=10);if(data.live.phase==='rest'&&data.live.restLeft>0){data.live.restLeft--;save();if(data.live.restLeft<=0){toast('💪 Dinlenme bitti! Sıradaki set.');nextLiveSet()}}}
-function formatTime(s){s=Math.max(0,Math.floor(s));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
-function renderLive(){const box=document.getElementById('liveBox');if(!data.programMoves.length){box.innerHTML='<p class="muted">Önce programa birkaç hareket ekle.</p>';return}if(!data.live?.active){box.innerHTML=`<div class="row"><div><b>Hazır mısın?</b><div class="muted">${data.programMoves.length} hareket • kontrollü tempo</div></div><button class="btn orange" onclick="startLive()">▶ Antrenmanı Başlat</button></div>`;return}const m=data.programMoves[data.live.move];const phase=data.live.phase==='rest';const secs=phase?data.live.restLeft:data.live.seconds;box.innerHTML=`<div class="liveMove">${m.name}</div><div class="liveMeta">(${m.body}) • ${data.live.move+1} / ${data.programMoves.length} hareket</div><div class="card" style="margin-top:14px"><div class="timerWrap"><div><div class="timerLabel">${phase?'DİNLENME':'SET '+data.live.set+' / '+m.sets}</div><div id="liveTimer" class="timer ${phase&&secs<=10?'warn':''}">${formatTime(secs)}</div></div></div><div class="row"><span class="muted">${phase?'Sonraki sete hazırlan':'Hedef: '+m.reps+' tekrar'}</span><span class="orangeText">⏱️ ${m.targetSec||60} sn öneri</span></div><div class="liveBtns">${phase?`<button class="btn orange" onclick="finishRest()">Dinlenmeyi Bitir</button><button class="btn" onclick="finishLive()">Antrenmanı Bitir</button>`:`<button class="btn orange" onclick="setFinished()">Set Bitti • Dinlenmeye Geç</button><button class="btn" onclick="finishLive()">Antrenmanı Bitir</button>`}</div></div>`}
-function renderSettings(){document.getElementById('userName').value=data.name;document.getElementById('jokeMode').value=data.joke?'on':'off'}
-function saveSettings(){data.name=document.getElementById('userName').value||'Şampiyon';data.joke=document.getElementById('jokeMode').value==='on';save();toast('Ayarlar kaydedildi 😎')}
-function renderAll(){renderHome();renderStreak();renderFoods();renderMoves();renderEquipment();renderPrograms();renderWeight();renderMissions();renderRank();renderStats();renderLive();renderSettings();document.getElementById('calDate').value=today();renderCalendarDay()}
-renderAll();
-setTimeout(()=>{try{renderCookOptions();renderProgramV20();renderV21DayEditors();renderV21TodayProgram();renderV20Coach();v22Reset();v22EnsureExerciseListVisible();}catch(e){console.error(e)}},50);
+];
 
-/* ===== V22 FIX: exercise list visible without clicking search ===== */
-function v22EnsureExerciseListVisible(){
-  try{
-    if(typeof renderExercises==='function') renderExercises();
-    else if(typeof renderMoves==='function') renderMoves();
-    else if(typeof renderWorkoutExercises==='function') renderWorkoutExercises();
-  }catch(e){}
-  // Remove any accidental "only after search" display gate.
-  document.querySelectorAll('#exerciseList, #movesList, .exercise-list, .moves-list').forEach(el=>{
-    if(el) el.style.display='';
+let state=JSON.parse(localStorage.getItem("896fit_v22")||"null")||{
+ foods:[],
+ water:0,
+ sets:0,
+ totalMinutes:0,
+ streak:0,
+ target:2000,
+ activeProgram:null,
+ programs:[
+  {
+   name:"896 Başlangıç",
+   days:["Göğüs","Sırt","Bacak","Omuz + Kol"],
+   rest:[2,5]
+  }
+ ],
+ weight:{
+  start:null,
+  current:null,
+  day:0,
+  history:[]
+ },
+ xp:0,
+ workouts:[]
+};
+
+let muscle="Tümü";
+let calMonth=new Date();
+
+function save(){
+ localStorage.setItem("896fit_v22",JSON.stringify(state));
+ updateAll();
+}
+
+function toast(t){
+ const e=document.getElementById("toast");
+ e.textContent=t;
+ e.classList.add("show");
+ setTimeout(()=>e.classList.remove("show"),1800);
+}
+
+function go(id,btn){
+ document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+
+ document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));
+
+ if(btn){
+  btn.classList.add("active");
+ }else{
+  document.querySelectorAll(".nav button").forEach(x=>{
+   if(
+    x.textContent.includes(
+     id==="nutrition"?"Beslenme":
+     id==="workout"?"Antrenman":
+     id==="program"?"Program":
+     id==="calendar"?"Takvim":
+     id==="rank"?"Rütbe":"Ana"
+    )
+   )x.classList.add("active")
   });
-}
-document.addEventListener('DOMContentLoaded',()=>{
-  setTimeout(v22EnsureExerciseListVisible,80);
-});
+ }
 
+ window.scrollTo({top:0,behavior:"smooth"});
+ updateAll();
+}
+
+function addWater(){
+ state.water+=.25;
+ save();
+ toast("💧 250 ml su eklendi!");
+}
+
+function setMuscle(m,b){
+ muscle=m;
+ document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));
+ b.classList.add("active");
+ renderExercises();
+}
+
+function renderExercises(){
+ const q=(document.getElementById("exerciseSearch")?.value||"").toLowerCase();
+
+ const list=exercises.filter(e=>
+  (muscle==="Tümü"||e.muscle===muscle) &&
+  (`${e.name} ${e.muscle} ${e.eq}`).toLowerCase().includes(q)
+ );
+
+ document.getElementById("exerciseList").innerHTML=
+ list.map(e=>`
+  <div class="card exercise" onclick="openExercise('${e.id}')">
+   <img src="${e.img}" alt="${e.name}">
+   <div class="exercise-body">
+    <h3>${e.name}</h3>
+    <div class="muscle">(${e.muscle})</div>
+    <p class="muted small">${e.eq} • ${e.sets} set • ${e.reps} tekrar</p>
+   </div>
+  </div>
+ `).join("") ||
+ '<div class="empty">Bu filtrede hareket bulunamadı.</div>';
+}
+
+function openExercise(id){
+ const e=exercises.find(x=>x.id===id);
+
+ document.getElementById("modalContent").innerHTML=`
+  <h2>${e.name}</h2>
+  <div class="muscle">(${e.muscle})</div>
+  <p class="muted">${e.desc}</p>
+
+  <img src="${e.img}" alt="${e.name} gerçek hareket görseli">
+
+  <div class="card" style="margin-top:14px">
+   <h3>📖 Nasıl yapılır?</h3>
+   ${e.steps.map((s,i)=>`
+    <div class="step">
+     <span class="num">${i+1}</span>
+     <div>${s}</div>
+    </div>
+   `).join("")}
+  </div>
+
+  <div class="card">
+   <h3>⚠️ Dikkat</h3>
+   <p>${e.tip}</p>
+  </div>
+
+  <div class="grid">
+   <div class="card">
+    <span class="label">Öneri set</span>
+    <b>${e.sets}</b>
+   </div>
+
+   <div class="card">
+    <span class="label">Öneri tekrar</span>
+    <b>${e.reps}</b>
+   </div>
+  </div>
+
+  <button class="btn primary full" onclick="addToLive('${e.id}')">
+   + Canlı antrenmana ekle
+  </button>
+ `;
+
+ document.getElementById("modal").classList.add("open");
+}
+
+function closeModal(){
+ document.getElementById("modal").classList.remove("open");
+}
+
+function addFood(){
+ const name=document.getElementById("foodName").value.trim();
+ const amount=+document.getElementById("foodAmount").value||1;
+ const type=document.getElementById("foodType").value;
+ const method=document.getElementById("foodMethod").value;
+
+ if(!name){
+  toast("Yemeğin adını yaz.");
+  return;
+ }
+
+ const base={
+  yumurta:78,
+  tavuk:165,
+  pirinc:130,
+  yulaf:150,
+  "yoğurt":90,
+  muz:105,
+  ekmek:80,
+  salata:45,
+  diger:100
+ }[type]||100;
+
+ const mult={
+  haslanmis:1,
+  sahanda:1.35,
+  kizartma:1.6,
+  airfryer:1.12,
+  tost:1.2,
+  firin:1.1,
+  cig:1
+ }[method]||1;
+
+ state.foods.unshift({
+  name,
+  amount,
+  method,
+  kcal:Math.round(base*mult*amount),
+  date:new Date().toISOString()
+ });
+
+ document.getElementById("foodName").value="";
+ save();
+ toast("🍽️ Günlüğe eklendi.");
+}
+
+function renderFoods(){
+ const today=new Date().toDateString();
+
+ const foods=state.foods.filter(
+  f=>new Date(f.date).toDateString()===today
+ );
+
+ const total=foods.reduce((a,b)=>a+b.kcal,0);
+
+ document.getElementById("targetKcal").textContent=state.target;
+ document.getElementById("remainingKcal").textContent=
+  Math.max(0,state.target-total);
+
+ document.getElementById("foodList").innerHTML=
+ foods.length?
+ foods.map((f,i)=>`
+  <div class="card">
+   <div class="food">
+    <img src="${IMG.squat}" alt="">
+    <div style="flex:1">
+     <h3>${f.name}</h3>
+     <div class="muted small">${f.method} • ${f.amount} porsiyon</div>
+     <div class="kcal">${f.kcal} kcal</div>
+    </div>
+    <button class="btn" onclick="deleteFood(${i})">Sil</button>
+   </div>
+  </div>
+ `).join("")
+ :
+ '<div class="empty">Bugün henüz yemek eklenmedi.</div>';
+}
+
+function deleteFood(i){
+ const today=new Date().toDateString();
+
+ let idx=state.foods.findIndex(
+  f=>new Date(f.date).toDateString()===today
+ );
+
+ if(idx>=0){
+  state.foods.splice(idx+i,1);
+  save();
+ }
+}
+
+function createProgram(){
+ const n=document.getElementById("newProgramName").value.trim();
+
+ if(!n){
+  toast("Program adına bir isim ver.");
+  return;
+ }
+
+ state.programs.push({
+  name:n,
+  days:["Göğüs","Sırt","Bacak","Omuz + Kol"],
+  rest:[2,5]
+ });
+
+ document.getElementById("newProgramName").value="";
+ save();
+ toast("Program oluşturuldu.");
+}
+
+function renderPrograms(){
+ document.getElementById("activeProgramName").textContent=
+  state.activeProgram||"Henüz seçilmedi";
+
+ document.getElementById("programList").innerHTML=
+ state.programs.map((p,i)=>`
+  <div class="card">
+   <div class="row">
+    <div>
+     <h3 style="margin:0">${p.name}</h3>
+     <p class="muted small">${p.days.join(" • ")}</p>
+    </div>
+
+    <button class="btn ${state.activeProgram===p.name?"primary":"ghost"}"
+     onclick="selectProgram(${i})">
+     ${state.activeProgram===p.name?"Seçili":"Programı seç"}
+    </button>
+   </div>
+
+   <div class="small muted" style="margin-top:10px">
+    İzin günleri:
+    ${p.rest.map(d=>["Pzt","Sal","Çar","Per","Cum","Cmt","Paz"][d]).join(", ")}
+   </div>
+  </div>
+ `).join("");
+}
+
+function selectProgram(i){
+ state.activeProgram=state.programs[i].name;
+ save();
+ toast("📋 Program seçildi.");
+}
+
+function startSelectedProgram(){
+ if(!state.activeProgram){
+  toast("Önce bir program seç.");
+  return;
+ }
+
+ startLive();
+}
+
+function startLive(){
+ const p=
+  state.programs.find(x=>x.name===state.activeProgram)||
+  state.programs[0];
+
+ document.getElementById("modalContent").innerHTML=`
+  <h2>Canlı Antrenman 🔥</h2>
+  <p class="muted">${p.name}</p>
+
+  <div id="liveList"></div>
+
+  <div id="liveTimer" class="timer ready">00:00</div>
+
+  <div class="row">
+   <button class="btn primary" onclick="startSetTimer()">Seti Başlat</button>
+   <button class="btn" onclick="finishRest()">Set Bitti / Dinlen</button>
+  </div>
+
+  <div style="height:10px"></div>
+
+  <button class="btn danger full" onclick="finishWorkout()">
+   Antrenmanı Bitir
+  </button>
+ `;
+
+ document.getElementById("modal").classList.add("open");
+ renderLiveList();
+}
+
+let live={
+ items:[],
+ index:0,
+ mode:"idle",
+ end:0,
+ interval:null,
+ start:0
+};
+
+function addToLive(id){
+ closeModal();
+ state._liveAdd=id;
+ toast("Hareket canlı antrenmana eklendi.");
+ setTimeout(()=>startLiveWithAdd(),250);
+}
+
+function startLiveWithAdd(){
+ const e=exercises.find(x=>x.id===state._liveAdd);
+
+ if(!e)return;
+
+ state._liveAdd=null;
+ live.items=[e];
+ live.index=0;
+
+ startLive();
+}
+
+function renderLiveList(){
+ const box=document.getElementById("liveList");
+
+ if(!box)return;
+
+ box.innerHTML=
+ (live.items.length?live.items:exercises.slice(0,4))
+ .map((e,i)=>`
+  <div class="exercise-live ${i<live.index?"done":""}">
+   <div class="row">
+    <div>
+     <b>${i+1}. ${e.name}</b>
+     <div class="muted small">
+      (${e.muscle}) • ${e.sets} set × ${e.reps}
+     </div>
+    </div>
+
+    <span class="badge">${e.time} sn/set</span>
+   </div>
+  </div>
+ `).join("");
+}
+
+function startSetTimer(){
+ if(!live.items.length)
+  live.items=exercises.slice(0,4);
+
+ const e=live.items[live.index]||live.items[0];
+
+ live.mode="set";
+ live.end=Date.now()+e.time*1000;
+ live.start=Date.now();
+
+ runTimer();
+}
+
+function finishRest(){
+ live.mode="idle";
+ clearInterval(live.interval);
+
+ const t=document.getElementById("liveTimer");
+
+ if(t){
+  t.textContent="00:00";
+  t.className="timer ready";
+ }
+
+ toast("Dinlenme bitti. Hazırsan sonraki set!");
+}
+
+function runTimer(){
+ clearInterval(live.interval);
+
+ live.interval=setInterval(()=>{
+  const el=document.getElementById("liveTimer");
+
+  if(!el){
+   clearInterval(live.interval);
+   return;
+  }
+
+  let sec=Math.max(
+   0,
+   Math.ceil((live.end-Date.now())/1000)
+  );
+
+  el.textContent=`00:${String(sec).padStart(2,"0")}`;
+
+  el.className="timer "+(sec<=10?"warn":"ready");
+
+  if(sec<=0){
+   clearInterval(live.interval);
+
+   live.mode="rest";
+
+   el.textContent="DINLEN";
+   el.className="timer rest";
+
+   toast("⏱️ Set bitti — dinlenme zamanı!");
+
+   live.index=Math.min(
+    live.index+1,
+    live.items.length-1
+   );
+
+   renderLiveList();
+  }
+
+ },200);
+}
+
+function finishWorkout(){
+ clearInterval(live.interval);
+
+ const mins=Math.max(
+  1,
+  Math.round((Date.now()-live.start)/60000)
+ );
+
+ state.sets+=live.items.reduce(
+  (a,e)=>a+e.sets,
+  0
+ );
+
+ state.totalMinutes+=mins;
+
+ state.xp+=Math.max(
+  20,
+  mins*5
+ );
+
+ state.workouts.push({
+  date:new Date().toISOString(),
+  minutes:mins,
+  sets:live.items.reduce((a,e)=>a+e.sets,0)
+ });
+
+ save();
+ closeModal();
+
+ toast("🏆 Antrenman kaydedildi!");
+}
+
+function saveWeight(){
+ const s=parseFloat(
+  document.getElementById("startWeight").value
+ );
+
+ const c=parseFloat(
+  document.getElementById("currentWeight").value
+ );
+
+ const d=parseInt(
+  document.getElementById("weighDay").value
+ );
+
+ if(!Number.isFinite(c)){
+  toast("Bugünkü kilonu gir.");
+  return;
+ }
+
+ if(Number.isFinite(s))
+  state.weight.start=s;
+
+ if(Number.isFinite(d))
+  state.weight.day=d;
+
+ state.weight.current=c;
+
+ state.weight.history.push({
+  date:new Date().toISOString(),
+  weight:c
+ });
+
+ save();
+
+ toast("⚖️ Tartım kaydedildi.");
+}
+
+function renderWeight(){
+ const w=state.weight;
+
+ document.getElementById("weightStart").textContent=
+  w.start??"—";
+
+ document.getElementById("weightCurrent").textContent=
+  w.current??"—";
+
+ document.getElementById("weighCount").textContent=
+  w.history.length;
+
+ if(w.start!=null&&w.current!=null){
+
+  const diff=w.start-w.current;
+
+  document.getElementById("weightDelta").textContent=
+   `Başlangıca göre ${
+    diff>=0
+    ?diff.toFixed(1)+" kg azalma"
+    :"+"+(-diff).toFixed(1)+" kg artış"
+   }.`;
+
+  document.getElementById("weightMessage").textContent=
+   diff>0
+   ?"🔥 Harika gidiyorsun! Emeğin tartıda da görünüyor."
+   :diff===0
+   ?"💪 Sabit kalmak da sürecin bir parçası. Devam et!"
+   :"🚀 Vazgeçmek yok. Rutine dön, küçük adımlar birikir!";
+ }
+
+ document.getElementById("totalSets").textContent=
+  state.sets;
+
+ document.getElementById("totalCalories").textContent=
+  state.foods.reduce((a,b)=>a+b.kcal,0);
+
+ document.getElementById("totalHours").textContent=
+  (state.totalMinutes/60).toFixed(1);
+
+ document.getElementById("weightHistory").innerHTML=
+  w.history
+   .slice()
+   .reverse()
+   .slice(0,10)
+   .map(x=>`
+    <div class="card row">
+     <span>${new Date(x.date).toLocaleDateString("tr-TR")}</span>
+     <b>${x.weight} kg</b>
+    </div>
+   `)
+   .join("")
+  ||
+  '<div class="empty">Henüz tartım kaydı yok.</div>';
+}
+
+function renderCalendar(){
+ const y=calMonth.getFullYear();
+ const m=calMonth.getMonth();
+
+ document.getElementById("monthTitle").textContent=
+  new Intl.DateTimeFormat("tr-TR",{
+   month:"long",
+   year:"numeric"
+  }).format(calMonth);
+
+ const first=new Date(y,m,1).getDay();
+ const offset=(first+6)%7;
+ const days=new Date(y,m+1,0).getDate();
+
+ let h="";
+
+ ["P","S","Ç","P","C","C","P"].forEach(
+  x=>h+=`<div class="label" style="text-align:center">${x}</div>`
+ );
+
+ for(let i=0;i<offset;i++)
+  h+="<div></div>";
+
+ for(let d=1;d<=days;d++){
+
+  const date=new Date(y,m,d).toDateString();
+
+  const w=state.workouts.some(
+   x=>new Date(x.date).toDateString()===date
+  );
+
+  h+=`
+   <div class="card"
+    style="
+     padding:10px;
+     text-align:center;
+     margin:0;
+     ${w?"border-color:#7b3d00":""}
+    ">
+    <b>${d}</b>
+    <div>${w?"🔥":"·"}</div>
+   </div>
+  `;
+ }
+
+ document.getElementById("calendarGrid").innerHTML=h;
+
+ const mon=state.workouts.filter(x=>{
+  const z=new Date(x.date);
+
+  return z.getFullYear()===y &&
+         z.getMonth()===m;
+ });
+
+ document.getElementById("monthSets").textContent=
+  mon.reduce((a,b)=>a+b.sets,0);
+
+ document.getElementById("monthHours").textContent=
+  (
+   mon.reduce((a,b)=>a+b.minutes,0)/60
+  ).toFixed(1);
+}
+
+function changeMonth(n){
+ calMonth.setMonth(calMonth.getMonth()+n);
+ renderCalendar();
+}
+
+function renderRank(){
+
+ const ranks=[
+  ["Çaylak",0],
+  ["Başlangıç",100],
+  ["Disiplinli",300],
+  ["Savaşçı",700],
+  ["Şampiyon",1400],
+  ["Efsane",2500]
+ ];
+
+ let cur=ranks[0];
+ let next=ranks[1];
+
+ for(let i=0;i<ranks.length;i++)
+  if(state.xp>=ranks[i][1]){
+   cur=ranks[i];
+   next=ranks[i+1]||[ranks[i][0],state.xp+1];
+  }
+
+ const pct=Math.min(
+  100,
+  (
+   (state.xp-cur[1])/
+   Math.max(1,next[1]-cur[1])
+  )*100
+ );
+
+ document.getElementById("rankName").textContent=
+  cur[0];
+
+ document.getElementById("rankInfo").textContent=
+  next[0]===cur[0]
+  ?"Zirvedesin."
+  :"Sonraki rütbe: "+next[0];
+
+ document.getElementById("rankProgress").style.width=
+  pct+"%";
+
+ document.getElementById("rankXp").textContent=
+  `${state.xp} XP • ${Math.max(0,next[1]-state.xp)} XP kaldı`;
+
+ document.getElementById("rankRoad").innerHTML=
+  ranks.map(r=>`
+   <div class="card row">
+    <div>
+     <b>${r[0]}</b>
+     <div class="muted small">${r[1]} XP</div>
+    </div>
+    <span>${state.xp>=r[1]?"✅":"🔒"}</span>
+   </div>
+  `).join("");
+}
+
+function updateHome(){
+
+ const today=new Date().toDateString();
+
+ const todayFoods=
+  state.foods
+   .filter(f=>new Date(f.date).toDateString()===today)
+   .reduce((a,b)=>a+b.kcal,0);
+
+ document.getElementById("homeKcal").textContent=
+  todayFoods;
+
+ document.getElementById("homeWater").textContent=
+  state.water.toFixed(2)+" L";
+
+ document.getElementById("homeSets").textContent=
+  state.sets;
+
+ document.getElementById("homeProgress").style.width=
+  Math.min(100,todayFoods/state.target*100)+"%";
+
+ document.getElementById("homeProgressText").textContent=
+  `${Math.max(0,state.target-todayFoods)} kcal kaldı`;
+
+ document.getElementById("streakText").textContent=
+  state.streak+" gün";
+}
+
+function updateAll(){
+ renderFoods();
+ renderExercises();
+ renderPrograms();
+ renderWeight();
+ renderCalendar();
+ renderRank();
+ updateHome();
+}
+
+updateAll();
 </script>
 </body>
 </html>
