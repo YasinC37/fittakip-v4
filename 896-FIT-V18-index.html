@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0b">
+<title>896 FIT V18</title>
+<style>
+:root{--bg:#090909;--card:#141414;--card2:#1b1b1b;--line:#292929;--text:#f4f4f4;--muted:#9b9b9b;--orange:#ff7600;--orange2:#ff9a32;--green:#57d68d;--red:#ff5b5b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}.app{max-width:760px;margin:auto;min-height:100vh;padding-bottom:82px}
+header{padding:18px 18px 8px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:rgba(9,9,9,.94);backdrop-filter:blur(12px);z-index:5}
+.brand{display:flex;gap:10px;align-items:center}.logo{width:42px;height:42px;border:1px solid #633100;border-radius:13px;display:grid;place-items:center;color:var(--orange);font-weight:900;font-size:15px;background:#111}.brand b{font-size:22px}.brand small{display:block;color:var(--muted)}
+.page{display:none;padding:12px 16px}.page.active{display:block}.title{font-size:28px;font-weight:900;margin:12px 0 5px}.sub{color:var(--muted);margin-bottom:18px}
+.card{background:linear-gradient(145deg,var(--card),#101010);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 10px 30px rgba(0,0,0,.16)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:#101010;border:1px solid var(--line);border-radius:14px;padding:12px}.stat b{font-size:21px;display:block}.stat span{font-size:12px;color:var(--muted)}
+.btn{border:1px solid var(--line);background:#191919;color:#fff;border-radius:13px;padding:11px 14px}.btn.orange{background:var(--orange);border-color:var(--orange);color:#080808;font-weight:900}.btn.ghost{background:transparent;color:var(--orange);border-color:#6b360d}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.chips{display:flex;gap:7px;overflow:auto;padding:4px 0}.chip{white-space:nowrap;border:1px solid var(--line);background:#151515;color:#ccc;border-radius:999px;padding:8px 11px}.chip.on{background:#351b08;color:var(--orange2);border-color:#7a3e0c}
+input,select{width:100%;background:#111;color:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;outline:none}label{font-size:12px;color:var(--muted);display:block;margin:8px 0 5px}
+.progress{height:9px;background:#292929;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--orange),var(--orange2));border-radius:99px}
+ .workoutHero{display:flex;align-items:center;justify-content:space-between;border-color:#5a300f}.heroIcon{font-size:38px}.moveCard{background:linear-gradient(145deg,#151515,#0e0e0e);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin:12px 0}.moveVisual{height:145px;background:radial-gradient(circle at 50% 40%,#2b1708,#101010);display:grid;place-items:center;position:relative}.moveVisual svg{width:92%;height:92%}.moveBody{padding:14px}.moveMeta{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px}.tag{font-size:11px;padding:5px 8px;border-radius:999px;background:#1d1d1d;color:#bbb;border:1px solid #303030}.target{color:var(--orange2)}.learnVisual{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:12px 0}.frame{background:#111;border:1px solid #2b2b2b;border-radius:12px;padding:6px;text-align:center}.frame svg{width:100%;height:95px}.arrowLegend{font-size:12px;color:#aaa;text-align:center;margin:4px 0 12px}.stepList{counter-reset:steps;padding-left:0;list-style:none}.stepList li{counter-increment:steps;display:flex;gap:10px;margin:10px 0}.stepList li:before{content:counter(steps);min-width:25px;height:25px;border-radius:50%;background:var(--orange);color:#090909;font-weight:900;display:grid;place-items:center}.moveTap{cursor:pointer}
+.photoGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}.categoryGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}.categoryCard{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#111;cursor:pointer;min-height:145px}.categoryCard img{width:100%;height:145px;object-fit:cover;display:block}.categoryCard:after{content:'';position:absolute;inset:40% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.95))}.categoryInfo{position:absolute;left:12px;right:12px;bottom:10px;z-index:1}.categoryInfo b{font-size:18px}.categoryInfo span{display:block;color:#bbb;font-size:12px}.movePhoto{width:100%;height:180px;object-fit:cover;display:block}.phaseGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.phaseCard{background:#0d0d0d;border:1px solid #2b2b2b;border-radius:13px;padding:7px}.phaseCard img{width:100%;height:105px;object-fit:cover;border-radius:9px}.phaseCard b{font-size:12px;display:block;margin-top:6px}.photoNote{font-size:10px;color:#777;margin-top:7px}
+.photoArrowWrap{position:relative;overflow:hidden;border-radius:12px;background:#0b0b0b}
+.photoArrowWrap img{width:100%;height:100%;object-fit:cover;display:block}
+.photoArrowWrap .arrowOverlay{position:absolute;inset:0;pointer-events:none}
+.photoArrowWrap .arrowLabel{position:absolute;left:10px;bottom:8px;background:rgba(0,0,0,.72);border:1px solid rgba(255,118,0,.55);color:#fff;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:800}
+.phaseCard .photoArrowWrap{height:105px}
+.phaseCard .photoArrowWrap img{height:105px}
+.detailHeroArrow{height:240px;border-radius:16px}
+.detailHeroArrow img{height:240px}
+.rankJourney{display:grid;gap:9px;margin-top:12px}
+.rankStep{display:flex;align-items:center;gap:12px;padding:11px;border:1px solid var(--line);border-radius:14px;background:#101010}
+.rankStep.on{border-color:#8a460d;background:linear-gradient(90deg,#261507,#111)}
+.rankStep.done{opacity:.75}
+.rankOrb{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#1c1c1c;border:1px solid #333;color:#888;font-weight:900}
+.rankStep.on .rankOrb{color:#090909;background:var(--orange);border-color:var(--orange)}
+.rankStep b{display:block}.rankStep span{font-size:12px;color:#999}
+.milestone{padding:12px;border:1px solid var(--line);border-radius:14px;background:#101010}
+.milestone b{display:block;margin-bottom:4px}.milestone.done{border-color:#4c7a5f}.milestone.done b{color:var(--green)}
+@media(min-width:700px){.categoryGrid{grid-template-columns:repeat(4,1fr)}}
+.food,.move,.equip,.program,.mission{display:flex;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #242424}.food:last-child,.move:last-child,.equip:last-child,.program:last-child,.mission:last-child{border-bottom:0}
+.iconbox{width:42px;height:42px;border-radius:12px;background:#1e1e1e;display:grid;place-items:center;font-size:21px}.grow{flex:1}.muted{color:var(--muted);font-size:13px}.orangeText{color:var(--orange)}.danger{color:var(--red)}.good{color:var(--green)}
+.nav{position:fixed;bottom:0;left:0;right:0;background:rgba(12,12,12,.96);border-top:1px solid var(--line);z-index:10}.navin{max-width:760px;margin:auto;display:grid;grid-template-columns:repeat(7,1fr)}.nav button{border:0;background:none;color:#777;padding:10px 4px;font-size:11px}.nav button.on{color:var(--orange)}.nav button div{font-size:19px;margin-bottom:2px}
+.big{font-size:38px;font-weight:900}.ring{width:150px;height:150px;border-radius:50%;border:12px solid #272727;border-top-color:var(--orange);display:grid;place-items:center;margin:auto}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:end;z-index:20}.modal.open{display:flex}.sheet{background:#111;border:1px solid var(--line);border-radius:22px 22px 0 0;padding:18px;width:100%;max-height:86vh;overflow:auto}.close{float:right}
+.badge{border:1px solid #693508;border-radius:16px;padding:14px;background:#17110b;text-align:center}.rank{font-size:25px;font-weight:900;color:var(--orange)}
+.quote{font-style:italic;color:#ddd}.tiny{font-size:11px;color:#777}
+
+.timerWrap{display:grid;place-items:center;padding:12px 0 18px}.timer{font-size:58px;font-weight:950;letter-spacing:-2px}.timer.warn{color:var(--red);animation:pulse .8s infinite}.timerLabel{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}.liveMove{font-size:25px;font-weight:900}.liveMeta{color:var(--muted);margin-top:4px}.liveBtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.streak{display:flex;align-items:center;gap:12px}.streakIcon{font-size:42px;filter:drop-shadow(0 0 10px rgba(255,118,0,.25))}.streakIcon.s4{filter:hue-rotate(35deg) drop-shadow(0 0 10px rgba(255,118,0,.3))}.streakIcon.s7{filter:hue-rotate(150deg) drop-shadow(0 0 10px rgba(80,160,255,.35))}.streakIcon.s14{filter:hue-rotate(245deg) drop-shadow(0 0 10px rgba(160,80,255,.4))}.streakIcon.s30{filter:hue-rotate(300deg) saturate(1.8) drop-shadow(0 0 12px rgba(255,200,60,.45))}.streakIcon.s100{filter:grayscale(1) brightness(1.8) drop-shadow(0 0 14px white)}@keyframes pulse{50%{transform:scale(1.06);opacity:.72}}
+@media(min-width:700px){.page{padding:20px}.nav{left:calc(50% - 380px);right:calc(50% - 380px);border-radius:18px 18px 0 0}.grid{grid-template-columns:repeat(4,1fr)}}
+
+.foodVisual{display:flex;gap:11px;align-items:center;padding:10px 0;border-bottom:1px solid #242424}
+.foodVisual:last-child{border-bottom:0}
+.foodThumb{width:58px;height:58px;border-radius:14px;object-fit:cover;flex:none;border:1px solid #303030;background:#111}
+.foodThumb.big{width:82px;height:82px;border-radius:16px}
+.foodInfo{min-width:0;flex:1}
+.foodInfo b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.foodPill{display:inline-block;font-size:10px;padding:4px 7px;border-radius:999px;background:#1b1b1b;color:#aaa;border:1px solid #303030;margin-top:5px}
+.foodHero{display:grid;grid-template-columns:1.15fr .85fr;gap:10px;align-items:stretch}
+.foodHero img{width:100%;height:170px;object-fit:cover;border-radius:16px;border:1px solid #303030}
+.foodHeroText{display:flex;flex-direction:column;justify-content:center}
+.calendarStats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.calendarStat{background:#101010;border:1px solid var(--line);border-radius:14px;padding:12px}
+.calendarStat b{font-size:20px;display:block}
+.calendarStat span{font-size:11px;color:var(--muted)}
+.weekStrip{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:10px}
+.dayCell{border:1px solid var(--line);background:#101010;border-radius:12px;padding:8px 3px;text-align:center;cursor:pointer;min-width:0}
+.dayCell.today{border-color:#7a3e0c;background:#211307}
+.dayCell.selected{outline:2px solid var(--orange);outline-offset:-2px}
+.dayCell b{display:block;font-size:11px}
+.dayCell span{display:block;color:#777;font-size:10px;margin-top:4px}
+.dayDot{width:6px;height:6px;border-radius:50%;background:#333;display:inline-block;margin-top:5px}
+.dayDot.active{background:var(--orange)}
+.dayDot.work{background:var(--green)}
+.calendarTimeline{display:grid;gap:8px}
+.timelineItem{display:flex;gap:10px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:13px;background:#101010}
+.timelineIcon{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:#1b1b1b;font-size:19px}
+.emptyCalendar{padding:14px;border:1px dashed #333;border-radius:13px;color:#888;text-align:center}
+@media(max-width:520px){.foodHero{grid-template-columns:1fr}.foodHero img{height:145px}.calendarStats{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand"><div class="logo">896</div><div><b>896 FIT</b></div></div>
+  <button class="btn" onclick="toast('🔔 Bildirimler hazır!')">🔔</button>
+</header>
+
+<main>
+<section id="home" class="page active">
+  <div class="title">Günaydın, Şampiyon! 💪</div><div class="sub" id="homeGreeting">Bugün yeni bir bölüm.</div>
+  <div class="card"><div class="row"><div><div class="muted">BUGÜNÜN KALORI KAYDI</div><div class="big" id="homeCal">0</div><div class="muted">kayıtlı</div></div><div class="ring"><div><b id="homeXp" class="big">0</b><div class="tiny">XP</div></div></div></div></div>
+  <div class="grid3">
+    <div class="stat"><b id="waterHome">0 L</b><span>Su</span></div><div class="stat"><b id="stepsHome">0</b><span>Adım</span></div><div class="stat"><b id="setsHome">0</b><span>Set</span></div>
+  </div>
+  <div class="card"><div class="row"><b>🎯 Günün görevleri</b><button class="btn ghost" onclick="show('missions')">Tümü</button></div><div id="homeMissions"></div></div>
+  <div class="card"><b>🎁 Günün sürprizi</b><p id="surprise" class="quote"></p><button class="btn orange" onclick="claimSurprise()">Ödülü Al</button></div>
+  <div class="card"><b>📝 Günün sözü</b><p class="quote" id="quote"></p></div><div class="card"><div class="streak"><div id="streakIcon" class="streakIcon">🔥</div><div class="grow"><b id="streakTitle">0 günlük seri</b><div class="muted" id="streakMsg">Bugün ilk kıvılcımı yak. 😎</div></div></div></div>
+  <div class="card"><div class="row"><b>🍽️ Bugünkü öğünlerin</b><button class="btn ghost" onclick="show('food')">+ Öğün</button></div><div id="homeFoods"></div></div>
+</section>
+
+<section id="food" class="page">
+ <div class="title">Beslenme 🍽️</div>
+ <div class="sub">Gerçek yemek görselleriyle seç, ekle ve günlük kalan kalorine göre ilerle.</div>
+
+ <div class="foodHero card">
+   <img id="foodHeroImg" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=85" alt="Sağlıklı yemek">
+   <div class="foodHeroText">
+     <div class="muted">896 BESLENME PANELİ</div>
+     <h2 style="margin:5px 0 4px">Bugün ne yiyeceksin? 😎</h2>
+     <div class="muted">Eklediğin her öğünün görselini ve kalorisini aşağıdan takip et.</div>
+   </div>
+ </div>
+
+ <div class="card">
+   <div class="row">
+     <div><div class="muted">GÜNLÜK KALORİ</div><div><b id="foodCalLeft" class="big">2000</b> <span class="muted">kcal kaldı</span></div></div>
+     <div style="text-align:right"><b id="foodCalTaken">0</b><div class="muted">alınan kcal</div></div>
+   </div>
+   <div class="progress" style="margin-top:12px"><i id="foodCalBar" style="width:0%"></i></div>
+   <div class="tiny" id="foodCalTargetText" style="margin-top:7px"></div>
+ </div>
+
+ <div class="card">
+   <div class="row"><b>📝 Bugün yediklerim</b><span class="orangeText" id="foodMealCount">0 öğün</span></div>
+   <div id="todayMealList"></div>
+ </div>
+
+ <input id="foodSearch" placeholder="🔎 Yiyecek ara..." oninput="renderFoods()">
+ <div class="chips" id="foodCats"></div>
+ <div id="foodList"></div>
+
+ <div class="card">
+   <b>✨ Bugün için hızlı fikir</b>
+   <div class="grid" style="margin-top:10px">
+     <div class="stat"><b>🥚</b><span>Protein ekle</span></div>
+     <div class="stat"><b>🥗</b><span>Sebze ekle</span></div>
+     <div class="stat"><b>🍚</b><span>Karbonhidratı ölç</span></div>
+     <div class="stat"><b>💧</b><span>Suyu unutma</span></div>
+   </div>
+ </div>
+
+ <div class="card">
+   <b>Özel kayıt</b>
+   <div class="grid">
+     <div><label>Yiyecek</label><input id="customFood" placeholder="Örn. ev yemeği"></div>
+     <div><label>Porsiyon</label><input id="customPortion" placeholder="1 tabak"></div>
+   </div>
+   <label>Kalori</label><input id="customCal" type="number" placeholder="Örn. 450">
+   <button class="btn orange" style="margin-top:10px" onclick="addCustomFood()">Öğün Ekle</button>
+ </div>
+</section>
+
+<section id="calendar" class="page">
+ <div class="title">Takvim 📅</div>
+ <div class="sub">Sadece tarih değil; yaptığın emeğin günlük ve haftalık özeti.</div>
+
+ <div class="card">
+   <div class="row">
+     <div><b>📆 Gününü seç</b><div class="muted">Bir güne dokun, o günün detaylarını gör.</div></div>
+     <input type="date" id="calDate" onchange="renderCalendarDay()" style="width:auto;min-width:150px">
+   </div>
+   <div id="weekStrip" class="weekStrip"></div>
+ </div>
+
+ <div class="card">
+   <div class="row"><b>🔥 Dönem özeti</b><span class="orangeText" id="calendarPeriodLabel">Bu ay</span></div>
+   <div class="calendarStats" style="margin-top:10px">
+     <div class="calendarStat"><b id="calActiveDays">0</b><span>Aktif gün</span></div>
+     <div class="calendarStat"><b id="calMealCount">0</b><span>Öğün</span></div>
+     <div class="calendarStat"><b id="calSetCount">0</b><span>Set</span></div>
+     <div class="calendarStat"><b id="calWorkoutHours">0s</b><span>Antrenman</span></div>
+   </div>
+ </div>
+
+ <div class="card">
+   <div class="row"><b>📌 Seçili gün</b><span class="orangeText" id="calSelectedLabel"></span></div>
+   <div id="calDay" style="margin-top:12px"></div>
+ </div>
+
+ <div class="card">
+   <div class="row"><b>🗓️ Bu haftanın ritmi</b><span class="muted">Yemek + antrenman</span></div>
+   <div id="calendarTimeline" class="calendarTimeline" style="margin-top:10px"></div>
+ </div>
+
+ <div class="card">
+   <b>🎯 Sonraki adım</b>
+   <div id="calendarNextStep" class="quote" style="margin-top:8px"></div>
+ </div>
+</section>
+
+<section id="workout" class="page">
+ <div class="title">Antrenman 🏋️</div><div class="sub">Gerçek fotoğraflarla keşfet, harekete dokununca gerçekten öğret.</div>
+ <div class="workoutHero card"><div><b>896 Hareket Kütüphanesi</b><p class="muted">Kategoriyi fotoğraftan seç. Sonra hareketin ne olduğunu, hangi bölgeyi çalıştırdığını ve nasıl uygulanacağını gör.</p></div><span class="heroIcon">📸</span></div>
+ <div class="categoryGrid" id="categoryGrid"></div>
+ <input id="moveSearch" placeholder="🔎 Hareket ara..." oninput="renderMoves()">
+ <div class="chips" id="bodyCats"></div><div class="chips" id="difficultyCats"></div>
+ <div id="moveList"></div>
+</section>
+
+<section id="equipment" class="page">
+ <div class="title">Ekipmanlar 🎒</div><div class="sub">Ekipmanını seç, uygun hareketleri gör.</div>
+ <div class="card"><label>Ekipman</label><select id="equipSelect" onchange="renderEquipment()"></select><label>Seviye / Ağırlık</label><select id="equipLevel" onchange="renderEquipment()"></select></div>
+ <div id="equipmentResult"></div>
+</section>
+
+<section id="program" class="page">
+ <div class="title">Programım 📋</div><div class="sub">Haftanı oluştur, set ve tekrarları değiştir.</div>
+ <div class="card"><div class="row"><b>Haftalık plan</b><button class="btn orange" onclick="addProgram()">+ Yeni Program</button></div><div id="programList"></div></div>
+ <div class="card"><b>Programa eklenen hareketler</b><div id="programMoves"></div></div>
+</section>
+
+<section id="live" class="page">
+ <div class="title">Canlı Antrenman 🔥</div><div class="sub">Seti kontrollü yap, dinlenmeni kendin yönet.</div>
+ <div class="card" id="liveBox"></div>
+</section>
+
+<section id="weight" class="page">
+ <div class="title">Tartı ⚖️</div><div class="sub">Kilonu değil, verdiğin emeği de takip et.</div>
+ <div class="card" id="weightSummary"></div>
+ <div class="card"><b>📅 Haftalık tartım günü</b><label>Günü kendin seç</label><select id="weighDay" onchange="saveWeightDay()"></select><label>Yeni tartım sonucu</label><input id="weightInput" type="number" step="0.1" placeholder="Örn. 118.9"><button class="btn orange" style="margin-top:10px" onclick="addWeight()">Tartım Sonucunu Kaydet</button><div id="weightMessage" class="quote" style="margin-top:12px"></div></div>
+ <div class="card"><div class="row"><b>📊 Kilo geçmişi</b><span class="muted">Başlangıçtan bugüne</span></div><div id="weightHistory"></div></div>
+ <div class="card"><div class="row"><b>🏆 Verdiğin emek</b><div class="chips"><button class="chip on" onclick="setEffortPeriod('week',this)">Hafta</button><button class="chip" onclick="setEffortPeriod('month',this)">Ay</button><button class="chip" onclick="setEffortPeriod('year',this)">Yıl</button></div></div><div class="grid" style="margin-top:10px"><div class="stat"><b id="effortSets">0</b><span>Set</span></div><div class="stat"><b id="effortCalories">0</b><span>Alınan kcal</span></div><div class="stat"><b id="effortHours">0s 0dk</b><span>Antrenman</span></div><div class="stat"><b id="effortWorkouts">0</b><span>Antrenman sayısı</span></div></div><p id="effortMessage" class="quote"></p></div>
+</section>
+
+<section id="rank" class="page">
+ <div class="title">Rütbe 🏆</div><div class="sub">896 yolculuğun burada.</div>
+ <div class="card badge">
+   <div class="rank" id="rankName"></div>
+   <div id="rankDesc"></div>
+   <div style="margin:15px 0" class="progress"><i id="rankBar"></i></div>
+   <div id="rankXp"></div>
+ </div>
+ <div class="grid3">
+   <div class="stat"><b id="rankSets">0</b><span>Toplam set</span></div>
+   <div class="stat"><b id="rankSteps">0</b><span>Toplam adım</span></div>
+   <div class="stat"><b id="rankDays">0</b><span>Aktif gün</span></div>
+ </div>
+ <div class="card">
+   <div class="row"><b>🔥 896 Rütbe Yolculuğu</b><span class="orangeText" id="rankStreak">0 gün seri</span></div>
+   <div class="rankJourney" id="rankJourney"></div>
+ </div>
+ <div class="card">
+   <div class="row"><b>🎯 Bir sonraki hedef</b><span class="orangeText" id="nextRankName">—</span></div>
+   <p id="nextRankText" class="muted"></p>
+   <div class="progress"><i id="nextRankBar"></i></div>
+ </div>
+ <div class="card">
+   <b>🏅 Kilometre taşları</b>
+   <div class="grid" style="margin-top:10px">
+     <div class="milestone" id="msSets"><b>100 Set</b><span class="muted">İlk büyük set kilometre taşı</span></div>
+     <div class="milestone" id="msWorkouts"><b>10 Antrenman</b><span class="muted">İstikrar başlıyor</span></div>
+     <div class="milestone" id="msSteps"><b>50.000 Adım</b><span class="muted">896 hareketlilik rozeti</span></div>
+     <div class="milestone" id="msXp"><b>1.000 XP</b><span class="muted">İlk elit eşik</span></div>
+   </div>
+ </div>
+ <div class="card">
+   <b>😎 896 kuralı</b>
+   <p class="quote">“Rütbe sadece ekranda yükselmez. Her set, her adım ve her devam ettiğin gün onu yükseltir.”</p>
+ </div>
+</section>
+
+<section id="missions" class="page">
+ <div class="title">Görevler & Sürprizler 🎯</div><div class="sub">Bugünün küçük hedefleri.</div><div class="card" id="missionList"></div><div class="card"><b>🎁 Günün sürprizi</b><p id="surprise2" class="quote"></p></div>
+</section>
+
+<section id="stats" class="page">
+ <div class="title">İstatistikler 📊</div><div class="sub">Toplam ilerlemen.</div>
+ <div class="grid"><div class="stat"><b id="stSets">0</b><span>Toplam set</span></div><div class="stat"><b id="stReps">0</b><span>Toplam tekrar</span></div><div class="stat"><b id="stSteps">0</b><span>Toplam adım</span></div><div class="stat"><b id="stWater">0 L</b><span>Toplam su</span></div><div class="stat"><b id="stWorkouts">0</b><span>Antrenman</span></div><div class="stat"><b id="stMeals">0</b><span>Öğün</span></div><div class="stat"><b id="stDays">0</b><span>Aktif gün</span></div><div class="stat"><b id="stXp">0</b><span>XP</span></div></div>
+</section>
+
+<section id="settings" class="page">
+ <div class="title">Ayarlar ⚙️</div><div class="sub">V12'yi kendine göre ayarla.</div>
+ <div class="card"><label>Görünen isim</label><input id="userName"><label>Bahane Üretme Modu</label><select id="jokeMode"><option value="on">Açık 😅</option><option value="off">Kapalı</option></select><label>Bildirimler</label><select id="notify"><option>Açık</option><option>Kapalı</option></select><button class="btn orange" style="margin-top:10px" onclick="saveSettings()">Kaydet</button></div>
+ <div class="card"><b>🏁 Yeni başlangıç belirle</b><p class="muted">Başlangıç kilosunu yalnızca bilinçli olarak yeniden başlatmak için kullan.</p><button class="btn" onclick="resetStartWeight()">Başlangıç kilosunu sıfırla</button></div>
+</section>
+</main>
+
+<nav class="nav"><div class="navin">
+<button onclick="show('home',this)" class="on"><div>⌂</div>Ana Sayfa</button>
+<button onclick="show('food',this)"><div>🍽️</div>Beslenme</button>
+<button onclick="show('workout',this)"><div>🏋️</div>Antrenman</button>
+<button onclick="show('program',this)"><div>📋</div>Program</button>
+<button onclick="show('calendar',this)"><div>📅</div>Takvim</button>
+<button onclick="show('weight',this)"><div>⚖️</div>Tartı</button>
+<button onclick="show('rank',this)"><div>🏆</div>Rütbe</button>
+</div></nav>
+</div>
+
+<div class="modal" id="modal"><div class="sheet"><button class="btn close" onclick="closeModal()">✕</button><div id="modalBody"></div></div></div>
+
+<script>
+const KEY='896FIT_V18_DATA';
+const today=()=>new Date().toISOString().slice(0,10);
+const load=()=>JSON.parse(localStorage.getItem(KEY)||localStorage.getItem('896FIT_V17_DATA')||localStorage.getItem('896FIT_V16_DATA')||localStorage.getItem('896FIT_V15_DATA')||localStorage.getItem('896FIT_V14_DATA')||localStorage.getItem('896FIT_V13_DATA')||localStorage.getItem('896FIT_V12_DATA')||'null')||{
+ name:'Şampiyon',xp:0,steps:0,water:0,sets:0,reps:0,workouts:0,meals:[],weights:[],
+ startWeight:null,weighDay:0,joke:true,calorieTarget:2000,programs:[],programMoves:[],workoutLogs:[],claimed:{},activeDay:today(),streakDays:[],live:null
+};
+let data=load(); data.workoutLogs=data.workoutLogs||[]; data.calorieTarget=data.calorieTarget||2000; const save=()=>localStorage.setItem(KEY,JSON.stringify(data));
+
+const foodPhoto={
+'Yumurta':'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=700&q=85',
+'Tavuk Göğsü':'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=700&q=85',
+'Pirinç Pilavı':'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=85',
+'Bulgur Pilavı':'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=85',
+'Mercimek Çorbası':'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85',
+'Tarhana Çorbası':'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=700&q=85',
+'Salata':'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=85',
+'Yoğurt':'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=85',
+'Ayran':'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=700&q=85',
+'Tavuk Döner':'https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=700&q=85',
+'Hamburger':'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=85',
+'Pizza':'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=85',
+'Patates Kızartması':'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=85',
+'Baklava':'https://images.unsplash.com/photo-1519671282427-5d7f5c0e3b4a?auto=format&fit=crop&w=700&q=85',
+'Sütlü Tatlı':'https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=700&q=85',
+'Çikolata':'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=700&q=85',
+'Muz':'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=700&q=85',
+'Elma':'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=700&q=85'
+};
+const foodFallback='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=700&q=85';
+function foodImg(name){return foodPhoto[name]||foodFallback}
+
+const foods=[
+['Yumurta','Temel','1 adet',78],['Tavuk Göğsü','Protein','150 g',248],['Pirinç Pilavı','Ana Yemek','1 tabak',320],
+['Bulgur Pilavı','Ana Yemek','1 tabak',230],['Mercimek Çorbası','Çorba','1 kase',180],['Tarhana Çorbası','Çorba','1 kase',140],
+['Salata','Sebze','1 tabak',80],['Yoğurt','Süt Ürünü','1 kase',120],['Ayran','İçecek','1 bardak',70],
+['Tavuk Döner','Fastfood','1 porsiyon',620],['Hamburger','Fastfood','1 adet',650],['Pizza','Fastfood','2 dilim',560],
+['Patates Kızartması','Fastfood','1 porsiyon',450],['Baklava','Tatlı','2 dilim',420],['Sütlü Tatlı','Tatlı','1 porsiyon',280],
+['Çikolata','Tatlı','1 paket',250],['Muz','Meyve','1 adet',100],['Elma','Meyve','1 adet',80]
+];
+const photo={bench:'https://kinvent.com/wp-content/uploads/2025/06/bench-press-test-k-power-1024x704.jpg',bench2:'https://cdn.mos.cms.futurecdn.net/v2/t%3A0%2Cl%3A420%2Ccw%3A1080%2Cch%3A1080%2Cq%3A80%2Cw%3A1080/q9Mq9jDuaRgSpgWZro5YVV.jpg',squat:'https://www.hola.com/horizon/original_aspect_ratio/42094f110f7b-sentadilla-a.jpg',push:'https://marottamd.com/assets/img/blog/more-men-are-making-changes-in-terms-of-their-physical-appearance_16001219_40028106_1_14123602_500.jpg',row:'https://gigasnutrition.com/cdn/shop/articles/1555482883_2960x4440.jpg?v=1655973284',shoulder:'https://cdn.prod.website-files.com/65a9807c0c3859eb41e9e6b5/65ba28f8a220eb7bf4f8886f_A7409002%201-p-500.jpg',lunge:'https://i.pinimg.com/originals/bd/e5/16/bde51637bcc2c0ff46d8547319d41bed.png',band:'https://i.pinimg.com/originals/00/22/3f/00223f72ea6ca60cfcccf5da27847540.jpg',plank:'https://bucket.index.hr/b/index/images2/plansjsjha.JPG',curl:'https://img.magnific.com/premium-photo/man-dumbbell-body-studio-workout-muscle-fitness-white-background-with-bicep-athlete-gym-training-sports-exercise-wellness-as-bodybuilder-with-weights-power_590464-376092.jpg?q=80&semt=ais_hybrid&w=740'};
+const moves=[['Dumbbell Bench Press','Göğüs','Orta','Dumbbell','bench'],['Incline Dumbbell Press','Göğüs','Orta','Dumbbell','bench'],['Push Up','Göğüs','Kolay','Vücut Ağırlığı','push'],['Cable Fly','Göğüs','Orta','Cable','bench'],['Dumbbell Row','Sırt','Orta','Dumbbell','row'],['Lat Pulldown','Sırt','Orta','Cable','row'],['Dumbbell Shoulder Press','Omuz','Orta','Dumbbell','shoulder'],['Lateral Raise','Omuz','Kolay','Dumbbell','shoulder'],['Resistance Band Shoulder Press','Omuz','Orta','Direnç Bandı','band'],['Biceps Curl','Biceps','Kolay','Dumbbell','curl'],['Hammer Curl','Biceps','Kolay','Dumbbell','curl'],['Triceps Extension','Triceps','Orta','Dumbbell','push'],['Band Biceps Curl','Biceps','Kolay','Direnç Bandı','band'],['Band Triceps Pushdown','Triceps','Orta','Direnç Bandı','band'],['Goblet Squat','Bacak','Orta','Dumbbell','squat'],['Dumbbell Lunge','Bacak','Orta','Dumbbell','lunge'],['Bodyweight Squat','Bacak','Kolay','Vücut Ağırlığı','squat'],['Romanian Deadlift','Bacak','Zor','Dumbbell','row'],['Band Squat','Bacak','Orta','Direnç Bandı','band'],['Calf Raise','Baldır','Kolay','Vücut Ağırlığı','squat'],['Plank','Karın','Kolay','Vücut Ağırlığı','plank'],['Crunch','Karın','Kolay','Vücut Ağırlığı','plank'],['Mountain Climber','Karın','Orta','Vücut Ağırlığı','push'],['Band Pallof Press','Karın','Orta','Direnç Bandı','band'],['Treadmill Walk','Kardiyo','Kolay','Treadmill','lunge'],['Treadmill Incline Walk','Kardiyo','Orta','Treadmill','lunge'],['Kettlebell Swing','Full Body','Zor','Kettlebell','squat'],['Barbell Squat','Bacak','Zor','Barbell','squat'],['Barbell Bench Press','Göğüs','Zor','Barbell','bench']];
+const moveInfo={
+'Dumbbell Bench Press':{target:'Göğüs',secondary:'Triceps • Ön omuz',what:'İki dumbbell ile göğüs kaslarını hedefleyen yatay itiş hareketidir.',steps:['Sırtını sehpaya yerleştir, ayakları yere bas ve dumbbellları göğüs yanında tut.','Dirsekleri kontrollü bükerek ağırlıkları göğse indir; bilekleri nötr tut.','Göğsü sıkıp dumbbellları kontrollü yukarı it ve başlangıca dön.'],tips:'Ağırlığı savurma; bilekleri bükme.',tempo:'10–12 tekrar ≈ 45–60 sn'},
+'Incline Dumbbell Press':{target:'Üst göğüs',secondary:'Ön omuz • Triceps',what:'Eğimli sehpada yapılan ve üst göğüs bölgesini hedefleyen press hareketidir.',steps:['Eğimli sehpaya sırtını tamamen yerleştir ve dumbbellları üst göğüs yanında konumlandır.','Dirsekleri kontrollü indirerek ağırlıkları göğse yaklaştır.','Dumbbellları yukarı iterek başlangıca dön.'],tips:'Omuzları öne düşürme.',tempo:'8–12 tekrar ≈ 45–60 sn'},
+'Push Up':{target:'Göğüs',secondary:'Triceps • Ön omuz • Karın',what:'Vücut ağırlığıyla yapılan temel itiş hareketidir.',steps:['Ellerini omuzlardan biraz geniş yerleştir ve baştan topuklara düz çizgi oluştur.','Dirsekleri yaklaşık 30–45° açıyla bükerek göğsü kontrollü indir.','Yeri iterek gövdeyi tek parça halinde yukarı çıkar.'],tips:'Belin çökmesine veya kalçanın yükselmesine izin verme.',tempo:'8–15 tekrar ≈ 30–60 sn'},
+'Cable Fly':{target:'Göğüs',secondary:'Ön omuz',what:'Kablo kollarını öne ve içeri getirerek göğüs kaslarını izole eden harekettir.',steps:['Kabloyu göğüs hizasına ayarla; dirsekleri hafif kırık tut.','Kolları öne-içeri doğru kontrollü bir yay çizerek birleştir.','Göğüs gerilimini koruyarak başlangıca yavaşça dön.'],tips:'Ağırlığı momentumla çekme.',tempo:'10–15 tekrar ≈ 45–60 sn'},
+'Dumbbell Row':{target:'Sırt',secondary:'Biceps • Arka omuz',what:'Tek kol çekişiyle sırt kaslarını hedefleyen harekettir.',steps:['Bir el ve dizini sehpaya koy; sırtı nötr tut.','Dirseği kalçaya doğru sürerek dumbbellı yukarı çek.','Omuzu döndürmeden ağırlığı kontrollü indir.'],tips:'Gövdeyi döndürme veya ağırlığı savurma.',tempo:'10–12 tekrar/kol ≈ 50–70 sn'},
+'Lat Pulldown':{target:'Kanat (Lat)',secondary:'Biceps • Üst sırt',what:'Üstten tutulan barı göğse doğru çekerek sırtı çalıştıran harekettir.',steps:['Dizleri pedin altına sabitle, göğsü hafifçe kaldır.','Dirsekleri aşağı-geriye sürerek barı üst göğse doğru çek.','Barı kontrol ederek kolları uzat ve başlangıca dön.'],tips:'Barı enseye çekme; gövdeyi aşırı geriye yatırma.',tempo:'10–12 tekrar ≈ 45–60 sn'},
+'Dumbbell Shoulder Press':{target:'Omuz',secondary:'Triceps',what:'Dumbbellları omuz hizasından baş üstüne ittiğin dikey itiş hareketidir.',steps:['Dumbbellları omuz yanında, bilekleri düz tut.','core bölgesini sabitleyip ağırlıkları baş üstüne doğru it.','Kontrollü şekilde omuz hizasına indir.'],tips:'Belden aşırı geriye yaslanma.',tempo:'8–12 tekrar ≈ 45–60 sn'},
+'Lateral Raise':{target:'Yan omuz',secondary:'Omuz',what:'Kolları yana kaldırarak omuzun yan bölümünü hedefleyen izolasyon hareketidir.',steps:['Dumbbellları yanlarda tut; dirsekleri hafif kır.','Kolları omuz hizasına yaklaşacak kadar yana kaldır.','Yavaşça başlangıca indir.'],tips:'Ağırlığı savurma ve omuzları kulaklara çekme.',tempo:'12–15 tekrar ≈ 45–60 sn'},
+'Resistance Band Shoulder Press':{target:'Omuz',secondary:'Triceps',what:'Direnç bandıyla omuz hizasından baş üstüne yapılan dikey itiştir.',steps:['Bandın üzerine güvenli bas ve uçlarını omuz hizasına getir.','core bölgesini sabitleyip elleri baş üstüne it.','Bandın çekişini kontrol ederek başlangıca dön.'],tips:'Bandın ayağından kaymadığından emin ol.',tempo:'10–15 tekrar ≈ 45–60 sn'},
+'Biceps Curl':{target:'Biceps',secondary:'Ön kol',what:'Dirseği sabit tutarak ağırlığı omuza doğru kıvırdığın izolasyon hareketidir.',steps:['Dirsekleri gövdeye yakın ve kolları aşağıda tut.','Dirseği öne taşımadan dumbbellı omuza doğru kıvır.','Yavaşça aşağı indir.'],tips:'Gövdeyi sallama.',tempo:'10–15 tekrar ≈ 45–60 sn'},
+'Hammer Curl':{target:'Biceps • Brachialis',secondary:'Ön kol',what:'Nötr tutuşla yapılan curl varyasyonudur.',steps:['Avuçları birbirine bakacak şekilde dumbbellları tut.','Dirsekleri sabit tutup ağırlıkları yukarı kıvır.','Kontrollü şekilde aşağı indir.'],tips:'Bilekleri bükme.',tempo:'10–15 tekrar ≈ 45–60 sn'},
+'Triceps Extension':{target:'Triceps',secondary:'Dirsek çevresi',what:'Dirseği kontrollü açıp kapatarak arka kolu hedefleyen harekettir.',steps:['Dumbbellı baş üstünde güvenli konumlandır.','Dirsekleri mümkün olduğunca sabit tutarak ağırlığı arkaya indir.','Triceps ile dirsekleri açıp başlangıca dön.'],tips:'Dirsekleri gereksiz yana açma.',tempo:'10–15 tekrar ≈ 45–60 sn'},
+'Band Biceps Curl':{target:'Biceps',secondary:'Ön kol',what:'Bandın sürekli gerilimini kullanarak yapılan biceps curl hareketidir.',steps:['Bandın ortasına bas ve uçlarını tut.','Dirsekleri sabit tutarak elleri omuzlara doğru çek.','Bandı kontrollü şekilde bırak.'],tips:'Bandı ani bırakma.',tempo:'12–15 tekrar ≈ 45–60 sn'},
+'Band Triceps Pushdown':{target:'Triceps',secondary:'Dirsek çevresi',what:'Yukarıdan sabitlenen bandı aşağı iterek triceps çalıştırırsın.',steps:['Bandı güvenli bir noktaya sabitle ve dirsekleri gövdeye yakın tut.','Ellerini aşağı iterek dirsekleri aç.','Kontrollü şekilde başlangıca dön.'],tips:'Sabitleme noktasının sağlam olduğundan emin ol.',tempo:'12–15 tekrar ≈ 45–60 sn'},
+'Goblet Squat':{target:'Ön bacak • Kalça',secondary:'Arka bacak • Karın',what:'Dumbbellı göğüs önünde tutarak yapılan squat varyasyonudur.',steps:['Dumbbellı göğüs önünde iki elle tut; ayakları rahat genişlikte aç.','Kalçayı geriye-aşağı indir, dizleri ayak yönünde takip ettir.','Topuklardan iterek ayağa kalk.'],tips:'Topukları yerden kaldırma.',tempo:'10–15 tekrar ≈ 45–70 sn'},
+'Dumbbell Lunge':{target:'Bacak • Kalça',secondary:'Ön bacak • Karın',what:'Adım alıp alçalarak bacakları sırayla yükleyen harekettir.',steps:['Dik dur ve kontrollü bir adım al.','İki dizi bükerek aşağı in; ön diz ayak yönünde kalsın.','Ön ayaktan iterek başlangıca dön.'],tips:'Denge bozuluyorsa destek kullan.',tempo:'8–10 tekrar/bacak ≈ 60–80 sn'},
+'Bodyweight Squat':{target:'Bacak',secondary:'Kalça • Karın',what:'Ekipmansız temel çömelme hareketidir.',steps:['Ayakları rahat genişlikte aç ve gövdeyi dik tut.','Kalçayı geriye-aşağı indir, dizleri ayak yönünde takip ettir.','Topuklardan iterek ayağa kalk.'],tips:'Form bozuluyorsa hareket aralığını azalt.',tempo:'12–15 tekrar ≈ 45–60 sn'},
+'Romanian Deadlift':{target:'Arka bacak • Kalça',secondary:'Sırt • Karın',what:'Kalçadan menteşe yaparak arka bacak ve kalçayı yükleyen harekettir.',steps:['Dizleri hafif kır, dumbbellları bacaklara yakın tut.','Kalçayı geriye göndererek ağırlıkları aşağı indir.','Kalçayı öne sürerek başlangıca dön.'],tips:'Sırtı yuvarlama; ağırlığı vücuda yakın tut.',tempo:'8–12 tekrar ≈ 50–70 sn'},
+'Band Squat':{target:'Bacak',secondary:'Kalça • Karın',what:'Direnç bandıyla yapılan squat varyasyonudur.',steps:['Bandı ayakların altına yerleştir ve uçlarını güvenli tut.','Kalçayı geriye-aşağı indir.','Topuklardan iterek ayağa kalk.'],tips:'Bandın ayağından kaymadığından emin ol.',tempo:'12–15 tekrar ≈ 50–70 sn'},
+'Calf Raise':{target:'Baldır',secondary:'Ayak bileği',what:'Topukları kaldırıp indirerek baldır kaslarını hedefler.',steps:['Dik dur ve gerekirse destek al.','Topukları kontrollü şekilde yükselt.','Yavaşça aşağı indir.'],tips:'Zıplama yerine kontrollü hareket et.',tempo:'15–20 tekrar ≈ 45–60 sn'},
+'Plank':{target:'Karın',secondary:'Omuz • Kalça',what:'Gövdeyi sabit tutarak merkez bölgenin dayanıklılığını geliştiren izometrik harekettir.',steps:['Dirsekleri omuz altına yerleştir ve ayakları geriye al.','Baş-kalça-topuk çizgisini koru.','Nefesini tutmadan pozisyonu sürdür.'],tips:'Bel çöküyorsa süreyi azalt.',tempo:'20–45 sn'},
+'Crunch':{target:'Karın',secondary:'Merkez bölge',what:'Gövdenin üst kısmını kontrollü kıvırarak karın kaslarını çalıştırır.',steps:['Sırtüstü yat, dizleri bük ve ayakları yere koy.','Karını sıkarak omuzları hafifçe kaldır.','Boynu çekmeden aşağı dön.'],tips:'Ellerle başı çekme.',tempo:'12–20 tekrar ≈ 40–60 sn'},
+'Mountain Climber':{target:'Karın',secondary:'Omuz • Kalça',what:'Plank pozisyonunda dizleri sırayla göğse çektiğin dinamik harekettir.',steps:['Yüksek plank pozisyonu al.','Bir dizi göğse çek.','Bacakları kontrollü şekilde değiştir.'],tips:'Hız uğruna kalça pozisyonunu bozma.',tempo:'30–45 sn'},
+'Band Pallof Press':{target:'Core',secondary:'Omuz • Kalça',what:'Bandın yana çekişine karşı gövdeyi döndürmeden sabit tuttuğun anti-rotasyon hareketidir.',steps:['Bandı yanda güvenli şekilde sabitle ve yana dön.','Bandı göğüs önünde tut.','Kolları öne uzat, gövdeyi döndürmeden geri getir.'],tips:'Bandın yönüne doğru dönme.',tempo:'8–12 tekrar/yan ≈ 45–60 sn'},
+'Treadmill Walk':{target:'Kardiyo',secondary:'Bacak • Kalça',what:'Yürüyüş bandında kontrollü tempoda yapılan kardiyo aktivitesidir.',steps:['Rahat tempoda başlayıp birkaç dakika ısın.','Gövdeyi dik ve adımı doğal tut.','Konuşmayı mümkün kılan kontrollü tempoda ilerle.'],tips:'Hız ve eğimi kademeli değiştir.',tempo:'10–30 dk'},
+'Treadmill Incline Walk':{target:'Kardiyo • Kalça',secondary:'Baldır • Bacak',what:'Eğimli yürüyüş bandı yürüyüşüdür.',steps:['Düz zeminde ısın, sonra eğimi kademeli artır.','Adımları kısa ve kontrollü tut.','Efor fazla yükselirse hızı veya eğimi azalt.'],tips:'Konsola asılarak vücut ağırlığını taşımamaya çalış.',tempo:'10–25 dk'},
+'Kettlebell Swing':{target:'Kalça • Arka bacak',secondary:'Sırt • Karın',what:'Kalça menteşesinden güç üreterek kettlebellı öne taşıdığın dinamik harekettir.',steps:['Kalçayı geriye gönderip kettlebellı iki elle tut.','Kalçayı güçlü öne sürerek kettlebellı yükselt.','Ağırlığı kollarla değil kalça hareketiyle yönlendirip kontrollü geri al.'],tips:'Belden çekme; önce hareket tekniğini öğren.',tempo:'10–15 tekrar ≈ 40–60 sn'},
+'Barbell Squat':{target:'Bacak • Kalça',secondary:'Karın • Sırt',what:'Barbellı sırt üzerinde sabitleyip çömelip kalktığın temel çok eklemli harekettir.',steps:['Barı güvenli şekilde yerleştir ve ayakları rahat genişlikte aç.','core bölgesini sabitleyip kalçayı geriye-aşağı indir.','Topuklardan güç alarak ayağa kalk.'],tips:'Tekniği öğrenmeden ağır yük kullanma; güvenli ekipman ve gözetim kullan.',tempo:'6–10 tekrar ≈ 45–70 sn'},
+'Barbell Bench Press':{target:'Göğüs',secondary:'Triceps • Ön omuz',what:'Barı göğse doğru kontrollü indirip yukarı ittiğin temel yatay itiş hareketidir.',steps:['Bench üzerine uzan; ayakları yere bas ve kürek kemiklerini geriye-aşağı sabitle.','Barı kontrollü şekilde göğüs seviyesine indir.','Barı kontrollü yukarı itip başlangıç pozisyonuna dön.'],tips:'Ağır bench hareketini tek başına yapma; uygun gözetim kullan.',tempo:'8–12 tekrar ≈ 45–70 sn'}
+};
+const ranks=[['896 ÇAYLAK','“Daha yeni başladın. Ama başladın.”'],['896 SAVAŞÇI','“Bahanelerle savaş başladı.”'],['896 KOMUTAN','“Artık programı sen yönetiyorsun.”'],['896 TITAN','“Ağırlıklar seni ciddiye alıyor.”'],['896 FATİH','“Bugün de hedefi fethettin.”'],['896 ELİT','“Buraya herkes gelemez.”'],['896 PRIME','“En iyi versiyonuna yaklaşıyorsun.”'],['896 LEGEND','“Artık sen bir istatistik değilsin. ”']];
+const quotes=['Disiplin bugün zorlar, yarın özgürleştirir.','Küçük adımlar da ilerlemedir.','Bugün kendin için bir şey yaptın mı?','Bahane kısa, sonuç uzun sürer.','Mükemmel olma; devamlı ol.'];
+const surprises=['🎁 +50 XP kazandın!','🎁 Bugünün bonusu: 10 dakika hareket.','🎁 Gizli görev açıldı: 3 ekstra set.','🎁 896 sürprizi: Bugün bir rozet için çok yakınsın!'];
+function show(id,btn){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('on'));if(btn)btn.classList.add('on');renderAll()}
+function toast(t){alert(t)}
+function addXP(n){data.xp+=n;save();renderAll()}
+function renderFoods(){
+ const q=(document.getElementById('foodSearch')?.value||'').toLowerCase(),cat=window.foodCat||'Tümü';
+ document.getElementById('foodCats').innerHTML=['Tümü',...new Set(foods.map(x=>x[1]))].map(c=>`<button class="chip ${c===cat?'on':''}" onclick="window.foodCat='${c}';renderFoods()">${c}</button>`).join('');
+ const list=foods.filter(x=>(cat==='Tümü'||x[1]===cat)&&x[0].toLowerCase().includes(q));
+ document.getElementById('foodList').innerHTML=list.map(x=>`
+  <div class="foodVisual">
+   <img class="foodThumb" src="${foodImg(x[0])}" loading="lazy" alt="${x[0]}" onerror="this.src=foodFallback">
+   <div class="foodInfo"><b>${x[0]}</b><div class="muted">${x[2]} • ${x[3]} kcal</div><span class="foodPill">${x[1]}</span></div>
+   <button class="btn orange" onclick='addFood(${JSON.stringify(x)})'>+</button>
+  </div>`).join('');
+ renderFoodSummary();
+}
+function addFood(x){data.meals.push({date:today(),name:x[0],portion:x[2],cal:x[3]});data.xp+=5;save();toast(`🍽️ ${x[0]} eklendi. +5 XP`);renderAll()}
+function renderFoodSummary(){
+ const meals=data.meals.filter(x=>x.date===today()),cal=meals.reduce((a,x)=>a+(x.cal||0),0),left=Math.max(0,data.calorieTarget-cal);
+ document.getElementById('foodCalTaken').textContent=cal;
+ document.getElementById('foodCalLeft').textContent=left;
+ document.getElementById('foodCalBar').style.width=Math.min(100,cal/data.calorieTarget*100)+'%';
+ document.getElementById('foodCalTargetText').textContent=`Günlük hedef: ${data.calorieTarget} kcal`;
+ document.getElementById('foodMealCount').textContent=`${meals.length} öğün`;
+ document.getElementById('foodHeroImg').src=meals.length?foodImg(meals[meals.length-1].name):foodFallback;
+ document.getElementById('todayMealList').innerHTML=meals.map((x,i)=>`
+  <div class="foodVisual">
+   <img class="foodThumb big" src="${foodImg(x.name)}" loading="lazy" alt="${x.name}" onerror="this.src=foodFallback">
+   <div class="foodInfo"><b>${x.name}</b><div class="muted">${x.portion}</div><span class="foodPill">${x.cal||0} kcal</span></div>
+   <button class="btn" onclick="removeMeal(${i})">✕</button>
+  </div>`).join('')||'<div class="emptyCalendar" style="margin-top:10px">Bugün henüz bir şey eklemedin. İlk öğünü ekleyelim. 😎</div>';
+}
+function removeMeal(i){const ids=data.meals.map((x,idx)=>x.date===today()?idx:-1).filter(x=>x>=0);if(ids[i]===undefined)return;data.meals.splice(ids[i],1);save();toast('Öğün kaldırıldı.');renderAll()}
+function imgForMove(x){const key=x[4]||'squat';return photo[key]||photo.squat}
+function renderCategories(){const box=document.getElementById('categoryGrid');const cats=[['Göğüs','Göğüs'],['Sırt','Sırt'],['Omuz','Omuz'],['Kol','Kol'],['Bacak','Bacak'],['Karın','Karın'],['Full Body','Full Body'],['Ekipmansız','Ekipmansız'],['Direnç Bandı','Direnç Bandı']];box.innerHTML=cats.map(([label,key])=>{let list=key==='Ekipmansız'?moves.filter(x=>x[3]==='Vücut Ağırlığı'):key==='Direnç Bandı'?moves.filter(x=>x[3]==='Direnç Bandı'):key==='Kol'?moves.filter(x=>x[1]==='Biceps'||x[1]==='Triceps'):key==='Full Body'?moves.filter(x=>x[1]==='Full Body'):moves.filter(x=>x[1]===key);const src=list[0]?imgForMove(list[0]):photo.squat;return `<div class="categoryCard" onclick="window.visualCat='${key}';renderMoves();document.getElementById('moveList').scrollIntoView({behavior:'smooth'})"><img src="${src}" loading="lazy" onerror="this.style.opacity='.25'"><div class="categoryInfo"><b>${label}</b><span>${list.length} hareket • Fotoğraflı</span></div></div>`}).join('')}
+function renderMoves(){const q=(document.getElementById('moveSearch')?.value||'').toLowerCase(),cat=window.bodyCat||'Tümü',dif=window.dif||'Tümü',visual=window.visualCat||'Tümü';document.getElementById('bodyCats').innerHTML=['Tümü','Göğüs','Sırt','Omuz','Biceps','Triceps','Bacak','Baldır','Karın','Kardiyo','Full Body'].map(c=>`<button class="chip ${c===cat?'on':''}" onclick="window.bodyCat='${c}';renderMoves()">${c}</button>`).join('');document.getElementById('difficultyCats').innerHTML=['Tümü','Kolay','Orta','Zor'].map(c=>`<button class="chip ${c===dif?'on':''}" onclick="window.dif='${c}';renderMoves()">${c}</button>`).join('');const list=moves.filter(x=>(visual==='Tümü'||(visual==='Ekipmansız'?x[3]==='Vücut Ağırlığı':visual==='Direnç Bandı'?x[3]==='Direnç Bandı':visual==='Kol'?(x[1]==='Biceps'||x[1]==='Triceps'):x[1]===visual))&&(cat==='Tümü'||x[1]===cat)&&(dif==='Tümü'||x[2]===dif)&&x[0].toLowerCase().includes(q));document.getElementById('moveList').innerHTML=list.map(x=>`<div class="moveCard moveTap" onclick='detailMove(${JSON.stringify(x)})'><img class="movePhoto" src="${imgForMove(x)}" loading="lazy" onerror="this.style.opacity='.25'"><div class="moveBody"><div class="row"><div><b>${x[0]}</b><div class="muted target">(${moveInfo[x[0]]?.target||x[1]})</div></div><button class="btn orange" onclick='event.stopPropagation();addMove(${JSON.stringify(x)})'>＋</button></div><div class="moveMeta"><span class="tag">${x[2]}</span><span class="tag">${x[3]}</span><span class="tag">🎯 ${moveInfo[x[0]]?.target||x[1]}</span></div></div></div>`).join('')||'<div class="card"><b>Hareket bulunamadı.</b><p class="muted">Filtreleri değiştirip tekrar deneyelim. 😅</p></div>';renderCategories()}
+function addMove(x){if(!data.programMoves.some(m=>m.name===x[0]))data.programMoves.push({name:x[0],body:x[1],difficulty:x[2],equipment:x[3],sets:3,reps:10,targetSec:60,rest:90});data.xp+=3;save();toast(`➕ ${x[0]} programa eklendi`);renderAll()}
+function moveArrow(type,phase){
+ const down=['bench','squat','lunge','shoulder','curl','band','push','row'].includes(type);
+ const horizontal=type==='row';
+ let path,label;
+ if(type==='plank'){path='<path d="M28 52 C48 42 68 42 88 52" stroke="#ff7600" stroke-width="7" fill="none" stroke-linecap="round" marker-end="url(#a)"/>';label='Gövde sabit • omuzdan topuğa düz çizgi';}
+ else if(horizontal){path=phase===1?'<path d="M76 50 L25 50" stroke="#ff7600" stroke-width="8" fill="none" stroke-linecap="round" marker-end="url(#a)"/>':'<path d="M25 50 L76 50" stroke="#ff7600" stroke-width="8" fill="none" stroke-linecap="round" marker-end="url(#a)"/>';label=phase===1?'Dirseği kalçaya doğru çek':'Ağırlığı kontrollü indir';}
+ else if(phase===1){path='<path d="M55 18 L55 78" stroke="#ff7600" stroke-width="8" fill="none" stroke-linecap="round" marker-end="url(#a)"/>';label=type==='squat'||type==='lunge'?'Kalçayı kontrollü aşağı gönder':'Ağırlığı kontrollü indir';}
+ else if(phase===2){path='<path d="M55 78 L55 18" stroke="#ff7600" stroke-width="8" fill="none" stroke-linecap="round" marker-end="url(#a)"/>';label=type==='squat'||type==='lunge'?'Yerden güç alıp yukarı kalk':'İtiş / kaldırış';}
+ else {path='<path d="M28 65 C44 20 66 20 82 65" stroke="#ff7600" stroke-width="7" fill="none" stroke-linecap="round" marker-end="url(#a)"/>';label='Kontrollü dönüş';}
+ return `<svg class="arrowOverlay" viewBox="0 0 110 95" preserveAspectRatio="none" aria-hidden="true"><defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#ff7600"/></marker></defs>${path}</svg><span class="arrowLabel">${label}</span>`;
+}
+function arrowPhoto(src,type,phase,cls=''){return `<div class="photoArrowWrap ${cls}"><img src="${src}" loading="lazy" onerror="this.style.opacity='.25'">${moveArrow(type,phase)}</div>`}
+function detailMove(x){
+ const info=moveInfo[x[0]]||{target:x[1],secondary:'',what:`${x[0]} hareketi ${x[1]} bölgesini hedefler.`,steps:['Başlangıç pozisyonunu kontrollü al.','Hareketi yavaş ve kontrollü şekilde gerçekleştir.','Başlangıç pozisyonuna kontrollü dön.'],tips:'Form bozuluyorsa dur ve uygun seviyeye dön.',tempo:'Kontrollü tempo'};
+ const src=imgForMove(x),alt=x[0].includes('Bench')?photo.bench2:src,type=x[4]||'squat';
+ document.getElementById('modalBody').innerHTML=`
+ <div class="row"><h2>${x[0]}</h2><button class="btn" onclick="closeModal()">✕</button></div>
+ <p class="muted">🎯 ${info.target}${info.secondary?' • '+info.secondary:''}</p>
+ ${arrowPhoto(src,type,1,'detailHeroArrow')}
+ <p class="photoNote">Gerçek hareket fotoğrafı + yön oku. Turuncu ok, hareketin temel yönünü gösterir.</p>
+ <div class="card"><b>💡 Bu hareket nedir?</b><p>${info.what}</p></div>
+ <div class="card"><b>📖 Nasıl yapılır?</b>
+   <ol class="stepList">
+    ${info.steps.map((z,i)=>`<li><div><b>${['Başlangıç pozisyonu','Kontrollü hareket','Kontrollü dönüş'][i]||'Adım'}</b><br>${z}</div></li>`).join('')}
+   </ol>
+ </div>
+ <div class="card">
+   <b>👀 Gerçek görselle hareketin her aşaması</b>
+   <p class="muted">Fotoğrafın üzerine eklenen ok, o aşamada nereye ve hangi yönde hareket etmen gerektiğini gösterir.</p>
+   <div class="phaseGrid">
+     <div class="phaseCard">${arrowPhoto(src,type,3)}<b>1. Başlangıç / hazırlık</b></div>
+     <div class="phaseCard">${arrowPhoto(alt,type,1)}<b>2. Kontrollü iniş / çekiş</b></div>
+     <div class="phaseCard">${arrowPhoto(src,type,2)}<b>3. İtiş / dönüş</b></div>
+   </div>
+   <p class="muted" style="margin-top:10px">Önce pozisyonu kur → yavaş hareket et → kontrol ederek başlangıca dön.</p>
+ </div>
+ <div class="card"><b>⚠️ Dikkat</b><p>${info.tips}</p>
+   <div class="grid"><div class="stat"><b>${x[2]}</b><span>Zorluk</span></div><div class="stat"><b>${info.tempo}</b><span>Önerilen tempo</span></div></div>
+ </div>
+ <button class="btn orange" style="width:100%" onclick='addMove(${JSON.stringify(x)});closeModal()'>＋ Programa Ekle</button>`;
+ document.getElementById('modal').classList.add('open')
+}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function renderEquipment(){
+ const names=['Dumbbell','Direnç Bandı','Barbell','Kettlebell','Cable','Treadmill','Vücut Ağırlığı'];document.getElementById('equipSelect').innerHTML=names.map(n=>`<option>${n}</option>`).join('');
+ const e=document.getElementById('equipSelect').value;document.getElementById('equipLevel').innerHTML=(e==='Dumbbell'?['2.5 kg','5 kg','10 kg','20 kg','40 kg','60 kg','80 kg']:e==='Direnç Bandı'?['Hafif','Orta','Ağır','Çok ağır']:['Standart']).map(x=>`<option>${x}</option>`).join('');
+ const list=moves.filter(x=>x[3]===e);document.getElementById('equipmentResult').innerHTML=`<div class="card"><b>${e} ile yapılabilecek ${list.length} hareket</b>${list.map(x=>`<div class="equip"><div class="grow"><b>${x[0]}</b><div class="muted">${x[1]} • ${x[2]}</div></div><button class="btn orange" onclick='addMove(${JSON.stringify(x)})'>+</button></div>`).join('')}</div>`;
+}
+function addProgram(){let day=prompt('Program günü (Pazartesi, Salı...)','Pazartesi');if(!day)return;data.programs.push({day,name:day+' Programı',moves:[]});save();renderAll()}
+function renderPrograms(){const defaults=data.programs.length?data.programs:[{day:'Pazartesi',name:'Üst Vücut'},{day:'Salı',name:'Alt Vücut + Karın'},{day:'Çarşamba',name:'Dinlenme'}];document.getElementById('programList').innerHTML=defaults.map((p,i)=>`<div class="program"><div class="iconbox">📋</div><div class="grow"><b>${p.day}</b><div class="muted">${p.name} • ${data.programMoves.length} hareket • ${data.programMoves.reduce((a,m)=>a+m.sets,0)} set</div></div><button class="btn orange" onclick="startProgram(${i})">▶ Başlat</button></div>`).join('');document.getElementById('programMoves').innerHTML=data.programMoves.length?data.programMoves.map((m,i)=>`<div class="move"><div class="grow"><b>${m.name}</b><div class="muted">(${m.body}) • ${m.equipment}</div><div class="row" style="margin-top:7px"><button class="btn" onclick="changeMove(${i},'sets',-1)">−</button><span>${m.sets} set × ${m.reps} tekrar</span><button class="btn" onclick="changeMove(${i},'sets',1)">+</button></div></div><button class="btn" onclick="changeMove(${i},'reps',-1)">− tekrar</button><button class="btn" onclick="changeMove(${i},'reps',1)">+ tekrar</button></div>`).join(''):'Henüz hareket eklemedin. Antrenman sekmesinden + ile ekleyebilirsin.'}
+function startProgram(){if(!data.programMoves.length)return toast('Önce programa hareket ekle.');show('live');startLive()}
+function changeMove(i,k,d){data.programMoves[i][k]=Math.max(1,data.programMoves[i][k]+d);save();renderPrograms()}
+let effortPeriod='week';
+function periodStart(period){const d=new Date();d.setHours(0,0,0,0);if(period==='week'){const day=d.getDay();d.setDate(d.getDate()-(day===0?6:day-1))}else if(period==='month'){d.setDate(1)}else{d.setMonth(0,1)}return d.toISOString().slice(0,10)}
+function renderWeight(){let last=data.weights.at(-1)?.weight??data.startWeight,prev=data.weights.length>1?data.weights[data.weights.length-2].weight:null,change=last!=null&&prev!=null?last-prev:null;document.getElementById('weightSummary').innerHTML=`<div class="grid"><div class="stat"><b>${data.startWeight??'—'}</b><span>🏁 Başlangıç</span></div><div class="stat"><b>${last??'—'}</b><span>⚖️ Son ölçüm</span></div><div class="stat"><b>${data.startWeight!=null&&last!=null?(last-data.startWeight).toFixed(1):'—'}</b><span>Toplam değişim</span></div><div class="stat"><b>${data.weights.length}</b><span>Tartım kaydı</span></div></div>`;document.getElementById('weightHistory').innerHTML=data.weights.slice().reverse().map(w=>`<div class="row" style="padding:10px 0;border-bottom:1px solid #242424"><span>${w.date}</span><b>${w.weight} kg</b></div>`).join('')||'<span class="muted">Henüz tartım kaydı yok.</span>';document.getElementById('weighDay').innerHTML=['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'].map((x,i)=>`<option value="${i}" ${i===data.weighDay?'selected':''}>${x}</option>`).join('');document.getElementById('weightMessage').textContent=change===null?'İlk tartımını kaydet. Başlangıç noktanı birlikte takip edeceğiz. 💪':change<0?`🔥 Geçen haftaya göre ${Math.abs(change).toFixed(1)} kg daha aşağıdasın. Emeğin tartıda görünüyor. Gurur duyabilirsin. 😎`:change===0?'💪 Tartı aynı. Tek bir ölçüm bütün emeğini anlatmaz. Devam ediyoruz.':'🟠 Bu hafta ölçüm yükselmiş olabilir. Moral bozmak yok; asıl önemli olan uzun vadeli gidişat ve verdiğin emek.';renderEffort()}
+function addWeight(){let v=parseFloat(document.getElementById('weightInput').value);if(!v)return;let prev=data.weights.at(-1)?.weight;if(data.startWeight===null){data.startWeight=v;toast('🏁 Başlangıç kilon kaydedildi. Bundan sonra korunacak.')}data.weights.push({date:today(),weight:v});data.xp+=20;save();document.getElementById('weightInput').value='';toast(prev==null?'⚖️ Başlangıç kilon kaydedildi.':v<prev?`🔥 ${(prev-v).toFixed(1)} kg değişim. İyi iş!`:'💪 Kayıt alındı. Yolculuk devam ediyor.');renderAll()}
+function saveWeightDay(){data.weighDay=+document.getElementById('weighDay').value;save()}
+function resetStartWeight(){if(confirm('Başlangıç kilosunu gerçekten sıfırlamak istiyor musun?')){data.startWeight=null;save();renderAll()}}
+function setEffortPeriod(p,btn){effortPeriod=p;document.querySelectorAll('#weight .chip').forEach(x=>x.classList.remove('on'));btn.classList.add('on');renderEffort()}
+function renderEffort(){const p=effortPeriod||'week',start=periodStart(p),meals=data.meals.filter(x=>x.date>=start&&x.date<=today()),logs=data.workoutLogs.filter(x=>x.date>=start&&x.date<=today()),sets=logs.reduce((a,x)=>a+(x.sets||0),0),cal=meals.reduce((a,x)=>a+(x.cal||0),0),secs=logs.reduce((a,x)=>a+(x.seconds||0),0);document.getElementById('effortSets').textContent=sets;document.getElementById('effortCalories').textContent=cal;document.getElementById('effortHours').textContent=`${Math.floor(secs/3600)}s ${Math.floor(secs%3600/60)}dk`;document.getElementById('effortWorkouts').textContent=logs.length;document.getElementById('effortMessage').textContent=logs.length?`Bu ${p==='week'?'hafta':p==='month'?'ay':'yıl'} verdiğin emek burada: ${logs.length} antrenman, ${sets} set ve ${Math.floor(secs/60)} dakika. Sonucu değil, süreci de görüyorsun. 🖤🟧`:'Bu dönemde henüz antrenman kaydı yok. İlk adımı atınca burada birikecek. 💪'}
+function renderMissions(){let done=data.claimed[today()]||{};let ms=[['water','💧 2.5 L su iç',20],['steps','🚶 5.000 adım at',20],['sets','🏋️ 20 set tamamla',25],['meal','🍽️ Öğünlerini kaydet',15]];document.getElementById('missionList').innerHTML=ms.map(m=>{let cur=m[0]==='water'?data.water:m[0]==='steps'?data.steps:m[0]==='sets'?data.sets:data.meals.filter(x=>x.date===today()).length;let ok=!!done[m[0]]||cur>=(m[0]==='water'?2.5:m[0]==='steps'?5000:m[0]==='sets'?20:1);return `<div class="mission"><div class="grow"><b>${m[1]}</b><div class="${ok?'good':'muted'}">${ok?'Tamamlandı ✅':'Devam ediyor'}</div></div><span>+${m[2]} XP</span></div>`}).join('')}
+function claimSurprise(){let k=today();if(data.claimed[k]?.surprise)return toast('Bugünün sürprizini zaten aldın 😅');data.claimed[k]={...(data.claimed[k]||{}),surprise:true};data.xp+=50;save();toast('🎁 +50 XP! Bugünün sürprizi alındı.');renderAll()}
+function renderRank(){
+ let idx=Math.min(ranks.length-1,Math.floor(data.xp/500)),base=idx*500,next=(idx+1)*500;
+ document.getElementById('rankName').textContent=ranks[idx][0];
+ document.getElementById('rankDesc').textContent=ranks[idx][1];
+ const pct=idx===ranks.length-1?100:Math.min(100,((data.xp-base)/(next-base))*100);
+ document.getElementById('rankBar').style.width=pct+'%';
+ document.getElementById('rankXp').textContent=`${data.xp} XP • sonraki rütbe: ${idx<ranks.length-1?next+' XP':'MAKSİMUM'}`;
+ document.getElementById('rankSets').textContent=data.sets;
+ document.getElementById('rankSteps').textContent=data.steps;
+ document.getElementById('rankDays').textContent=new Set(data.weights.map(x=>x.date)).size+data.workouts;
+ document.getElementById('rankStreak').textContent=`🔥 ${currentStreak()} gün seri`;
+ document.getElementById('rankJourney').innerHTML=ranks.map((r,i)=>{
+   const done=i<idx,on=i===idx;
+   const req=i*500;
+   return `<div class="rankStep ${on?'on':''} ${done?'done':''}"><div class="rankOrb">${done?'✓':on?'896':'•'}</div><div class="grow"><b>${r[0]}</b><span>${r[1]} • ${req} XP</span></div>${on?'<span class="orangeText">BURADASIN</span>':done?'<span class="good">Tamam</span>':''}</div>`;
+ }).join('');
+ if(idx<ranks.length-1){
+   document.getElementById('nextRankName').textContent=ranks[idx+1][0];
+   document.getElementById('nextRankText').textContent=`${Math.max(0,next-data.xp)} XP daha kazanırsan ${ranks[idx+1][0]} açılıyor. Her kayıt, set ve görev seni oraya yaklaştırıyor.`;
+   document.getElementById('nextRankBar').style.width=pct+'%';
+ }else{
+   document.getElementById('nextRankName').textContent='LEGEND';
+   document.getElementById('nextRankText').textContent='Maksimum rütbedesin. Artık hedef yeni bir seviye değil, kendi rekorunu geliştirmek.';
+   document.getElementById('nextRankBar').style.width='100%';
+ }
+ const milestones=[['msSets',data.sets>=100],['msWorkouts',data.workouts>=10],['msSteps',data.steps>=50000],['msXp',data.xp>=1000]];
+ milestones.forEach(([id,ok])=>document.getElementById(id).classList.toggle('done',ok));
+}
+function renderHome(){let meals=data.meals.filter(x=>x.date===today()),cal=meals.reduce((s,x)=>s+(x.cal||0),0);document.getElementById('homeCal').textContent=cal;document.getElementById('homeXp').textContent=data.xp;document.getElementById('waterHome').textContent=data.water.toFixed(1)+' L';document.getElementById('stepsHome').textContent=data.steps;document.getElementById('setsHome').textContent=data.sets;document.getElementById('quote').textContent='“'+quotes[new Date().getDay()%quotes.length]+'”';document.getElementById('surprise').textContent=surprises[new Date().getDay()%surprises.length];document.getElementById('surprise2').textContent=surprises[new Date().getDay()%surprises.length];document.getElementById('homeFoods').innerHTML=meals.map(x=>`<div class="food"><div class="grow"><b>${x.name}</b><div class="muted">${x.portion}</div></div><span>${x.cal||0} kcal</span></div>`).join('')||'<span class="muted">Bugün henüz öğün eklenmedi.</span>';document.getElementById('homeMissions').innerHTML='<div class="muted">Görevler hazır. Bugün küçük bir adım bile sayılır. 😎</div>'}
+function dateKey(d){return new Date(d+'T12:00:00').toISOString().slice(0,10)}
+function addDays(key,n){const d=new Date(key+'T12:00:00');d.setDate(d.getDate()+n);return dateKey(d)}
+function monthKey(key){return key.slice(0,7)}
+function logsForDate(d){return data.workoutLogs.filter(x=>x.date===d)}
+function setsForDate(d){return logsForDate(d).reduce((a,x)=>a+(x.sets||0),0)}
+function secondsForDate(d){return logsForDate(d).reduce((a,x)=>a+(x.seconds||0),0)}
+function mealsForDate(d){return data.meals.filter(x=>x.date===d)}
+function calForDate(d){return mealsForDate(d).reduce((a,x)=>a+(x.cal||0),0)}
+function renderCalendarDay(){
+ const input=document.getElementById('calDate');
+ let d=input?.value||today(); if(input)input.value=d;
+ const ms=mealsForDate(d), sets=setsForDate(d), secs=secondsForDate(d), kcal=calForDate(d);
+ const dt=new Date(d+'T12:00:00');
+ const dayName=dt.toLocaleDateString('tr-TR',{weekday:'long'});
+ document.getElementById('calSelectedLabel').textContent=dt.toLocaleDateString('tr-TR',{day:'2-digit',month:'long',year:'numeric'});
+ document.getElementById('calDay').innerHTML=`
+   <div class="grid3">
+    <div class="stat"><b>${ms.length}</b><span>Öğün</span></div>
+    <div class="stat"><b>${kcal}</b><span>Alınan kcal</span></div>
+    <div class="stat"><b>${sets}</b><span>Set</span></div>
+   </div>
+   <div class="card" style="margin:10px 0 0;background:#0e0e0e">
+    <div class="row"><b>${dayName.charAt(0).toUpperCase()+dayName.slice(1)}</b><span class="orangeText">${formatTime(secs)}</span></div>
+    <div class="muted" style="margin-top:5px">${secs?`🏋️ ${Math.floor(secs/60)} dk antrenman kaydı`: 'Henüz tamamlanmış antrenman kaydı yok.'}</div>
+   </div>
+   ${ms.length?`<div style="margin-top:12px"><b>🍽️ Öğünler</b>${ms.map(x=>`<div class="foodVisual"><img class="foodThumb" src="${foodImg(x.name)}" loading="lazy" alt="${x.name}" onerror="this.src=foodFallback"><div class="foodInfo"><b>${x.name}</b><div class="muted">${x.portion}</div></div><span>${x.cal||0} kcal</span></div>`).join('')}</div>`:'<div class="emptyCalendar" style="margin-top:12px">Bu güne kayıtlı öğün yok.</div>'}
+ `;
+ renderCalendarWeek(d);
+ renderCalendarPeriod(d);
+ renderCalendarTimeline(d);
+ const next=ms.length&&sets?`Bugün hem beslenme hem antrenman kaydı var. 🔥 Bu disiplin 896 seviyesidir.`:sets?`Antrenman tamam. Beslenme kaydını da ekleyip günü kapatabilirsin. 😎`:ms.length?`Beslenme tamam. Kısa bir hareket bile bugününü tamamlar. 💪`:`Bugünü boş bırakma. Bir öğün veya kısa bir yürüyüşle takvime iz bırak.`;
+ document.getElementById('calendarNextStep').textContent=next;
+}
+function renderCalendarWeek(selected){
+ const start=addDays(selected,-((new Date(selected+'T12:00:00').getDay()+6)%7));
+ const labels=['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
+ document.getElementById('weekStrip').innerHTML=Array.from({length:7},(_,i)=>{
+   const d=addDays(start,i),ms=mealsForDate(d).length,sets=setsForDate(d),isToday=d===today(),isSel=d===selected;
+   const dd=new Date(d+'T12:00:00').getDate();
+   return `<div class="dayCell ${isToday?'today':''} ${isSel?'selected':''}" onclick="document.getElementById('calDate').value='${d}';renderCalendarDay()"><b>${labels[i]}</b><span>${dd}</span><i class="dayDot ${ms||sets?'active':''}"></i>${sets?`<small style="display:block;color:#57d68d;font-size:9px">${sets} set</small>`:''}</div>`;
+ }).join('');
+}
+function renderCalendarPeriod(selected){
+ const mk=monthKey(selected),monthMeals=data.meals.filter(x=>monthKey(x.date)===mk);
+ const monthLogs=data.workoutLogs.filter(x=>monthKey(x.date)===mk);
+ const active=new Set([...monthMeals.map(x=>x.date),...monthLogs.map(x=>x.date)]).size;
+ const sets=monthLogs.reduce((a,x)=>a+(x.sets||0),0);
+ const secs=monthLogs.reduce((a,x)=>a+(x.seconds||0),0);
+ document.getElementById('calendarPeriodLabel').textContent=new Date(selected+'T12:00:00').toLocaleDateString('tr-TR',{month:'long',year:'numeric'});
+ document.getElementById('calActiveDays').textContent=active;
+ document.getElementById('calMealCount').textContent=monthMeals.length;
+ document.getElementById('calSetCount').textContent=sets;
+ document.getElementById('calWorkoutHours').textContent=(secs/3600).toFixed(1)+'s';
+}
+function renderCalendarTimeline(selected){
+ const start=addDays(selected,-((new Date(selected+'T12:00:00').getDay()+6)%7));
+ const labels=['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'];
+ document.getElementById('calendarTimeline').innerHTML=Array.from({length:7},(_,i)=>{
+   const d=addDays(start,i),ms=mealsForDate(d),sets=setsForDate(d),secs=secondsForDate(d);
+   return `<div class="timelineItem"><div class="timelineIcon">${sets?'🏋️':ms.length?'🍽️':'○'}</div><div class="grow"><b>${labels[i]}</b><div class="muted">${ms.length} öğün • ${sets} set • ${secs?Math.floor(secs/60)+' dk':''}</div></div><span class="${sets?'good':'muted'}">${sets?'Tamamlandı':'Boş'}</span></div>`;
+ }).join('');
+}
+function renderStats(){for(const [id,v] of Object.entries({stSets:data.sets,stReps:data.reps,stSteps:data.steps,stWater:data.water.toFixed(1)+' L',stWorkouts:data.workouts,stMeals:data.meals.length,stDays:new Set(data.meals.map(x=>x.date)).size+data.workouts,stXp:data.xp}))document.getElementById(id).textContent=v}
+let liveTick=null;
+function ensureStreak(){if(!Array.isArray(data.streakDays))data.streakDays=[];}
+function markActiveDay(){ensureStreak();const d=today();if(!data.streakDays.includes(d)){data.streakDays.push(d);data.streakDays=data.streakDays.slice(-365);save()}}
+function currentStreak(){ensureStreak();let set=new Set(data.streakDays),d=new Date();let n=0;for(;;){const key=d.toISOString().slice(0,10);if(!set.has(key))break;n++;d.setDate(d.getDate()-1)}return n}
+function streakVisual(n){if(n>=100)return ['s100','🔥','100+ günlük seri'];if(n>=30)return ['s30','🔥','30 günlük seri'];if(n>=14)return ['s14','🔥','14 günlük seri'];if(n>=7)return ['s7','🔥','7 günlük seri'];if(n>=4)return ['s4','🔥','4 günlük seri'];return ['','🔥',n+' günlük seri']}
+function renderStreak(){markActiveDay();const n=currentStreak(),v=streakVisual(n),ic=document.getElementById('streakIcon');if(!ic)return;ic.className='streakIcon '+v[0];ic.textContent=v[1];document.getElementById('streakTitle').textContent=v[2];document.getElementById('streakMsg').textContent=n>=30?'896 alevi artık kendi kendine yanıyor. 😎':n>=7?'Kıvılcım büyüdü. Devam et. 🔥':'Bugün de bir kıvılcım bıraktın.'}
+function startLive(){if(!data.programMoves.length)return toast('Önce programa hareket ekle.');if(liveTick)clearInterval(liveTick);data.live={active:true,move:0,set:1,phase:'set',seconds:0,restLeft:0,total:0,completedSets:0,completedReps:0};save();renderLive();liveTick=setInterval(()=>{if(!data.live?.active)return;data.live.seconds++;data.live.total++;save();renderLiveTimerOnly()},1000)}
+function setFinished(){if(!data.live?.active)return;const m=data.programMoves[data.live.move];data.sets++;data.reps+=(m?.reps||0);data.xp+=3;data.live.completedSets=(data.live.completedSets||0)+1;data.live.completedReps=(data.live.completedReps||0)+(m?.reps||0);markActiveDay();data.live.phase='rest';data.live.restLeft=m?.rest||90;data.live.seconds=0;save();renderLive();toast('🔥 Set tamam! Şimdi kontrollü dinlen.');}
+function finishRest(){if(!data.live?.active)return;nextLiveSet();}
+function nextLiveSet(){const m=data.programMoves[data.live.move];if(data.live.set<m.sets){data.live.set++;data.live.phase='set';data.live.seconds=0;data.live.restLeft=0}else if(data.live.move<data.programMoves.length-1){data.live.move++;data.live.set=1;data.live.phase='set';data.live.seconds=0;data.live.restLeft=0}else{finishLive();return}save();renderLive()}
+function finishLive(){const total=data.live?.total||0;const completedSets=data.live?.completedSets||0;const completedReps=data.live?.completedReps||0;data.workoutLogs.push({date:today(),seconds:total,sets:completedSets,reps:completedReps});data.workouts++;data.xp+=20;data.live=null;if(liveTick){clearInterval(liveTick);liveTick=null}save();toast(`🏆 Antrenman tamamlandı! ${Math.floor(total/60)} dk ${total%60} sn. 896 onayladı. 😎`);renderAll()}
+function renderLiveTimerOnly(){const t=document.getElementById('liveTimer');if(!t||!data.live)return;const seconds=data.live.phase==='rest'?data.live.restLeft:data.live.seconds;t.textContent=formatTime(data.live.phase==='rest'?Math.max(0,seconds):seconds);t.classList.toggle('warn',data.live.phase==='rest'&&seconds<=10);if(data.live.phase==='rest'&&data.live.restLeft>0){data.live.restLeft--;save();if(data.live.restLeft<=0){toast('💪 Dinlenme bitti! Sıradaki set.');nextLiveSet()}}}
+function formatTime(s){s=Math.max(0,Math.floor(s));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function renderLive(){const box=document.getElementById('liveBox');if(!data.programMoves.length){box.innerHTML='<p class="muted">Önce programa birkaç hareket ekle.</p>';return}if(!data.live?.active){box.innerHTML=`<div class="row"><div><b>Hazır mısın?</b><div class="muted">${data.programMoves.length} hareket • kontrollü tempo</div></div><button class="btn orange" onclick="startLive()">▶ Antrenmanı Başlat</button></div>`;return}const m=data.programMoves[data.live.move];const phase=data.live.phase==='rest';const secs=phase?data.live.restLeft:data.live.seconds;box.innerHTML=`<div class="liveMove">${m.name}</div><div class="liveMeta">(${m.body}) • ${data.live.move+1} / ${data.programMoves.length} hareket</div><div class="card" style="margin-top:14px"><div class="timerWrap"><div><div class="timerLabel">${phase?'DİNLENME':'SET '+data.live.set+' / '+m.sets}</div><div id="liveTimer" class="timer ${phase&&secs<=10?'warn':''}">${formatTime(secs)}</div></div></div><div class="row"><span class="muted">${phase?'Sonraki sete hazırlan':'Hedef: '+m.reps+' tekrar'}</span><span class="orangeText">⏱️ ${m.targetSec||60} sn öneri</span></div><div class="liveBtns">${phase?`<button class="btn orange" onclick="finishRest()">Dinlenmeyi Bitir</button><button class="btn" onclick="finishLive()">Antrenmanı Bitir</button>`:`<button class="btn orange" onclick="setFinished()">Set Bitti • Dinlenmeye Geç</button><button class="btn" onclick="finishLive()">Antrenmanı Bitir</button>`}</div></div>`}
+function renderSettings(){document.getElementById('userName').value=data.name;document.getElementById('jokeMode').value=data.joke?'on':'off'}
+function saveSettings(){data.name=document.getElementById('userName').value||'Şampiyon';data.joke=document.getElementById('jokeMode').value==='on';save();toast('Ayarlar kaydedildi 😎')}
+function renderAll(){renderHome();renderStreak();renderFoods();renderMoves();renderEquipment();renderPrograms();renderWeight();renderMissions();renderRank();renderStats();renderLive();renderSettings();document.getElementById('calDate').value=today();renderCalendarDay()}
+renderAll();
+</script>
+</body>
+</html>
