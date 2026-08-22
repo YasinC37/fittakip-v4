@@ -2422,3 +2422,1886 @@ function addToLive(id) {
         200
     );
  }
+/* =========================================
+   896 FIT V23 — BÖLÜM 4
+   BESLENME + TARTI + TAKVİM + RÜTBE
+   ANA SAYFA + KAYIT SİSTEMİ
+   ========================================= */
+
+
+/* =========================================
+   BESLENME
+   ========================================= */
+
+const FOOD_DATABASE = {
+
+    yumurta: {
+        name: "Yumurta",
+        kcal: 78
+    },
+
+    tavuk: {
+        name: "Tavuk Göğsü",
+        kcal: 165
+    },
+
+    pirinc: {
+        name: "Pirinç",
+        kcal: 130
+    },
+
+    yulaf: {
+        name: "Yulaf",
+        kcal: 150
+    },
+
+    yogurt: {
+        name: "Yoğurt",
+        kcal: 90
+    },
+
+    muz: {
+        name: "Muz",
+        kcal: 105
+    },
+
+    ekmek: {
+        name: "Ekmek",
+        kcal: 80
+    },
+
+    salata: {
+        name: "Salata",
+        kcal: 45
+    },
+
+    patates: {
+        name: "Patates",
+        kcal: 77
+    },
+
+    tonbaligi: {
+        name: "Ton Balığı",
+        kcal: 132
+    },
+
+    peynir: {
+        name: "Peynir",
+        kcal: 264
+    },
+
+    elma: {
+        name: "Elma",
+        kcal: 52
+    },
+
+    diger: {
+        name: "Diğer",
+        kcal: 100
+    }
+};
+
+
+const COOKING_METHODS = {
+
+    haslanmis: {
+        name: "Haşlanmış",
+        multiplier: 1
+    },
+
+    sahanda: {
+        name: "Sahanda",
+        multiplier: 1.35
+    },
+
+    kizartma: {
+        name: "Kızartma",
+        multiplier: 1.6
+    },
+
+    airfryer: {
+        name: "Airfryer",
+        multiplier: 1.12
+    },
+
+    firin: {
+        name: "Fırında",
+        multiplier: 1.10
+    },
+
+    tost: {
+        name: "Tost Makinesinde",
+        multiplier: 1.20
+    },
+
+    cig: {
+        name: "Çiğ / Sade",
+        multiplier: 1
+    }
+};
+
+
+function addFood() {
+
+    const nameInput =
+        document.getElementById("foodName");
+
+    const amountInput =
+        document.getElementById("foodAmount");
+
+    const typeInput =
+        document.getElementById("foodType");
+
+    const methodInput =
+        document.getElementById("foodMethod");
+
+    if (!nameInput) return;
+
+    const name =
+        nameInput.value.trim();
+
+    const amount =
+        Number(amountInput?.value) || 1;
+
+    const type =
+        typeInput?.value || "diger";
+
+    const method =
+        methodInput?.value || "cig";
+
+    if (!name) {
+        toast("🍽️ Önce yemek adını yaz.");
+        return;
+    }
+
+    const food =
+        FOOD_DATABASE[type] ||
+        FOOD_DATABASE.diger;
+
+    const cooking =
+        COOKING_METHODS[method] ||
+        COOKING_METHODS.cig;
+
+    const kcal =
+        Math.round(
+            food.kcal *
+            amount *
+            cooking.multiplier
+        );
+
+    state.foods.unshift({
+
+        id:
+            Date.now() +
+            Math.random(),
+
+        name,
+
+        amount,
+
+        type,
+
+        method,
+
+        kcal,
+
+        date:
+            new Date().toISOString()
+
+    });
+
+    nameInput.value = "";
+
+    if (amountInput)
+        amountInput.value = "1";
+
+    saveState();
+
+    toast(
+        `🍽️ ${kcal} kcal günlüğe eklendi.`
+    );
+}
+
+
+function getTodayFoods() {
+
+    const today =
+        new Date().toDateString();
+
+    return state.foods.filter(
+        food =>
+            new Date(food.date)
+                .toDateString() === today
+    );
+}
+
+
+function getTodayCalories() {
+
+    return getTodayFoods()
+        .reduce(
+            (total, food) =>
+                total + Number(food.kcal || 0),
+            0
+        );
+}
+
+
+function renderFoods() {
+
+    const list =
+        document.getElementById(
+            "foodList"
+        );
+
+    if (!list) return;
+
+    const foods =
+        getTodayFoods();
+
+    const total =
+        foods.reduce(
+            (sum, food) =>
+                sum + Number(food.kcal || 0),
+            0
+        );
+
+    const remaining =
+        Math.max(
+            0,
+            Number(state.target || 2000) -
+            total
+        );
+
+    const target =
+        document.getElementById(
+            "targetKcal"
+        );
+
+    const remain =
+        document.getElementById(
+            "remainingKcal"
+        );
+
+    if (target)
+        target.textContent =
+            state.target || 2000;
+
+    if (remain)
+        remain.textContent =
+            remaining;
+
+    if (!foods.length) {
+
+        list.innerHTML = `
+            <div class="empty">
+
+                🍽️ Bugün henüz yemek eklenmedi.
+
+                <br><br>
+
+                İlk öğününü ekle,
+                takibe başlayalım.
+
+            </div>
+        `;
+
+        return;
+    }
+
+    list.innerHTML =
+        foods.map(food => {
+
+            const method =
+                COOKING_METHODS[
+                    food.method
+                ]?.name ||
+                food.method ||
+                "Sade";
+
+            return `
+                <div class="card">
+
+                    <div class="food">
+
+                        <div
+                            style="
+                                width:74px;
+                                height:74px;
+                                border-radius:15px;
+                                background:
+                                linear-gradient(
+                                    135deg,
+                                    #ff7800,
+                                    #7b3500
+                                );
+                                display:grid;
+                                place-items:center;
+                                font-size:32px;
+                                flex:none;
+                            ">
+                            🍽️
+                        </div>
+
+                        <div
+                            style="flex:1">
+
+                            <h3>
+                                ${escapeHTML(
+                                    food.name
+                                )}
+                            </h3>
+
+                            <div
+                                class="muted small">
+
+                                ${method}
+                                •
+                                ${food.amount}
+                                porsiyon
+
+                            </div>
+
+                            <div class="kcal">
+
+                                ${food.kcal}
+                                kcal
+
+                            </div>
+
+                        </div>
+
+                        <button
+                            class="btn"
+                            onclick="
+                                deleteFoodById(
+                                    '${food.id}'
+                                )
+                            ">
+
+                            Sil
+
+                        </button>
+
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
+}
+
+
+function deleteFoodById(id) {
+
+    const index =
+        state.foods.findIndex(
+            food =>
+                String(food.id) ===
+                String(id)
+        );
+
+    if (index === -1) return;
+
+    state.foods.splice(index, 1);
+
+    saveState();
+
+    toast("🗑️ Yemek silindi.");
+}
+
+
+/* =========================================
+   SU TAKİBİ
+   ========================================= */
+
+function addWater(amount = 0.25) {
+
+    state.water =
+        Number(state.water || 0) +
+        Number(amount);
+
+    state.water =
+        Math.round(
+            state.water * 100
+        ) / 100;
+
+    saveState();
+
+    toast(
+        `💧 ${amount} L su eklendi.`
+    );
+}
+
+
+function resetWater() {
+
+    state.water = 0;
+
+    saveState();
+
+    toast("💧 Su sayacı sıfırlandı.");
+}
+
+
+/* =========================================
+   TARTI
+   ========================================= */
+
+function saveWeight() {
+
+    const currentInput =
+        document.getElementById(
+            "currentWeight"
+        );
+
+    const startInput =
+        document.getElementById(
+            "startWeight"
+        );
+
+    const dayInput =
+        document.getElementById(
+            "weighDay"
+        );
+
+    if (!currentInput) return;
+
+    const current =
+        parseFloat(
+            currentInput.value
+        );
+
+    if (!Number.isFinite(current)) {
+
+        toast(
+            "⚖️ Bugünkü kilonu gir."
+        );
+
+        return;
+    }
+
+    const start =
+        parseFloat(
+            startInput?.value
+        );
+
+    const day =
+        parseInt(
+            dayInput?.value
+        );
+
+    if (
+        Number.isFinite(start)
+    ) {
+
+        state.weight.start =
+            start;
+    }
+
+    if (
+        Number.isFinite(day)
+    ) {
+
+        state.weight.day =
+            day;
+    }
+
+    state.weight.current =
+        current;
+
+    if (!Array.isArray(
+        state.weight.history
+    )) {
+
+        state.weight.history = [];
+    }
+
+    state.weight.history.push({
+
+        id: Date.now(),
+
+        date:
+            new Date().toISOString(),
+
+        weight:
+            current
+    });
+
+    saveState();
+
+    toast(
+        "⚖️ Tartım kaydedildi."
+    );
+}
+
+
+function renderWeight() {
+
+    if (!state.weight)
+        return;
+
+    const start =
+        document.getElementById(
+            "weightStart"
+        );
+
+    const current =
+        document.getElementById(
+            "weightCurrent"
+        );
+
+    const count =
+        document.getElementById(
+            "weighCount"
+        );
+
+    if (start)
+        start.textContent =
+            state.weight.start != null
+            ? state.weight.start + " kg"
+            : "—";
+
+    if (current)
+        current.textContent =
+            state.weight.current != null
+            ? state.weight.current + " kg"
+            : "—";
+
+    if (count)
+        count.textContent =
+            state.weight.history?.length ||
+            0;
+
+    const message =
+        document.getElementById(
+            "weightMessage"
+        );
+
+    const delta =
+        document.getElementById(
+            "weightDelta"
+        );
+
+    if (
+        state.weight.start != null &&
+        state.weight.current != null
+    ) {
+
+        const difference =
+            Number(
+                state.weight.start
+            ) -
+            Number(
+                state.weight.current
+            );
+
+        if (difference > 0) {
+
+            if (message)
+                message.textContent =
+                    "🔥 Harika gidiyorsun!";
+
+            if (delta)
+                delta.textContent =
+                    `Başlangıca göre ${
+                        difference.toFixed(1)
+                    } kg azalma.`;
+
+        } else if (
+            difference === 0
+        ) {
+
+            if (message)
+                message.textContent =
+                    "💪 Süreklilik önemli. Devam!";
+
+            if (delta)
+                delta.textContent =
+                    "Başlangıç kilonla aynı.";
+
+        } else {
+
+            if (message)
+                message.textContent =
+                    "🚀 Vazgeçmek yok!";
+
+            if (delta)
+                delta.textContent =
+                    `Başlangıca göre ${
+                        Math.abs(
+                            difference
+                        ).toFixed(1)
+                    } kg artış.`;
+        }
+
+    } else {
+
+        if (message)
+            message.textContent =
+                "İlk tartımını kaydet.";
+
+        if (delta)
+            delta.textContent =
+                "";
+    }
+
+    const totalSets =
+        document.getElementById(
+            "totalSets"
+        );
+
+    const totalCalories =
+        document.getElementById(
+            "totalCalories"
+        );
+
+    const totalHours =
+        document.getElementById(
+            "totalHours"
+        );
+
+    if (totalSets)
+        totalSets.textContent =
+            state.sets || 0;
+
+    if (totalCalories)
+        totalCalories.textContent =
+            state.foods.reduce(
+                (sum, food) =>
+                    sum +
+                    Number(food.kcal || 0),
+                0
+            );
+
+    if (totalHours)
+        totalHours.textContent =
+            (
+                Number(
+                    state.totalMinutes || 0
+                ) / 60
+            ).toFixed(1);
+
+    renderWeightHistory();
+}
+
+
+function renderWeightHistory() {
+
+    const box =
+        document.getElementById(
+            "weightHistory"
+        );
+
+    if (!box) return;
+
+    const history =
+        state.weight?.history || [];
+
+    if (!history.length) {
+
+        box.innerHTML = `
+            <div class="empty">
+                ⚖️ Henüz tartım kaydı yok.
+            </div>
+        `;
+
+        return;
+    }
+
+    box.innerHTML =
+        history
+            .slice()
+            .reverse()
+            .slice(0, 15)
+            .map(item => `
+
+                <div class="card row">
+
+                    <div>
+
+                        <b>
+                            ${formatDate(
+                                item.date
+                            )}
+                        </b>
+
+                        <div class="muted small">
+                            Tartım kaydı
+                        </div>
+
+                    </div>
+
+                    <b>
+                        ${item.weight} kg
+                    </b>
+
+                </div>
+
+            `)
+            .join("");
+}
+
+
+/* =========================================
+   TAKVİM
+   ========================================= */
+
+let calendarDate =
+    new Date();
+
+
+function changeMonth(amount) {
+
+    calendarDate.setMonth(
+        calendarDate.getMonth() +
+        amount
+    );
+
+    renderCalendar();
+}
+
+
+function renderCalendar() {
+
+    const title =
+        document.getElementById(
+            "monthTitle"
+        );
+
+    const grid =
+        document.getElementById(
+            "calendarGrid"
+        );
+
+    if (!title || !grid)
+        return;
+
+    const year =
+        calendarDate.getFullYear();
+
+    const month =
+        calendarDate.getMonth();
+
+    title.textContent =
+        new Intl.DateTimeFormat(
+            "tr-TR",
+            {
+                month: "long",
+                year: "numeric"
+            }
+        ).format(
+            calendarDate
+        );
+
+    const firstDay =
+        new Date(
+            year,
+            month,
+            1
+        ).getDay();
+
+    const offset =
+        (firstDay + 6) % 7;
+
+    const days =
+        new Date(
+            year,
+            month + 1,
+            0
+        ).getDate();
+
+    const names = [
+        "P",
+        "S",
+        "Ç",
+        "P",
+        "C",
+        "C",
+        "P"
+    ];
+
+    let html = "";
+
+    names.forEach(day => {
+
+        html += `
+            <div
+                class="label"
+                style="text-align:center">
+                ${day}
+            </div>
+        `;
+    });
+
+    for (
+        let i = 0;
+        i < offset;
+        i++
+    ) {
+
+        html += `
+            <div></div>
+        `;
+    }
+
+    let monthWorkouts = 0;
+    let monthMinutes = 0;
+    let monthSets = 0;
+
+    for (
+        let day = 1;
+        day <= days;
+        day++
+    ) {
+
+        const date =
+            new Date(
+                year,
+                month,
+                day
+            );
+
+        const dateString =
+            date.toDateString();
+
+        const workout =
+            state.workouts.some(
+                workout =>
+                    new Date(
+                        workout.date
+                    ).toDateString() ===
+                    dateString
+            );
+
+        if (workout) {
+
+            monthWorkouts++;
+
+            state.workouts
+                .filter(
+                    workout =>
+                        new Date(
+                            workout.date
+                        ).toDateString() ===
+                        dateString
+                )
+                .forEach(
+                    workout => {
+
+                        monthMinutes +=
+                            Number(
+                                workout.minutes ||
+                                0
+                            );
+
+                        monthSets +=
+                            Number(
+                                workout.sets ||
+                                0
+                            );
+                    }
+                );
+        }
+
+        const isToday =
+            dateString ===
+            new Date().toDateString();
+
+        html += `
+
+            <div
+                class="card"
+                style="
+                    padding:9px;
+                    text-align:center;
+                    margin:0;
+                    ${
+                        workout
+                        ? "border-color:#ff7800;"
+                        : ""
+                    }
+                    ${
+                        isToday
+                        ? "box-shadow:0 0 0 1px #ff7800;"
+                        : ""
+                    }
+                ">
+
+                <b>
+                    ${day}
+                </b>
+
+                <div
+                    style="
+                        font-size:18px;
+                        margin-top:4px;
+                    ">
+
+                    ${
+                        workout
+                        ? "🔥"
+                        : isToday
+                        ? "📍"
+                        : "·"
+                    }
+
+                </div>
+
+            </div>
+        `;
+    }
+
+    grid.innerHTML = html;
+
+    const sets =
+        document.getElementById(
+            "monthSets"
+        );
+
+    const hours =
+        document.getElementById(
+            "monthHours"
+        );
+
+    if (sets)
+        sets.textContent =
+            monthSets;
+
+    if (hours)
+        hours.textContent =
+            (
+                monthMinutes / 60
+            ).toFixed(1);
+
+}
+
+
+/* =========================================
+   RÜTBE / XP
+   ========================================= */
+
+const RANKS = [
+
+    {
+        name: "Çaylak",
+        xp: 0,
+        icon: "🥉"
+    },
+
+    {
+        name: "Başlangıç",
+        xp: 100,
+        icon: "⚡"
+    },
+
+    {
+        name: "Disiplinli",
+        xp: 300,
+        icon: "🔥"
+    },
+
+    {
+        name: "Savaşçı",
+        xp: 700,
+        icon: "⚔️"
+    },
+
+    {
+        name: "Şampiyon",
+        xp: 1400,
+        icon: "🏆"
+    },
+
+    {
+        name: "Efsane",
+        xp: 2500,
+        icon: "👑"
+    }
+];
+
+
+function getCurrentRank() {
+
+    let current =
+        RANKS[0];
+
+    for (
+        const rank of RANKS
+    ) {
+
+        if (
+            Number(state.xp || 0) >=
+            rank.xp
+        ) {
+
+            current = rank;
+        }
+    }
+
+    return current;
+}
+
+
+function getNextRank() {
+
+    const current =
+        getCurrentRank();
+
+    return (
+        RANKS.find(
+            rank =>
+                rank.xp >
+                current.xp
+        ) || null
+    );
+}
+
+
+function renderRank() {
+
+    const name =
+        document.getElementById(
+            "rankName"
+        );
+
+    const info =
+        document.getElementById(
+            "rankInfo"
+        );
+
+    const progress =
+        document.getElementById(
+            "rankProgress"
+        );
+
+    const xpText =
+        document.getElementById(
+            "rankXp"
+        );
+
+    const road =
+        document.getElementById(
+            "rankRoad"
+        );
+
+    if (!name || !road)
+        return;
+
+    const xp =
+        Number(state.xp || 0);
+
+    const current =
+        getCurrentRank();
+
+    const next =
+        getNextRank();
+
+    name.textContent =
+        `${current.icon} ${current.name}`;
+
+    if (next) {
+
+        const range =
+            next.xp -
+            current.xp;
+
+        const gained =
+            xp -
+            current.xp;
+
+        const percent =
+            Math.min(
+                100,
+                Math.max(
+                    0,
+                    gained /
+                    range *
+                    100
+                )
+            );
+
+        if (progress)
+            progress.style.width =
+                percent + "%";
+
+        if (info)
+            info.textContent =
+                `Sonraki rütbe: ${next.name}`;
+
+        if (xpText)
+            xpText.textContent =
+                `${xp} XP • ${
+                    next.xp - xp
+                } XP kaldı`;
+
+    } else {
+
+        if (progress)
+            progress.style.width =
+                "100%";
+
+        if (info)
+            info.textContent =
+                "👑 Zirvedesin. Efsane seviyesindesin.";
+
+        if (xpText)
+            xpText.textContent =
+                `${xp} XP • MAKSİMUM RÜTBE`;
+    }
+
+    road.innerHTML =
+        RANKS.map(rank => {
+
+            const unlocked =
+                xp >= rank.xp;
+
+            return `
+
+                <div class="card row">
+
+                    <div>
+
+                        <b>
+                            ${rank.icon}
+                            ${rank.name}
+                        </b>
+
+                        <div
+                            class="muted small">
+
+                            ${rank.xp} XP
+
+                        </div>
+
+                    </div>
+
+                    <span
+                        style="
+                            font-size:22px
+                        ">
+
+                        ${
+                            unlocked
+                            ? "✅"
+                            : "🔒"
+                        }
+
+                    </span>
+
+                </div>
+            `;
+
+        }).join("");
+}
+
+
+/* =========================================
+   ANA SAYFA
+   ========================================= */
+
+function updateHome() {
+
+    const kcal =
+        getTodayCalories();
+
+    const water =
+        Number(
+            state.water || 0
+        );
+
+    const sets =
+        Number(
+            state.sets || 0
+        );
+
+    const homeKcal =
+        document.getElementById(
+            "homeKcal"
+        );
+
+    const homeWater =
+        document.getElementById(
+            "homeWater"
+        );
+
+    const homeSets =
+        document.getElementById(
+            "homeSets"
+        );
+
+    const progress =
+        document.getElementById(
+            "homeProgress"
+        );
+
+    const progressText =
+        document.getElementById(
+            "homeProgressText"
+        );
+
+    if (homeKcal)
+        homeKcal.textContent =
+            kcal;
+
+    if (homeWater)
+        homeWater.textContent =
+            water.toFixed(2) +
+            " L";
+
+    if (homeSets)
+        homeSets.textContent =
+            sets;
+
+    if (progress) {
+
+        const target =
+            Number(
+                state.target || 2000
+            );
+
+        progress.style.width =
+            Math.min(
+                100,
+                kcal /
+                target *
+                100
+            ) + "%";
+    }
+
+    if (progressText) {
+
+        const target =
+            Number(
+                state.target || 2000
+            );
+
+        const remaining =
+            Math.max(
+                0,
+                target - kcal
+            );
+
+        progressText.textContent =
+            `${remaining} kcal kaldı`;
+    }
+
+    const streakText =
+        document.getElementById(
+            "streakText"
+        );
+
+    if (streakText)
+        streakText.textContent =
+            `${state.streak || 0} gün`;
+
+    updateMotivation();
+}
+
+
+/* =========================================
+   MİZAJ / MOTİVASYON
+   ========================================= */
+
+const MOTIVATION_MESSAGES = [
+
+    "Bugün de bahaneye yer yok. 😎",
+
+    "Kaslar şikayet edebilir, hedef etmez. 🔥",
+
+    "Bir set daha. Sonra yine bir set daha. 💪",
+
+    "896 FIT seni izliyor. 👀",
+
+    "Bugünkü sen, dünkü senden güçlü olsun.",
+
+    "Tartı ne derse desin, devamlılık kazanır.",
+
+    "Bahane kalorisi diye bir şey yok. 😂",
+
+    "Antrenmanı erteleme. Yarınki sen teşekkür edecek.",
+
+    "Azar azar değil, düzenli düzenli. 🔥",
+
+    "Bugün kaçmadın. Bu bile başarı. 👊",
+
+    "896 modu: AKTİF. 🟧",
+
+    "Hedef belli. Şimdi iş yapmak lazım. 😎"
+
+];
+
+
+function updateMotivation() {
+
+    const sub =
+        document.querySelector(
+            "#home .hero .sub"
+        );
+
+    if (!sub) return;
+
+    const index =
+        new Date().getDate() %
+        MOTIVATION_MESSAGES.length;
+
+    sub.textContent =
+        MOTIVATION_MESSAGES[index];
+}
+
+
+/* =========================================
+   XP / SERİ
+   ========================================= */
+
+function calculateStreak() {
+
+    if (
+        !Array.isArray(
+            state.workouts
+        ) ||
+        !state.workouts.length
+    ) {
+
+        state.streak = 0;
+
+        return;
+    }
+
+    const dates =
+        [
+            ...new Set(
+                state.workouts.map(
+                    workout =>
+                        new Date(
+                            workout.date
+                        ).toDateString()
+                )
+            )
+        ];
+
+    let streak = 0;
+
+    let checkDate =
+        new Date();
+
+    while (true) {
+
+        const found =
+            dates.includes(
+                checkDate.toDateString()
+            );
+
+        if (!found)
+            break;
+
+        streak++;
+
+        checkDate.setDate(
+            checkDate.getDate() - 1
+        );
+    }
+
+    state.streak =
+        streak;
+}
+
+
+/* =========================================
+   GÜVENLİ HTML METNİ
+   ========================================= */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+}
+
+
+/* =========================================
+   TARİH
+   ========================================= */
+
+function formatDate(date) {
+
+    return new Date(date)
+        .toLocaleDateString(
+            "tr-TR",
+            {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric"
+            }
+        );
+}
+
+
+/* =========================================
+   MODAL
+   ========================================= */
+
+function closeModal() {
+
+    const modal =
+        document.getElementById(
+            "modal"
+        );
+
+    if (!modal)
+        return;
+
+    modal.classList.remove(
+        "open"
+    );
+
+    clearInterval(
+        liveWorkout.timer
+    );
+}
+
+
+function openModal(html) {
+
+    const modal =
+        document.getElementById(
+            "modal"
+        );
+
+    const content =
+        document.getElementById(
+            "modalContent"
+        );
+
+    if (!modal || !content)
+        return;
+
+    content.innerHTML =
+        html;
+
+    modal.classList.add(
+        "open"
+    );
+}
+
+
+/* =========================================
+   LOCAL STORAGE
+   ========================================= */
+
+function saveState() {
+
+    calculateStreak();
+
+    try {
+
+        localStorage.setItem(
+            "896fit_v23",
+            JSON.stringify(state)
+        );
+
+    } catch (error) {
+
+        console.error(
+            "896 FIT kayıt hatası:",
+            error
+        );
+
+        toast(
+            "⚠️ Veriler kaydedilemedi."
+        );
+
+        return;
+    }
+
+    updateAll();
+}
+
+
+/* Eski save() fonksiyonuyla
+   uyumluluk */
+
+function save() {
+    saveState();
+}
+
+
+/* =========================================
+   ESKİ V22 VERİLERİNİ KORUMA
+   ========================================= */
+
+function migrateOldData() {
+
+    try {
+
+        const old =
+            localStorage.getItem(
+                "896fit_v22"
+            );
+
+        if (!old)
+            return;
+
+        const oldData =
+            JSON.parse(old);
+
+        if (
+            !state.foods.length &&
+            Array.isArray(
+                oldData.foods
+            )
+        ) {
+
+            state.foods =
+                oldData.foods;
+        }
+
+        if (
+            !state.workouts.length &&
+            Array.isArray(
+                oldData.workouts
+            )
+        ) {
+
+            state.workouts =
+                oldData.workouts;
+        }
+
+        if (
+            !state.weight.history.length &&
+            oldData.weight?.history
+        ) {
+
+            state.weight.history =
+                oldData.weight.history;
+        }
+
+        state.water =
+            Number(
+                state.water ||
+                oldData.water ||
+                0
+            );
+
+        state.sets =
+            Number(
+                state.sets ||
+                oldData.sets ||
+                0
+            );
+
+        state.totalMinutes =
+            Number(
+                state.totalMinutes ||
+                oldData.totalMinutes ||
+                0
+            );
+
+        state.xp =
+            Number(
+                state.xp ||
+                oldData.xp ||
+                0
+            );
+
+    } catch (error) {
+
+        console.log(
+            "Eski veri aktarımı yapılamadı.",
+            error
+        );
+    }
+}
+
+
+/* =========================================
+   ANA UPDATE SİSTEMİ
+   ========================================= */
+
+function updateAll() {
+
+    renderFoods();
+
+    renderWeight();
+
+    renderCalendar();
+
+    renderRank();
+
+    renderPrograms();
+
+    renderExercises();
+
+    updateHome();
+
+}
+
+
+/* =========================================
+   SAYFA GEÇİŞİ
+   ========================================= */
+
+function go(pageId, button = null) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page =>
+            page.classList.remove(
+                "active"
+            )
+        );
+
+    const page =
+        document.getElementById(
+            pageId
+        );
+
+    if (!page)
+        return;
+
+    page.classList.add(
+        "active"
+    );
+
+    document
+        .querySelectorAll(
+            ".nav button"
+        )
+        .forEach(btn =>
+            btn.classList.remove(
+                "active"
+            )
+        );
+
+    if (button) {
+
+        button.classList.add(
+            "active"
+        );
+
+    } else {
+
+        const mapping = {
+
+            home: "Ana Sayfa",
+
+            nutrition: "Beslenme",
+
+            workout: "Antrenman",
+
+            program: "Program",
+
+            calendar: "Takvim",
+
+            rank: "Rütbe"
+
+        };
+
+        const wanted =
+            mapping[pageId];
+
+        document
+            .querySelectorAll(
+                ".nav button"
+            )
+            .forEach(btn => {
+
+                if (
+                    btn.textContent
+                        .includes(
+                            wanted
+                        )
+                ) {
+
+                    btn.classList.add(
+                        "active"
+                    );
+                }
+            });
+    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+    updateAll();
+}
+
+
+/* =========================================
+   KİLO HEDEFİ MESAJLARI
+   ========================================= */
+
+function getWeightMotivation() {
+
+    if (
+        state.weight.start == null ||
+        state.weight.current == null
+    ) {
+
+        return "İlk tartımını kaydet.";
+    }
+
+    const difference =
+        state.weight.start -
+        state.weight.current;
+
+    if (difference >= 10) {
+
+        return "🔥 Büyük bir ilerleme! Disiplinin fark yaratıyor.";
+    }
+
+    if (difference > 0) {
+
+        return "💪 İlerliyorsun. Küçük adımlar büyük sonuçlar getirir.";
+    }
+
+    if (difference === 0) {
+
+        return "🧠 Süreklilik önemli. Bugün de devam.";
+    }
+
+    return "🚀 Morali bozmak yok. Rutine geri dön.";
+}
+
+
+/* =========================================
+   SAYFA AÇILIŞINDA HAZIRLIK
+   ========================================= */
+
+migrateOldData();
+
+calculateStreak();
+
+updateAll();
+
+
+/* =========================================
+   MODAL DIŞINA BASINCA KAPAT
+   ========================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const modal =
+            document.getElementById(
+                "modal"
+            );
+
+        if (
+            modal &&
+            event.target === modal
+        ) {
+
+            closeModal();
+        }
+
+    }
+);
+
+
+/* =========================================
+   ESC TUŞU
+   ========================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeModal();
+        }
+
+    }
+);
+
+
+/* =========================================
+   SAYFA GÖRÜNÜR OLDUĞUNDA
+   VERİLERİ YENİLE
+   ========================================= */
+
+document.addEventListener(
+    "visibilitychange",
+    function() {
+
+        if (
+            !document.hidden
+        ) {
+
+            updateAll();
+        }
+
+    }
+);
+
+
+/* =========================================
+   HER 10 SANİYEDE VERİLERİ KONTROL ET
+   ========================================= */
+
+setInterval(
+    function() {
+
+        if (
+            !document.hidden
+        ) {
+
+            updateAll();
+        }
+
+    },
+    10000
+);
+
+
+/* =========================================
+   896 FIT HAZIR
+   ========================================= */
+
+console.log(
+    "🔥 896 FIT V23 aktif."
+);
+
+console.log(
+    "💪 Antrenman sistemi hazır."
+);
+
+console.log(
+    "🍽️ Beslenme sistemi hazır."
+);
+
+console.log(
+    "⚖️ Tartı sistemi hazır."
+);
+
+console.log(
+    "🏆 Rütbe sistemi hazır."
+);
+
+console.log(
+    "📅 Takvim sistemi hazır."
+);
